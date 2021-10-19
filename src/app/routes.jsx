@@ -16,7 +16,6 @@ import Transactions from './views/Transactions';
 import Faq from './views/Faq';
 import TradeInit from './views/TradeInit';
 import Trade from './views/Trade';
-import TradeDispute from './views/TradeDispute';
 import TradeDisputeComplete from './views/TradeDisputeComplete';
 import TradeRequested from './views/TradeRequested';
 import TradeComplete from './views/TradeComplete';
@@ -78,11 +77,6 @@ const Routes = (props) => {
         exact
         path="/trade/canceled/:id"
         component={requireAuth(withTracker(TradeCanceled))}
-      />
-      <Route
-        exact
-        path="/trade/dispute/:id"
-        component={requireAuth(withTracker(TradeDispute))}
       />
     </>
   )

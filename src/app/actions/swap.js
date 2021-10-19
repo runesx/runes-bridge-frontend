@@ -1,16 +1,16 @@
 import axios from 'axios';
 import {
-  BUY_BANNERSLOT_IDLE,
-  BUY_BANNERSLOT_BEGIN,
-  BUY_BANNERSLOT_SUCCESS,
-  BUY_BANNERSLOT_FAIL,
+  START_SWAP_IDLE,
+  START_SWAP_BEGIN,
+  START_SWAP_SUCCESS,
+  START_SWAP_FAIL,
   ENQUEUE_SNACKBAR,
 } from './types/index';
 
-export function idlebuyBannerslot() {
+export function idleStartSwapAction() {
   return function (dispatch) {
     dispatch({
-      type: BUY_BANNERSLOT_IDLE,
+      type: START_SWAP_IDLE,
       payload: {
         data: 0,
         isFetching: false,
@@ -21,17 +21,19 @@ export function idlebuyBannerslot() {
   }
 }
 
-export function executebuyBannerslot() {
+export function startSwapAction(body, type) {
+  console.log(body);
+  console.log('start swap action');
   return function (dispatch) {
     dispatch({
-      type: BUY_BANNERSLOT_BEGIN,
+      type: START_SWAP_BEGIN,
     });
-    axios.post(`${process.env.API_URL}/banners/buy`)
+    axios.post(`${process.env.API_URL}/create`, { destinationAddress: body, type })
       .then((response) => {
         dispatch({
           type: ENQUEUE_SNACKBAR,
           notification: {
-            message: 'Success: Extra webslot added',
+            message: 'Success: Deposit Address Generated',
             key: new Date().getTime() + Math.random(),
             options: {
               variant: 'success',
@@ -39,7 +41,7 @@ export function executebuyBannerslot() {
           },
         });
         dispatch({
-          type: BUY_BANNERSLOT_SUCCESS,
+          type: START_SWAP_SUCCESS,
           payload: response,
         });
       }).catch((error) => {
@@ -94,7 +96,7 @@ export function executebuyBannerslot() {
           });
         }
         dispatch({
-          type: BUY_BANNERSLOT_FAIL,
+          type: START_SWAP_FAIL,
           payload: error,
         });
       });

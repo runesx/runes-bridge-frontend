@@ -1,7 +1,6 @@
 import React, {
   useEffect,
   useState,
-  // Fragment,
 } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
@@ -16,17 +15,16 @@ import {
   CardActions,
   Button,
   TextField,
-  // TabPanel,
-  // Button,
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import * as actions from '../actions/auth';
 
 import {
   fetchCurrentTradeIdle,
-  secondTradeIdleAction,
-  cancelTradeIdleAction,
 } from '../actions/trade';
+import {
+  startSwapAction,
+} from '../actions/swap';
 
 function TabPanel(props) {
   const {
@@ -63,7 +61,7 @@ function a11yProps(index) {
   };
 }
 
-const Home = () => {
+const Swap = () => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(0);
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -72,13 +70,13 @@ const Home = () => {
     setValue(newValue);
   };
 
-  const handleClick = () => {
+  const handleClick = (typeSwap) => {
     console.log(textFieldValue);
     console.log('click handeled');
     // Handle Regex frontend check valid address
 
     //
-    // dispatch(startSwapAction(textFieldValue));
+    dispatch(startSwapAction(textFieldValue, typeSwap));
   };
   const handleChangeTextField = (e) => {
     console.log(e);
@@ -140,7 +138,7 @@ const Home = () => {
                   style={{ float: 'right' }}
                   size="large"
                   variant="contained"
-                  onClick={handleClick()}
+                  onClick={() => handleClick(0)}
                 >
                   Continue
                 </Button>
@@ -159,4 +157,4 @@ const Home = () => {
 
 const mapStateToProps = (state) => ({ errorMessage: state.auth.error })
 
-export default withRouter(connect(mapStateToProps, actions)(Home));
+export default withRouter(connect(mapStateToProps, actions)(Swap));

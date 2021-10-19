@@ -12,14 +12,11 @@ import socketIOClient from 'socket.io-client';
 import { SnackbarProvider } from 'notistack';
 import Button from '@material-ui/core/Button';
 import CookieConsent from 'react-cookie-consent';
-import useCurrentLocation from './hooks/useCurrentLocation';
 import useWatchLocation from './hooks/useWatchLocation';
 import { geolocationOptions } from './config';
-import Location from './components/Location';
-// import { AUTH_USER } from './actions/types/index';
 
 import ParticlesRunebase from './components/ParticlesRunebase';
-// import Snow from './components/Snow';
+
 import {
   onVolume,
   authenticated,
@@ -43,10 +40,7 @@ import reducers from './reducers';
 import Routes from './routes';
 import history from './history';
 import Header from './components/Header';
-import FooterMenu from './components/FooterMenu';
-// import GeoLocation from './components/GeoLocation';
 
-// import Footer from './components/Footer';
 import Notifier from './containers/Alert';
 
 import Runebase from './assets/images/Runebase.png';
