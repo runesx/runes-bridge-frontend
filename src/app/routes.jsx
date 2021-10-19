@@ -5,11 +5,8 @@ import { connect } from 'react-redux';
 
 import withTracker from './hooks/withTracker';
 
-
 import AdminUser from './views/admin/AdminUser';
 import AdminTradeView from './views/admin/AdminTradeView';
-
-
 
 import requireAuth from './components/hoc/RequireAuth';
 import requireNotAuth from './components/hoc/RequireNotAuth';
@@ -95,7 +92,6 @@ const Routes = (props) => {
         exact
         component={requireAuth(withTracker(AdminTradeView))}
       />
-
 
       <Route
         path="/admin/user/:id"
