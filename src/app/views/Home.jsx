@@ -91,7 +91,7 @@ const Home = (props) => {
           lg={6}
           xl={6}
         >
-          <Card className={classes.card}>
+          <Card className="cardBorder">
             <CardContent>
               <Typography className={classes.title} color="textSecondary" gutterBottom>
                 Total RUNES in custody
@@ -103,8 +103,15 @@ const Home = (props) => {
           </Card>
         </Grid>
         <Divider variant="middle" />
-        <Grid container item xs={12}>
-          <Grid item xs={12}>
+        <Grid
+          container
+          item
+          xs={12}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Grid item xs={9}>
             <Typography className={classes.title} color="textSecondary" gutterBottom>
               What is Wrapped RUNES?
             </Typography>
