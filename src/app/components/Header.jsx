@@ -157,7 +157,7 @@ const Header = (props) => {
         className="navbar navbar-default"
         expand="lg"
       >
-        <Link to={authenticated ? '/' : '/'} className="nav-link">RunesMultiplier.com</Link>
+        <Link to={authenticated ? '/' : '/'} className="nav-link">RunesX</Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -172,15 +172,21 @@ const Header = (props) => {
           <Nav className="mr-auto rNavbar">
             <Link
               className="nav-link"
-              to="/games"
+              to="/swap"
             >
-              Games
+              Swap
             </Link>
             <Link
               className="nav-link"
-              to="/referral"
+              to="/transactions"
             >
-              Referral
+              Transactions
+            </Link>
+            <Link
+              className="nav-link"
+              to="/faq"
+            >
+              FAQ
             </Link>
           </Nav>
           <ul>
@@ -197,256 +203,6 @@ const Header = (props) => {
 
             }
           </ul>
-
-          {
-              authenticated && user && user.role === 4 && (
-                <ul className="adminDropdownWrapper">
-                  <li />
-                  <li>
-
-                    <Button
-                      aria-controls="simple-menu"
-                      aria-haspopup="true"
-                      onClick={handleClickAdminMenu}
-                      className="langPadding toggleLangWrapper"
-                      id="user-nav-dropdown"
-                      style={{ color: '#bdbdbd' }}
-                    >
-                      <Badge
-                        badgeContent={adminPendingWithdrawalsCount
-                        && Number(adminPendingWithdrawalsCount)}
-                        color="secondary"
-                      >
-                        Admin
-
-                      </Badge>
-
-                      {' '}
-                      <ArrowDropDownIcon />
-                    </Button>
-                    <Menu
-                      id="simple-menu"
-                      anchorEl={anchorEl}
-                      keepMounted
-                      open={Boolean(anchorEl)}
-                      onClose={handleCloseAdminMenu}
-                      className="langPadding toggleLangWrapper"
-                    >
-                      <MenuItem
-                        onClick={handleCloseAdminMenu}
-                      >
-                        <div>
-                          <Link
-                            style={{ color: '#000' }}
-                            className="nav-link"
-                            to="/admin"
-                          >
-                            <AccountBalanceWalletIcon />
-                            {' '}
-                            Dashboard
-                          </Link>
-                        </div>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={handleCloseAdminMenu}
-                      >
-                        <div>
-                          <Link
-                            style={{ color: '#000' }}
-                            className="nav-link"
-                            to="/admin/margin"
-                          >
-                            <AccountBalanceWalletIcon />
-                            {' '}
-                            Artificial Price Margin
-                          </Link>
-                        </div>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={handleCloseAdminMenu}
-                      >
-                        <div>
-                          <Link
-                            style={{ color: '#000' }}
-                            className="nav-link"
-                            to="/admin/mail"
-                          >
-                            <AccountBalanceWalletIcon />
-                            {' '}
-                            Mass Mail
-                          </Link>
-                        </div>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={handleCloseAdminMenu}
-                      >
-                        <div>
-                          <Link style={{ color: '#000' }} className="nav-link" to="/admin/withdrawals/pending">
-                            <SettingsIcon />
-                            {' '}
-                            Pending Withdrawals (
-                            {adminPendingWithdrawalsCount || 0}
-                            )
-                          </Link>
-                        </div>
-                      </MenuItem>
-                      <MenuItem onClick={handleCloseAdminMenu}>
-                        <div>
-                          <Link style={{ color: '#000' }} className="nav-link" to="/admin/withdrawals">
-                            <SettingsIcon />
-                            {' '}
-                            Withdrawals
-                          </Link>
-                        </div>
-                      </MenuItem>
-                      <MenuItem onClick={handleCloseAdminMenu}>
-                        <div>
-                          <Link style={{ color: '#000' }} className="nav-link" to="/admin/deposits">
-                            <SettingsIcon />
-                            {' '}
-                            Deposits
-                          </Link>
-                        </div>
-                      </MenuItem>
-                      <MenuItem onClick={handleCloseAdminMenu}>
-                        <div>
-                          <Link style={{ color: '#000' }} className="nav-link" to="/admin/users">
-                            <AccountCircleIcon />
-                            {' '}
-                            User Managment
-                          </Link>
-                        </div>
-                      </MenuItem>
-                      <MenuItem onClick={handleCloseAdminMenu}>
-                        <div>
-                          <Link style={{ color: '#000' }} className="nav-link" to="/admin/countries">
-                            <FaceIcon />
-                            {' '}
-                            Countries
-                          </Link>
-                        </div>
-                      </MenuItem>
-                      <MenuItem onClick={handleCloseAdminMenu}>
-                        <div>
-                          <Link style={{ color: '#000' }} className="nav-link" to="/admin/currencies">
-                            <DashboardIcon />
-                            {' '}
-                            Currencies
-                          </Link>
-                        </div>
-                      </MenuItem>
-                    </Menu>
-                  </li>
-                </ul>
-              )
-  }
-          {
-              authenticated
-                ? (
-                  <ul>
-                    <li>
-                      <Button
-                          // aria-controls="simple-menu"
-                          // aria-haspopup="true"
-                        onClick={handleClickUserMenu}
-                        className="langPadding toggleLangWrapper"
-                        id="user-nav-dropdown"
-                        style={{ color: '#bdbdbd' }}
-                      >
-                        <Badge
-                          color="secondary"
-                        >
-                          {user && user.username}
-
-                        </Badge>
-
-                        {' '}
-                        <ArrowDropDownIcon />
-                      </Button>
-                      <Menu
-                        id="simple-menu"
-                        anchorEl={anchorElUser}
-                        keepMounted
-                        open={Boolean(anchorElUser)}
-                        onClose={handleCloseUserMenu}
-                        className="langPadding toggleLangWrapper"
-                      >
-                        <MenuItem onClick={handleCloseUserMenu}>
-                          <div>
-                            <Link
-                              style={{ color: '#000' }}
-                              className="nav-link"
-                              to="/wallet"
-                            >
-                              <AccountBalanceWalletIcon />
-                              {' '}
-                              Wallet
-                            </Link>
-                          </div>
-                        </MenuItem>
-                        <MenuItem onClick={handleCloseUserMenu}>
-                          <div>
-                            <Link
-                              style={{ color: '#000' }}
-                              className="nav-link"
-                              to="/profile"
-                            >
-                              <AccountCircleIcon />
-                              {' '}
-                              My Account
-                            </Link>
-                          </div>
-                        </MenuItem>
-                        <MenuItem onClick={handleCloseUserMenu}>
-                          <div>
-                            <Link
-                              style={{ color: '#000' }}
-                              className="nav-link"
-                              to="/activity"
-                            >
-                              <AccessTimeIcon />
-                              {' '}
-                              Activity
-                            </Link>
-                          </div>
-                        </MenuItem>
-                        <MenuItem onClick={handleCloseUserMenu}>
-                          <div>
-                            <Link style={{ color: '#000' }} className="nav-link" to="/settings">
-                              <SettingsIcon />
-                              {' '}
-                              Settings
-                            </Link>
-                          </div>
-                        </MenuItem>
-                        <MenuItem onClick={handleCloseUserMenu}>
-                          <div>
-                            <Link style={{ color: '#000' }} className="nav-link" to="/signout">
-                              <ExitToAppIcon />
-                              {' '}
-                              Logout
-                            </Link>
-                          </div>
-                        </MenuItem>
-                      </Menu>
-                    </li>
-                  </ul>
-
-                )
-                : (
-                  <>
-                    <ul>
-                      <li>
-                        <Link className="nav-link" to="/signup">Sign up</Link>
-                      </li>
-                      <li>
-                        <Link className="nav-link" to="/signin">Sign in</Link>
-                      </li>
-                    </ul>
-                  </>
-
-                )
-            }
 
           <Button
                           // aria-controls="simple-menu"

@@ -301,7 +301,6 @@ function App() {
             >
               By continuing to browse localrunes.com, you agree to our use of cookies.
             </CookieConsent>
-            <FooterMenu />
             <Footer />
           </Suspense>
         </Router>
