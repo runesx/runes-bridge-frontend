@@ -11,16 +11,17 @@ import {
   Tabs,
   Tab,
   Typography,
+  Card,
+  CardContent,
+  CardActions,
+  Button,
+  TextField,
   // TabPanel,
   // Button,
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import * as actions from '../actions/auth';
 
-import Activity from '../containers/Activity';
-import Info from '../containers/Info';
-import Volume from '../containers/Volume';
-// import Globe from '../containers/Globe';
 import {
   fetchCurrentTradeIdle,
   secondTradeIdleAction,
@@ -63,21 +64,30 @@ function a11yProps(index) {
 }
 
 const Home = () => {
+  const dispatch = useDispatch();
   const [value, setValue] = React.useState(0);
+  const [textFieldValue, setTextFieldValue] = useState('');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log('RunesX Home View');
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(cancelTradeIdleAction());
-  }, []);
+
+  const handleClick = () => {
+    console.log(textFieldValue);
+    console.log('click handeled');
+    // Handle Regex frontend check valid address
+
+    //
+    // dispatch(startSwapAction(textFieldValue));
+  };
+  const handleChangeTextField = (e) => {
+    console.log(e);
+    setTextFieldValue(e);
+  };
+  console.log('RunesX Swap View');
+
   useEffect(() => {
     dispatch(fetchCurrentTradeIdle());
-  }, []);
-  useEffect(() => {
-    dispatch(secondTradeIdleAction());
   }, []);
 
   return (
@@ -105,7 +115,39 @@ const Home = () => {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          Item One
+          <Card sx={{ minWidth: 275 }}>
+            <CardContent>
+              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                Swap RUNES to BEP20 wRUNES
+              </Typography>
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                Destination Address to receive wRUNES on Binance Smart Chain
+              </Typography>
+              <TextField
+                label="Destination Address"
+                id="filled-size-normal"
+                variant="filled"
+                fullWidth
+                onChange={(e) => handleChangeTextField(e.target.value)}
+              />
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                Minimum Deposit is 30 000 RUNES, Sending less through the bridge will result in loss of funds
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Grid container justify="flex-end">
+                <Button
+                  style={{ float: 'right' }}
+                  size="large"
+                  variant="contained"
+                  onClick={handleClick()}
+                >
+                  Continue
+                </Button>
+              </Grid>
+
+            </CardActions>
+          </Card>
         </TabPanel>
         <TabPanel value={value} index={1}>
           Item Two
