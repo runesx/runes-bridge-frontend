@@ -1,51 +1,63 @@
 import axios from 'axios';
 import {
-  BUY_BANNERSLOT_IDLE,
-  BUY_BANNERSLOT_BEGIN,
-  BUY_BANNERSLOT_SUCCESS,
-  BUY_BANNERSLOT_FAIL,
+  FETCH_OPERATION_IDLE,
+  FETCH_OPERATION_BEGIN,
+  FETCH_OPERATION_SUCCESS,
+  FETCH_OPERATION_FAIL,
   ENQUEUE_SNACKBAR,
 } from './types/index';
 
-export function idlebuyBannerslot() {
+export function fetchOperationIdle() {
   return function (dispatch) {
     dispatch({
-      type: BUY_BANNERSLOT_IDLE,
+      type: FETCH_OPERATION_IDLE,
       payload: {
-        data: 0,
-        isFetching: false,
-        phase: 0,
+        data: null,
+        isLoading: false,
         error: null,
       },
     });
   }
 }
 
-export function executebuyBannerslot() {
+export function fetchOperation(body, type, amount = 0) {
+  console.log(body);
+  console.log('start swap action');
   return function (dispatch) {
     dispatch({
-      type: BUY_BANNERSLOT_BEGIN,
+      type: FETCH_OPERATION_BEGIN,
+      payload: {
+        isLoading: true,
+      },
     });
-    axios.post(`${process.env.API_URL}/banners/buy`)
+    axios.get(`${process.env.API_URL}/create`, { destinationAddress: body, type, amount })
       .then((response) => {
         dispatch({
           type: ENQUEUE_SNACKBAR,
           notification: {
-            message: 'Success: Extra webslot added',
+            message: 'Success: Deposit Address Generated',
             key: new Date().getTime() + Math.random(),
             options: {
               variant: 'success',
             },
           },
         });
+        console.log(response);
         dispatch({
-          type: BUY_BANNERSLOT_SUCCESS,
+          type: FETCH_OPERATION_SUCCESS,
           payload: response,
         });
       }).catch((error) => {
+        console.log('error response');
+        console.log(error.response);
+        console.log(error);
+        console.log(error.response.data);
+        console.log(error.response.data.error);
         if (error.response) {
           // client received an error response (5xx, 4xx)
+          console.log('error response');
           console.log(error.response);
+          console.log(error.message);
           if (error.response.status === 429) {
             dispatch({
               type: ENQUEUE_SNACKBAR,
@@ -94,7 +106,7 @@ export function executebuyBannerslot() {
           });
         }
         dispatch({
-          type: BUY_BANNERSLOT_FAIL,
+          type: FETCH_OPERATION_FAIL,
           payload: error,
         });
       });
