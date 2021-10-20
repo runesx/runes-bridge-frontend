@@ -25,10 +25,9 @@ import {
 } from '@material-ui/core';
 import * as actions from '../actions/auth';
 import {
-  fetchCurrentTradeIdle,
-  secondTradeIdleAction,
-  cancelTradeIdleAction,
-} from '../actions/trade';
+  fetchOperation,
+  fetchOperationIdle,
+} from '../actions/operation';
 
 const styles = {
   card: {
@@ -60,13 +59,10 @@ const Operation = (props) => {
   console.log('RunesX Home View');
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(cancelTradeIdleAction());
+    dispatch(fetchOperationIdle());
   }, []);
   useEffect(() => {
-    dispatch(fetchCurrentTradeIdle());
-  }, []);
-  useEffect(() => {
-    dispatch(secondTradeIdleAction());
+    dispatch(fetchOperation(id));
   }, []);
 
   return (
@@ -170,7 +166,6 @@ const Operation = (props) => {
               <div>
                 Warning!!
                 Minimum Deposit is 30 000 RUNES, Sending less through the bridge will result in loss of funds
-
               </div>
               <div>
                 QR code
