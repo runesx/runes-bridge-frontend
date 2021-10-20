@@ -13,8 +13,7 @@ export function idleStartSwapAction() {
       type: START_SWAP_IDLE,
       payload: {
         data: 0,
-        isFetching: false,
-        phase: 0,
+        isLoading: false,
         error: null,
       },
     });
@@ -27,6 +26,9 @@ export function startSwapAction(body, type, amount = 0) {
   return function (dispatch) {
     dispatch({
       type: START_SWAP_BEGIN,
+      payload: {
+        isLoading: true,
+      },
     });
     axios.post(`${process.env.API_URL}/create`, { destinationAddress: body, type, amount })
       .then((response) => {
