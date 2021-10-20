@@ -10,15 +10,11 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
-import {
-  fetchTradeData,
-} from '../actions/trade';
 
 const Notifications = (props) => {
   const { trade } = props;
   const history = useHistory();
   const dispatch = useDispatch();
-  useEffect(() => dispatch(fetchTradeData()), [dispatch]);
   useEffect(() => {
     console.log(trade);
   });

@@ -20,9 +20,6 @@ import PropTypes from 'prop-types';
 import * as actions from '../actions/auth';
 
 import {
-  fetchCurrentTradeIdle,
-} from '../actions/trade';
-import {
   startSwapAction,
 } from '../actions/swap';
 
@@ -61,7 +58,9 @@ function a11yProps(index) {
   };
 }
 
-const Swap = () => {
+const Swap = (props) => {
+  console.log('RunesX Swap View');
+  const { startSwap } = props;
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(0);
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -71,22 +70,15 @@ const Swap = () => {
   };
 
   const handleClick = (typeSwap) => {
-    console.log(textFieldValue);
-    console.log('click handeled');
-    // Handle Regex frontend check valid address
-
-    //
     dispatch(startSwapAction(textFieldValue, typeSwap));
   };
   const handleChangeTextField = (e) => {
     console.log(e);
     setTextFieldValue(e);
   };
-  console.log('RunesX Swap View');
 
   useEffect(() => {
-    dispatch(fetchCurrentTradeIdle());
-  }, []);
+  }, [startSwap]);
 
   return (
     <div className="height100 content">
@@ -134,14 +126,19 @@ const Swap = () => {
             </CardContent>
             <CardActions>
               <Grid container justify="flex-end">
-                <Button
-                  style={{ float: 'right' }}
-                  size="large"
-                  variant="contained"
-                  onClick={() => handleClick(0)}
-                >
-                  Continue
-                </Button>
+                {startSwap.isLoading ? (
+                  <div>Loading</div>
+                ) : (
+                  <Button
+                    style={{ float: 'right' }}
+                    size="large"
+                    variant="contained"
+                    onClick={() => handleClick(0)}
+                  >
+                    Continue
+                  </Button>
+                )}
+
               </Grid>
 
             </CardActions>
@@ -155,6 +152,9 @@ const Swap = () => {
   )
 }
 
-const mapStateToProps = (state) => ({ errorMessage: state.auth.error })
+const mapStateToProps = (state) => ({
+  errorMessage: state.auth.error,
+  startSwap: state.startSwap,
+});
 
 export default withRouter(connect(mapStateToProps, actions)(Swap));

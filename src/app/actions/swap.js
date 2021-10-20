@@ -6,6 +6,7 @@ import {
   START_SWAP_FAIL,
   ENQUEUE_SNACKBAR,
 } from './types/index';
+import history from '../history';
 
 export function idleStartSwapAction() {
   return function (dispatch) {
@@ -42,7 +43,9 @@ export function startSwapAction(body, type, amount = 0) {
             },
           },
         });
-        console.log(response);
+        console.log('response');
+        console.log(response.data.result.uuid);
+        history.push(`operation/${response.data.result.uuid}`);
         dispatch({
           type: START_SWAP_SUCCESS,
           payload: response,

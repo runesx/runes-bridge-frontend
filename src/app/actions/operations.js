@@ -20,8 +20,7 @@ export function fetchOperationIdle() {
   }
 }
 
-export function fetchOperation(body, type, amount = 0) {
-  console.log(body);
+export function fetchOperationAction(id) {
   console.log('start swap action');
   return function (dispatch) {
     dispatch({
@@ -30,22 +29,12 @@ export function fetchOperation(body, type, amount = 0) {
         isLoading: true,
       },
     });
-    axios.get(`${process.env.API_URL}/create`, { destinationAddress: body, type, amount })
+    axios.get(`${process.env.API_URL}/info/${id}`)
       .then((response) => {
-        dispatch({
-          type: ENQUEUE_SNACKBAR,
-          notification: {
-            message: 'Success: Deposit Address Generated',
-            key: new Date().getTime() + Math.random(),
-            options: {
-              variant: 'success',
-            },
-          },
-        });
         console.log(response);
         dispatch({
           type: FETCH_OPERATION_SUCCESS,
-          payload: response,
+          payload: response.data.result,
         });
       }).catch((error) => {
         console.log('error response');

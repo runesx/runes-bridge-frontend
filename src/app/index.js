@@ -50,7 +50,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './assets/fonts/texgyreheros-regular.woff';
 import './theme/style.scss';
 import './i18n';
-import * as action from './actions/online';
+import * as action from './actions';
 import 'animate.css/source/animate.css';
 // import ReactGA from 'react-ga';
 // import usePageTracking from './hooks/usePageTracking'

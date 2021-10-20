@@ -23,9 +23,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MobileNav from '../assets/images/mobileNav.svg';
 import Notifications from './Notifications';
-import {
-  getPendingWithdrawalCount,
-} from '../actions/adminCounts';
+
 
 // import 'bootstrap/dist/css/bootstrap.css';
 
@@ -36,7 +34,6 @@ const Header = (props) => {
     i18n,
     authenticated,
     user,
-    adminPendingWithdrawalsCount,
   } = props;
   const heightRef = useRef(null);
   const [ref, setRef] = useState(null);
@@ -78,8 +75,6 @@ const Header = (props) => {
       return () => clearInterval(interval);
     }
   }, [user]);
-
-  useEffect(() => { }, [adminPendingWithdrawalsCount]);
 
   useEffect(() => {
     setHeight(heightRef.current.clientHeight);

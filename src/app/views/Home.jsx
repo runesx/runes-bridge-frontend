@@ -5,7 +5,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import {
   Grid,
@@ -18,12 +18,7 @@ import {
   // Button,
 } from '@material-ui/core';
 import * as actions from '../actions/auth';
-
-import {
-  fetchCurrentTradeIdle,
-  secondTradeIdleAction,
-  cancelTradeIdleAction,
-} from '../actions/trade';
+import Logo from '../assets/images/logo.svg';
 
 const styles = {
   card: {
@@ -45,20 +40,33 @@ const styles = {
 
 const Home = (props) => {
   const { classes } = props;
+  const history = useHistory();
   console.log('RunesX Home View');
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(cancelTradeIdleAction());
-  }, []);
-  useEffect(() => {
-    dispatch(fetchCurrentTradeIdle());
-  }, []);
-  useEffect(() => {
-    dispatch(secondTradeIdleAction());
-  }, []);
+
+  const routeChangeSwap = () => {
+    const path = 'swap';
+    history.push(path);
+  }
 
   return (
     <div className="height100 content">
+      <Grid
+        container
+        spacing={0}
+        justify="center"
+      >
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={2}
+          xl={1}
+        >
+          <Logo />
+        </Grid>
+      </Grid>
       <Grid
         container
         spacing={0}
@@ -103,26 +111,17 @@ const Home = (props) => {
           </Card>
         </Grid>
         <Divider variant="middle" />
-        <Grid
-          container
-          item
-          xs={12}
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Grid item xs={9}>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-              What is Wrapped RUNES?
-            </Typography>
-            <Typography variant="h5" component="h2">
-              A wrapped RUNES is a cryptocurrency token pegged to the value of the RUNES coin. It’s called a wrapped because the original asset is put in a wrapper, a kind of digital vault that allows the wrapped version to be created on another blockchain.
-            </Typography>
-          </Grid>
-        </Grid>
 
         <Grid item xs={12}>
-          <Button>Swap</Button>
+          <Button
+            fullWidth
+            variant="contained"
+            size="large"
+            onClick={() => routeChangeSwap()}
+          >
+            Swap
+
+          </Button>
         </Grid>
       </Grid>
     </div>

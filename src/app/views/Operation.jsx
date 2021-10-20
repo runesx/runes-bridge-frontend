@@ -25,9 +25,9 @@ import {
 } from '@material-ui/core';
 import * as actions from '../actions/auth';
 import {
-  fetchOperation,
+  fetchOperationAction,
   fetchOperationIdle,
-} from '../actions/operation';
+} from '../actions/operations';
 
 const styles = {
   card: {
@@ -49,6 +49,7 @@ const styles = {
 
 const Operation = (props) => {
   const {
+    fetchOperation,
     classes,
     match: {
       params: {
@@ -62,7 +63,25 @@ const Operation = (props) => {
     dispatch(fetchOperationIdle());
   }, []);
   useEffect(() => {
-    dispatch(fetchOperation(id));
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log('id');
+    console.log(id);
+    dispatch(fetchOperationAction(id));
   }, []);
 
   return (
@@ -73,113 +92,122 @@ const Operation = (props) => {
         alignItems="center"
         justify="center"
       >
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={8}
-          lg={8}
-          xl={6}
-        >
-          <Card className="cardBorder">
-            <Card className="cardGray">
-              <div>Bridge Open</div>
-              <Card className="cardBorderTwo">
-                <CardContent>
-                  <TableContainer>
-                    <Table aria-label="simple table">
-                      <TableBody>
-                        <TableRow
+        {
+        !fetchOperation.isLoading
+          ? (
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={8}
+              lg={8}
+              xl={6}
+            >
+              <Card className="cardBorder">
+                <Card className="cardGray">
+                  <div>Bridge Open</div>
+                  <Card className="cardBorderTwo">
+                    <CardContent>
+                      <TableContainer>
+                        <Table aria-label="simple table">
+                          <TableBody>
+                            <TableRow
                           // key={row.name}
-                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                          <TableCell component="th" scope="row">
-                            UUID:
-                          </TableCell>
-                          <TableCell align="right">
-                            123
-                          </TableCell>
-                        </TableRow>
-                        <TableRow
+                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                              <TableCell component="th" scope="row">
+                              UUID:
+                            </TableCell>
+                              <TableCell align="right">
+                              123
+                            </TableCell>
+                            </TableRow>
+                            <TableRow
                           // key={row.name}
-                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                          <TableCell component="th" scope="row">
-                            Type:
-                          </TableCell>
-                          <TableCell align="right">
-                            Mint wRUNES
-                          </TableCell>
-                        </TableRow>
-                        <TableRow
+                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                              <TableCell component="th" scope="row">
+                              Type:
+                            </TableCell>
+                              <TableCell align="right">
+                              Mint wRUNES
+                            </TableCell>
+                            </TableRow>
+                            <TableRow
                           // key={row.name}
-                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                          <TableCell component="th" scope="row">
-                            To:
-                          </TableCell>
-                          <TableCell align="right">
-                            123
-                          </TableCell>
-                        </TableRow>
-                        <TableRow
+                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                              <TableCell component="th" scope="row">
+                              To:
+                            </TableCell>
+                              <TableCell align="right">
+                              123
+                            </TableCell>
+                            </TableRow>
+                            <TableRow
                           // key={row.name}
-                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                          <TableCell component="th" scope="row">
-                            Amount:
-                          </TableCell>
-                          <TableCell align="right">
-                            123
-                          </TableCell>
-                        </TableRow>
-                        <TableRow
+                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                              <TableCell component="th" scope="row">
+                              Amount:
+                            </TableCell>
+                              <TableCell align="right">
+                              123
+                            </TableCell>
+                            </TableRow>
+                            <TableRow
                           // key={row.name}
-                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                          <TableCell component="th" scope="row">
-                            Fee:
-                          </TableCell>
-                          <TableCell align="right">
-                            123
-                          </TableCell>
-                        </TableRow>
-                        <TableRow
+                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                              <TableCell component="th" scope="row">
+                              Fee:
+                            </TableCell>
+                              <TableCell align="right">
+                              123
+                            </TableCell>
+                            </TableRow>
+                            <TableRow
                           // key={row.name}
-                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                          <TableCell component="th" scope="row">
-                            Time:
-                          </TableCell>
-                          <TableCell align="right">
-                            123
-                          </TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                </CardContent>
+                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                              <TableCell component="th" scope="row">
+                              Time:
+                            </TableCell>
+                              <TableCell align="right">
+                              123
+                            </TableCell>
+                            </TableRow>
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
+                    </CardContent>
+                  </Card>
+                  <div>
+                    Bridge closing in: xxxx minutes
+                  </div>
+                  <div>
+                    Warning!!
+                    Minimum Deposit is 30 000 RUNES, Sending less through the bridge will result in loss of funds
+                  </div>
+                  <div>
+                    QR code
+                    Deposit ADDRESS
+                  </div>
+
+                  <div>
+                    Transactions
+                  </div>
+
+                </Card>
+
               </Card>
-              <div>
-                Bridge closing in: xxxx minutes
-              </div>
-              <div>
-                Warning!!
-                Minimum Deposit is 30 000 RUNES, Sending less through the bridge will result in loss of funds
-              </div>
-              <div>
-                QR code
-                Deposit ADDRESS
-              </div>
+            </Grid>
+          )
+          : (
+            <p>Loading</p>
+          )
+        }
 
-              <div>
-                Transactions
-              </div>
-
-            </Card>
-
-          </Card>
-        </Grid>
       </Grid>
     </div>
   )
@@ -188,6 +216,9 @@ Operation.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({ errorMessage: state.auth.error })
+const mapStateToProps = (state) => ({
+  errorMessage: state.auth.error,
+  fetchOperation: state.fetchOperation,
+})
 
 export default withStyles(styles)(withRouter(connect(mapStateToProps, actions)(Operation)));
