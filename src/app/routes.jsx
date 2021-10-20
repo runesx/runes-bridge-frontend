@@ -21,6 +21,8 @@ import TradeRequested from './views/TradeRequested';
 import TradeComplete from './views/TradeComplete';
 import TradeCanceled from './views/TradeCanceled';
 
+import Operation from './views/Operation';
+
 const Routes = (props) => {
   const {
     theme,
@@ -50,8 +52,8 @@ const Routes = (props) => {
       />
       <Route
         exact
-        path="/trade/init/:id"
-        component={requireAuth(withTracker(TradeInit))}
+        path="/operation/:id"
+        component={withTracker(Operation)}
       />
       <Route
         exact
