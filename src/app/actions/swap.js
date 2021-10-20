@@ -21,14 +21,14 @@ export function idleStartSwapAction() {
   }
 }
 
-export function startSwapAction(body, type) {
+export function startSwapAction(body, type, amount = 0) {
   console.log(body);
   console.log('start swap action');
   return function (dispatch) {
     dispatch({
       type: START_SWAP_BEGIN,
     });
-    axios.post(`${process.env.API_URL}/create`, { destinationAddress: body, type })
+    axios.post(`${process.env.API_URL}/create`, { destinationAddress: body, type, amount })
       .then((response) => {
         dispatch({
           type: ENQUEUE_SNACKBAR,
@@ -40,14 +40,22 @@ export function startSwapAction(body, type) {
             },
           },
         });
+        console.log(response);
         dispatch({
           type: START_SWAP_SUCCESS,
           payload: response,
         });
       }).catch((error) => {
+        console.log('error response');
+        console.log(error.response);
+        console.log(error);
+        console.log(error.response.data);
+        console.log(error.response.data.error);
         if (error.response) {
           // client received an error response (5xx, 4xx)
+          console.log('error response');
           console.log(error.response);
+          console.log(error.message);
           if (error.response.status === 429) {
             dispatch({
               type: ENQUEUE_SNACKBAR,
