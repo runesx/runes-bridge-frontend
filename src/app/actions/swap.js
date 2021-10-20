@@ -12,7 +12,7 @@ export function idleStartSwapAction() {
     dispatch({
       type: START_SWAP_IDLE,
       payload: {
-        data: 0,
+        data: null,
         isLoading: false,
         error: null,
       },
