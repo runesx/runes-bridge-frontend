@@ -146,6 +146,7 @@ const Home = (props) => {
         container
         spacing={0}
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -154,6 +155,7 @@ const Home = (props) => {
           md={4}
           lg={2}
           xl={1}
+          className="zindexOne"
         >
           <Logo />
         </Grid>
@@ -169,6 +171,7 @@ const Home = (props) => {
           md={6}
           lg={6}
           xl={6}
+          className="zindexOne"
         >
           <Card className={classes.card}>
             <CardContent>
@@ -191,6 +194,7 @@ const Home = (props) => {
           md={6}
           lg={6}
           xl={6}
+          className="zindexOne"
         >
           <Card className="cardBorder">
             <CardContent>

@@ -1,3 +1,11 @@
+.content {
+  position: relative;
+flex: 1; 
+z-index: 20;
+}
+.zindexOne {
+  z-index: 1;
+}
 .cardBorder {
   border: 2px solid var(--cardBorderColor);
   margin: 50px;
