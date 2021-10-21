@@ -26,13 +26,14 @@ export default function SimpleCollapse() {
   return (
     <Grid
       container
-      style={{ zIndex: 5000 }}
+      // style={{ zIndex: 5000 }}
     >
       <Grid
         container
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -53,6 +54,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -78,6 +80,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -97,6 +100,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -122,6 +126,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -141,6 +146,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -166,6 +172,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -185,6 +192,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -210,6 +218,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -229,6 +238,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -254,6 +264,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -273,6 +284,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -298,6 +310,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -317,6 +330,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -347,6 +361,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -366,6 +381,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -391,6 +407,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
@@ -410,6 +427,7 @@ export default function SimpleCollapse() {
         xs={12}
         item
         justify="center"
+        className="zindexOne"
       >
         <Grid
           item
