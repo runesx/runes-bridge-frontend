@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   theme: theme,
   alert: alert,
   startSwap: startSwap,
-  fetchOperation: fetchOperation,
+  fetchOperation: fetchOperation
   
 });
 
