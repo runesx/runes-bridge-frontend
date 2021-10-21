@@ -10,7 +10,7 @@ import { Router } from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 import socketIOClient from 'socket.io-client';
 import { SnackbarProvider } from 'notistack';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import CookieConsent from 'react-cookie-consent';
 
 import ParticlesRunebase from './components/ParticlesRunebase';
@@ -41,6 +41,17 @@ import { MetamaskStateProvider } from 'use-metamask';
 import { DAppProvider } from '@usedapp/core';
 // import ReactGA from 'react-ga';
 // import usePageTracking from './hooks/usePageTracking'
+import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
+
+const theme = createTheme();
+
+const useStyles = makeStyles((theme) => {
+  {
+    // some css that access to theme
+  }
+});
 
 const ENDPOINT = `//${window.location.host}`;
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -104,51 +115,56 @@ function App() {
   // Set up a piece of state, so that we have
   // a way to trigger a re-render.
   console.log('RunesX App Started');
+  const classes = useStyles();
 
   return (
-    <Provider store={store}>
-      <MetamaskStateProvider>
-        <DAppProvider config={{}}>
-          <SnackbarProvider
-            ref={notistackRef}
-            classes={{
-              root: styles.snack,
-            }}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
-            }}
-            action={(key) => (
-              <Button onClick={onClickDismiss(key)}>
-                'Dismiss'
-              </Button>
-            )}
-          >
-            <Router
-              history={history}
-              routes={Routes}
-            >
-              <Suspense fallback={<Loader />}>
-                <Notifier />
-                <ParticlesRunebase />
-                <Header />
-                <Routes />
-                <CookieConsent
-                  location="bottom"
-                  buttonText="Agree"
-                  cookieName="myAwesomeCookieName2"
-                  style={{ background: '#2B373B', zIndex: 6000, marginBottom: '35px' }}
-                  buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <MetamaskStateProvider>
+            <DAppProvider config={{}}>
+              <SnackbarProvider
+                ref={notistackRef}
+                classes={{
+                  root: styles.snack,
+                }}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+                action={(key) => (
+                  <Button onClick={onClickDismiss(key)}>
+                    'Dismiss'
+                  </Button>
+                )}
+              >
+                <Router
+                  history={history}
+                  routes={Routes}
                 >
-                  By continuing to browse localrunes.com, you agree to our use of cookies.
-                </CookieConsent>
-                <Footer />
-              </Suspense>
-            </Router>
-          </SnackbarProvider>
-        </DAppProvider>
-      </MetamaskStateProvider>
-    </Provider>
+                  <Suspense fallback={<Loader />}>
+                    <Notifier />
+                    <ParticlesRunebase />
+                    <Header />
+                    <Routes />
+                    <CookieConsent
+                      location="bottom"
+                      buttonText="Agree"
+                      cookieName="myAwesomeCookieName2"
+                      style={{ background: '#2B373B', zIndex: 6000, marginBottom: '35px' }}
+                      buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
+                    >
+                      By continuing to browse localrunes.com, you agree to our use of cookies.
+                    </CookieConsent>
+                    <Footer />
+                  </Suspense>
+                </Router>
+              </SnackbarProvider>
+            </DAppProvider>
+          </MetamaskStateProvider>
+        </Provider>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 

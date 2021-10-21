@@ -8,9 +8,9 @@ import {
   Grid,
   // Fab,
   Tooltip,
-} from '@material-ui/core';
+} from '@mui/material';
 import { connect, useDispatch } from 'react-redux';
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@mui/icons-material/Add';
 import {
   reduxForm,
   // Field,
@@ -19,11 +19,11 @@ import {
   // reset,
 } from 'redux-form';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-// import CloseIcon from '@material-ui/icons/Close';
+import makeStyles from '@mui/styles/makeStyles';
+// import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import QRCode from 'qrcode';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 // import Captcha from './Captcha';
 import * as actions from '../actions';
 import { fetchUserData } from '../actions/user';
@@ -158,7 +158,7 @@ const Deposit = (props) => {
         container
         direction="column"
         alignItems="center"
-        justify="center"
+        justifyContent="center"
         item
         xs={12}
         style={{ marginTop: '20px' }}
@@ -213,7 +213,6 @@ const Deposit = (props) => {
         </div>
       </Grid>
     </div>
-
   );
 }
 const onSubmitSuccess = (result, dispatch) => {

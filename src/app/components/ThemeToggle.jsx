@@ -4,11 +4,11 @@ import React, {
 import {
   connect,
 } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import {
   Switch,
-} from '@material-ui/core';
-import { Brightness3, WbSunny } from '@material-ui/icons';
+} from '@mui/material';
+import { Brightness3, WbSunny } from '@mui/icons-material';
 import { changeTheme } from '../actions';
 
 const ThemeSwitch = withStyles({

@@ -3,8 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // nodejs library that concatenates classes
 import classNames from 'classnames';
-// @material-ui/core components
-import withStyles from '@material-ui/core/styles/withStyles';
+import withStyles from '@mui/styles/withStyles';
 
 import infoStyle from '../../assets/jss/material-kit-react/components/infoStyle.jsx';
 

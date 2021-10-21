@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 
 import { withTranslation } from 'react-i18next';
-import Badge from '@material-ui/core/Badge';
-import IconButton from '@material-ui/core/IconButton';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import Badge from '@mui/material/Badge';
+import IconButton from '@mui/material/IconButton';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useHistory } from 'react-router-dom';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import Button from '@material-ui/core/Button';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import Button from '@mui/material/Button';
 
 const Notifications = (props) => {
   const { trade } = props;
@@ -66,57 +66,54 @@ const Notifications = (props) => {
     setAnchorEl(null);
   };
 
-  return (
-    <>
+  return <>
 
-      <Button
-        aria-controls="simple-menu"
-        aria-haspopup="true"
-        onClick={handleClickNotiMenu}
-        className="langPadding toggleLangWrapper"
-        id="user-nav-dropdown"
-        style={{ color: '#bdbdbd' }}
-      >
-        <IconButton
-          aria-label="show notifications"
-          color="inherit"
-          onClick={handleClick}
-          style={{ padding: 0 }}
+    <Button
+      aria-controls="simple-menu"
+      aria-haspopup="true"
+      onClick={handleClickNotiMenu}
+      className="langPadding toggleLangWrapper"
+      id="user-nav-dropdown"
+      style={{ color: '#bdbdbd' }}
+    >
+      <IconButton
+        aria-label="show notifications"
+        color="inherit"
+        onClick={handleClick}
+        style={{ padding: 0 }}
+        size="large">
+        <Badge
+          badgeContent={trade && trade.length && trade.length}
+          color="secondary"
         >
-          <Badge
-            badgeContent={trade && trade.length && trade.length}
-            color="secondary"
-          >
-            <NotificationsIcon />
-          </Badge>
-          {' '}
-          <ArrowDropDownIcon />
+          <NotificationsIcon />
+        </Badge>
+        {' '}
+        <ArrowDropDownIcon />
 
-        </IconButton>
-      </Button>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleCloseNotiMenu}
-        className="langPadding toggleLangWrapper"
-      >
-        {trade && trade.map((item) => (
-          <MenuItem onClick={() => handleCloseNotiMenu(item.type, item.id)}>
-            <div>
-              Trade #
-              {item.id}
-              {' - '}
-              {item.type}
-            </div>
-          </MenuItem>
-        ))}
+      </IconButton>
+    </Button>
+    <Menu
+      id="simple-menu"
+      anchorEl={anchorEl}
+      keepMounted
+      open={Boolean(anchorEl)}
+      onClose={handleCloseNotiMenu}
+      className="langPadding toggleLangWrapper"
+    >
+      {trade && trade.map((item) => (
+        <MenuItem onClick={() => handleCloseNotiMenu(item.type, item.id)}>
+          <div>
+            Trade #
+            {item.id}
+            {' - '}
+            {item.type}
+          </div>
+        </MenuItem>
+      ))}
 
-      </Menu>
-    </>
-
-  )
+    </Menu>
+  </>;
 }
 
 function mapStateToProps(state) {

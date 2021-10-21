@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import {
   Grid,
   // Button,
-} from '@material-ui/core';
+} from '@mui/material';
 import * as actions from '../actions/auth';
 import TermsImage from '../assets/images/terms.svg'
 

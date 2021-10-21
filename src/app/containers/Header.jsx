@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {
   Navbar,
   Nav,
@@ -18,9 +18,9 @@ import ReactCountryFlag from 'react-country-flag';
 import {
   Badge,
   Button,
-} from '@material-ui/core';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+} from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 import MobileNav from '../assets/images/mobileNav.svg';
 import Notifications from '../components/Notifications';
 import ConnectButton from '../components/ConnectButton';

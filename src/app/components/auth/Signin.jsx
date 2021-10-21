@@ -5,19 +5,19 @@ import {
   formValueSelector,
   change,
 } from 'redux-form';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import Captcha from '../Captcha';
 import * as actions from '../../actions/auth';
 
@@ -89,7 +89,7 @@ const Signin = (props) => {
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
-              >
+                size="large">
                 {values.showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>
@@ -114,7 +114,7 @@ const Signin = (props) => {
       <Grid
         container
         alignItems="center"
-        justify="center"
+        justifyContent="center"
       >
         <Grid
           item
@@ -204,7 +204,7 @@ const Signin = (props) => {
         </Grid>
       </Grid>
     </div>
-  )
+  );
 }
 
 const validate = (formProps) => {

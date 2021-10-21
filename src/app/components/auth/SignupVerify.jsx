@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as qs from 'query-string';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import history from '../../history';
 import * as actions from '../../actions/auth';
 

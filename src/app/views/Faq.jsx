@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   Grid,
-} from '@material-ui/core';
+} from '@mui/material';
 
 export default function SimpleCollapse() {
   const [showFaq1, setShowFaq1] = React.useState(false);
@@ -32,7 +32,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -53,7 +53,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -79,7 +79,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -99,7 +99,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -125,7 +125,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -145,7 +145,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -171,7 +171,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -191,7 +191,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -217,7 +217,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -237,7 +237,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -263,7 +263,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -283,7 +283,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -309,7 +309,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -329,7 +329,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -360,7 +360,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -380,7 +380,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -406,7 +406,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -426,7 +426,7 @@ export default function SimpleCollapse() {
         container
         xs={12}
         item
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid

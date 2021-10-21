@@ -4,10 +4,10 @@ import React, {
   // Fragment,
 } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import { withRouter } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {
   Grid,
   Card,
@@ -24,7 +24,7 @@ import {
   TableRow,
   Tooltip,
   // Button,
-} from '@material-ui/core';
+} from '@mui/material';
 import QRCode from 'qrcode';
 import * as actions from '../actions/auth';
 import {
@@ -163,7 +163,7 @@ const Operation = (props) => {
         container
         spacing={0}
         alignItems="center"
-        justify="center"
+        justifyContent="center"
       >
         {
         !fetchOperation.isLoading
@@ -290,7 +290,7 @@ const Operation = (props) => {
 
       </Grid>
     </div>
-  )
+  );
 }
 Operation.propTypes = {
   classes: PropTypes.object.isRequired,

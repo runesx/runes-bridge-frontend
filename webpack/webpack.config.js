@@ -239,15 +239,16 @@ module.exports = (options) => {
     });
 
     webpackConfig.devServer = {
-      contentBase: Path.join(__dirname, '../'),
-      disableHostCheck: true,
+      // contentBase: Path.join(__dirname, '../'),
+      // disableHostCheck: true,
       hot: true,
       port: options.port,
-      inline: true,
-      progress: true,
+      // inline: true,
+      // progress: true,
       historyApiFallback: true,
-      stats: 'errors-warnings',
-      public: 'localhost',
+      // stats: 'errors-warnings',
+      host: 'localhost',
+      // public: 'localhost',
     };
   }
 

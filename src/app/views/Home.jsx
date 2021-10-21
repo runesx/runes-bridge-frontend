@@ -4,7 +4,7 @@ import React, {
   // Fragment,
 } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import { withRouter, useHistory } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import {
@@ -16,7 +16,7 @@ import {
   Typography,
   Divider,
   // Button,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   useMetamask,
   // getAccounts,
@@ -145,7 +145,7 @@ const Home = (props) => {
       <Grid
         container
         spacing={0}
-        justify="center"
+        justifyContent="center"
         className="zindexOne"
       >
         <Grid
@@ -224,7 +224,7 @@ const Home = (props) => {
         </Grid>
       </Grid>
     </div>
-  )
+  );
 }
 Home.propTypes = {
   classes: PropTypes.object.isRequired,

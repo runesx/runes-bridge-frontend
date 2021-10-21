@@ -10,7 +10,7 @@ import {
   Box,
   // Fab,
   Tooltip,
-} from '@material-ui/core';
+} from '@mui/material';
 
 export default function ConnectButton() {
   const { activateBrowserWallet, account } = useEthers();

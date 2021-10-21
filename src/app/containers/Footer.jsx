@@ -2,10 +2,10 @@ import React from 'react';
 import {
   connect,
 } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   Grid,
-} from '@material-ui/core';
+} from '@mui/material';
 import { withTranslation } from 'react-i18next';
 // import actions from 'redux-form/lib/actions';
 import ThemeToggle from '../components/ThemeToggle';
@@ -27,7 +27,7 @@ const Footer = (props) => {
         // className="height100 d-flex justify-content-around justify-content-md-center Grid itemst-unstyled categories ng-scope"
         // ng-controller="myController"
         direction="row"
-        justify="center"
+        justifyContent="center"
         alignItems="baseline"
       >
         <Grid
@@ -43,7 +43,7 @@ const Footer = (props) => {
         </Grid>
       </Grid>
     </div>
-  )
+  );
 }
 
 const mapStateToProps = (state) => ({

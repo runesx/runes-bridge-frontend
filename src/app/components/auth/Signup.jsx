@@ -7,22 +7,22 @@ import {
 } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
-import { Grid } from '@material-ui/core';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import Button from '@mui/material/Button';
+import { Grid } from '@mui/material';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import TextField from '@mui/material/TextField';
+import makeStyles from '@mui/styles/makeStyles';
+import Modal from '@mui/material/Modal';
+import Backdrop from '@mui/material/Backdrop';
+import Fade from '@mui/material/Fade';
 import * as qs from 'query-string';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 import * as actions from '../../actions/auth';
 import Captcha from '../Captcha';
 
@@ -179,7 +179,7 @@ const Signup = (props) => {
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
-              >
+                size="large">
                 {values.showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>
@@ -222,7 +222,7 @@ const Signup = (props) => {
                 onClick={handleClickShowRePassword}
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
-              >
+                size="large">
                 {values.showRePassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>
@@ -243,13 +243,13 @@ const Signup = (props) => {
     <div className="form-container index600 shadow-w signinContainer content">
       { !referredby
         ? (
-          <Grid container alignItems="center" justify="center">
+          <Grid container alignItems="center" justifyContent="center">
             <p>You can only register with a referral link</p>
             <p>If you do not have a link, please ask one in Runebase Telegram community</p>
           </Grid>
         )
         : (
-          <Grid container alignItems="center" justify="center">
+          <Grid container alignItems="center" justifyContent="center">
             <Grid
               item
               xs={12}
@@ -418,7 +418,7 @@ const Signup = (props) => {
           </Grid>
         )}
     </div>
-  )
+  );
 }
 
 const validate = (props) => {

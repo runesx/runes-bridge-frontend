@@ -5,13 +5,13 @@ import {
   formValueSelector,
 } from 'redux-form';
 import { connect } from 'react-redux';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import {
   Button,
   Grid,
-} from '@material-ui/core';
+} from '@mui/material';
 import * as actions from '../../actions/tfa';
 
 const renderNumberField = (
@@ -59,7 +59,7 @@ const LoginTFA = (props) => {
         container
         direction="column"
         alignItems="center"
-        justify="center"
+        justifyContent="center"
         item
         xs={12}
         className="height100"
@@ -108,8 +108,7 @@ const LoginTFA = (props) => {
         </Grid>
       </Grid>
     </div>
-
-  )
+  );
 }
 
 const onSubmitSuccess = (result, dispatch) => {

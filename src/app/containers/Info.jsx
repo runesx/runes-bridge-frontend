@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { Grid, Box } from '@material-ui/core';
+import { Grid, Box } from '@mui/material';
 import { IoIosPeople, IoMdGitNetwork } from 'react-icons/io';
 import ScrollAnimation from 'react-animate-on-scroll';
 import PropTypes from 'prop-types';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 import { getRequestRegister } from '../actions/registered';
 import Logo from '../assets/images/LG2.png';
 import LrLogo from '../assets/images/LR-logo.svg'
@@ -27,7 +27,7 @@ const InfoContainer = (props) => {
         xs={12}
         className="shadow-w spacing-top"
         alignItems="center"
-        justify="center"
+        justifyContent="center"
       >
         <Box
           component={Grid}
@@ -208,7 +208,7 @@ const InfoContainer = (props) => {
           container
           item
           xs={12}
-          justify="center"
+          justifyContent="center"
         >
           <div
             id="runesx-1"
@@ -217,7 +217,7 @@ const InfoContainer = (props) => {
         </Grid>
       </Grid>
     </div>
-  )
+  );
 }
 
 InfoContainer.propTypes = {

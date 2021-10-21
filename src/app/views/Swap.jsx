@@ -15,7 +15,7 @@ import {
   CardActions,
   Button,
   TextField,
-} from '@material-ui/core';
+} from '@mui/material';
 import PropTypes from 'prop-types';
 import * as actions from '../actions/auth';
 
@@ -125,7 +125,7 @@ const Swap = (props) => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Grid container justify="flex-end">
+              <Grid container justifyContent="flex-end">
                 {startSwap.isLoading ? (
                   <div>Loading</div>
                 ) : (
@@ -169,7 +169,7 @@ const Swap = (props) => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Grid container justify="flex-end">
+              <Grid container justifyContent="flex-end">
                 {startSwap.isLoading ? (
                   <div>Loading</div>
                 ) : (
@@ -190,7 +190,7 @@ const Swap = (props) => {
         </TabPanel>
       </Box>
     </div>
-  )
+  );
 }
 
 const mapStateToProps = (state) => ({
