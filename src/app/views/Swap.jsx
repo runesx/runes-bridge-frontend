@@ -147,7 +147,11 @@ const Swap = (props) => {
         <TabPanel value={value} index={1}>
           <Card sx={{ minWidth: 275 }}>
             <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
                 Swap BEP20 wRUNES to native RUNES
               </Typography>
               <Typography sx={{ mb: 1.5 }} color="text.secondary">
