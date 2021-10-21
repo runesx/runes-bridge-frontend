@@ -145,7 +145,44 @@ const Swap = (props) => {
           </Card>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+          <Card sx={{ minWidth: 275 }}>
+            <CardContent>
+              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                Swap BEP20 wRUNES to native RUNES
+              </Typography>
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                Destination Address to receive RUNES on Runebase
+              </Typography>
+              <TextField
+                label="Destination Address"
+                id="filled-size-normal"
+                variant="filled"
+                fullWidth
+                onChange={(e) => handleChangeTextField(e.target.value)}
+              />
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                Minimum burn is 100 wRUNES, Sending less through the bridge will result in loss of funds
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Grid container justify="flex-end">
+                {startSwap.isLoading ? (
+                  <div>Loading</div>
+                ) : (
+                  <Button
+                    style={{ float: 'right' }}
+                    size="large"
+                    variant="contained"
+                    onClick={() => handleClick(1)}
+                  >
+                    Continue
+                  </Button>
+                )}
+
+              </Grid>
+
+            </CardActions>
+          </Card>
         </TabPanel>
       </Box>
     </div>

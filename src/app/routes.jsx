@@ -12,14 +12,8 @@ import toggleTheme from './helpers/toggleTheme';
 
 import Swap from './views/Swap';
 import Home from './views/Home';
-//import Transactions from './views/Transactions';
+// import Transactions from './views/Transactions';
 import Faq from './views/Faq';
-//import TradeInit from './views/TradeInit';
-//import Trade from './views/Trade';
-//import TradeDisputeComplete from './views/TradeDisputeComplete';
-//import TradeRequested from './views/TradeRequested';
-//import TradeComplete from './views/TradeComplete';
-//import TradeCanceled from './views/TradeCanceled';
 
 import Operation from './views/Operation';
 
