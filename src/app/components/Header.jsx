@@ -23,7 +23,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MobileNav from '../assets/images/mobileNav.svg';
 import Notifications from './Notifications';
-
+import ConnectButton from './ConnectButton';
 
 // import 'bootstrap/dist/css/bootstrap.css';
 
@@ -186,6 +186,7 @@ const Header = (props) => {
 
             }
           </ul>
+          <ConnectButton />
 
           <Button
                           // aria-controls="simple-menu"

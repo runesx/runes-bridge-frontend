@@ -38,6 +38,7 @@ import './i18n';
 import * as action from './actions';
 import 'animate.css/source/animate.css';
 import { MetamaskStateProvider } from 'use-metamask';
+import { DAppProvider } from '@usedapp/core';
 // import ReactGA from 'react-ga';
 // import usePageTracking from './hooks/usePageTracking'
 
@@ -107,43 +108,45 @@ function App() {
   return (
     <Provider store={store}>
       <MetamaskStateProvider>
-        <SnackbarProvider
-          ref={notistackRef}
-          classes={{
-            root: styles.snack,
-          }}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-          action={(key) => (
-            <Button onClick={onClickDismiss(key)}>
-              'Dismiss'
-            </Button>
-          )}
-        >
-          <Router
-            history={history}
-            routes={Routes}
+        <DAppProvider config={{}}>
+          <SnackbarProvider
+            ref={notistackRef}
+            classes={{
+              root: styles.snack,
+            }}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+            action={(key) => (
+              <Button onClick={onClickDismiss(key)}>
+                'Dismiss'
+              </Button>
+            )}
           >
-            <Suspense fallback={<Loader />}>
-              <Notifier />
-              <ParticlesRunebase />
-              <Header />
-              <Routes />
-              <CookieConsent
-                location="bottom"
-                buttonText="Agree"
-                cookieName="myAwesomeCookieName2"
-                style={{ background: '#2B373B', zIndex: 6000, marginBottom: '35px' }}
-                buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
-              >
-                By continuing to browse localrunes.com, you agree to our use of cookies.
-              </CookieConsent>
-              <Footer />
-            </Suspense>
-          </Router>
-        </SnackbarProvider>
+            <Router
+              history={history}
+              routes={Routes}
+            >
+              <Suspense fallback={<Loader />}>
+                <Notifier />
+                <ParticlesRunebase />
+                <Header />
+                <Routes />
+                <CookieConsent
+                  location="bottom"
+                  buttonText="Agree"
+                  cookieName="myAwesomeCookieName2"
+                  style={{ background: '#2B373B', zIndex: 6000, marginBottom: '35px' }}
+                  buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
+                >
+                  By continuing to browse localrunes.com, you agree to our use of cookies.
+                </CookieConsent>
+                <Footer />
+              </Suspense>
+            </Router>
+          </SnackbarProvider>
+        </DAppProvider>
       </MetamaskStateProvider>
     </Provider>
   );
