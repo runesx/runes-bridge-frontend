@@ -15,11 +15,11 @@ import CookieConsent from 'react-cookie-consent';
 
 import ParticlesRunebase from './components/ParticlesRunebase';
 
-import {
-  authenticated,
-  onUpdateTransaction,
-  onInsertTransaction,
-} from './actions'
+// import {
+// authenticated,
+// onUpdateTransaction,
+// onInsertTransaction,
+// } from './actions'
 
 import reducers from './reducers';
 import Routes from './routes';
@@ -56,19 +56,15 @@ const useStyles = makeStyles((theme) => {
 const ENDPOINT = `//${window.location.host}`;
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
-store.dispatch(authenticated());
+// store.dispatch(authenticated());
 
 // const user = JSON.parse(localStorage.getItem('user'));
 
 const socket = socketIOClient(ENDPOINT);
 
-socket.on('updateTransaction', (data) => {
-  store.dispatch(onUpdateTransaction(data));
-});
-
-socket.on('insertTransaction', (data) => {
-  store.dispatch(onInsertTransaction(data));
-});
+// socket.on('updateTransaction', (data) => {
+//  store.dispatch(onUpdateTransaction(data));
+// });
 
 const Loader = () => (
   <div className="container h-100 loader">

@@ -47,7 +47,7 @@ const Footer = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  errorMessage: state.auth.error,
+  // errorMessage: state.auth.error,
 })
 
 export default connect(mapStateToProps)(withTranslation()(Footer));

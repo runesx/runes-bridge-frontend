@@ -9,7 +9,7 @@ import {
   Grid,
   // Button,
 } from '@mui/material';
-import * as actions from '../actions/auth';
+// import * as actions from '../actions/auth';
 import TermsImage from '../assets/images/terms.svg'
 
 const Home = () => {
@@ -295,4 +295,4 @@ const Home = () => {
 
 const mapStateToProps = (state) => ({ errorMessage: state.auth.error })
 
-export default withRouter(connect(mapStateToProps, actions)(Home));
+export default withRouter(connect(mapStateToProps, null)(Home));

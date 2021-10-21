@@ -29,7 +29,7 @@ import { abi } from '../abi/abi'
 import web3 from '../helpers/web3';
 
 // import { default as metaConnect } from 'use-metamask/connect';
-import * as actions from '../actions/auth';
+// import * as actions from '../actions/auth';
 import Logo from '../assets/images/logo.svg';
 
 const RunebaseExplorerUrl = 'https://explorer.runebase.io/address/RvSmpc8dmVoFB68S8a5CT4EthzDSNVUF49/';
@@ -230,6 +230,6 @@ Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({ errorMessage: state.auth.error })
+const mapStateToProps = (state) => ({ })
 
-export default withStyles(styles)(withRouter(connect(mapStateToProps, actions)(Home)));
+export default withStyles(styles)(withRouter(connect(mapStateToProps, null)(Home)));

@@ -17,7 +17,7 @@ import {
   TextField,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import * as actions from '../actions/auth';
+// import * as actions from '../actions/auth';
 
 import {
   startSwapAction,
@@ -194,8 +194,7 @@ const Swap = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  errorMessage: state.auth.error,
   startSwap: state.startSwap,
 });
 
-export default withRouter(connect(mapStateToProps, actions)(Swap));
+export default withRouter(connect(mapStateToProps, null)(Swap));

@@ -92,7 +92,7 @@
     "@usedapp/core": "^0.5.4",
     "animate.css": "^4.1.1",
     "autoprefixer": "^10.3.7",
-    "axios": "^0.21.1",
+    "axios": "^0.23.0",
     "babel-runtime": "^6.26.0",
     "bignumber.js": "^9.0.1",
     "clsx": "^1.1.1",

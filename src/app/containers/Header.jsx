@@ -32,7 +32,7 @@ const Header = (props) => {
   const {
     t,
     i18n,
-    authenticated,
+    // authenticated,
     user,
   } = props;
   const heightRef = useRef(null);
@@ -140,7 +140,7 @@ const Header = (props) => {
         className="navbar navbar-default"
         expand="lg"
       >
-        <Link to={authenticated ? '/' : '/'} className="nav-link">RunesX</Link>
+        <Link to="/" className="nav-link">RunesX</Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -173,7 +173,7 @@ const Header = (props) => {
             </Link>
           </Nav>
           <ul>
-            {
+            {/*
               authenticated
                 && (
                   <>
@@ -184,7 +184,7 @@ const Header = (props) => {
 
                 )
 
-            }
+                */}
           </ul>
           <ConnectButton />
 
@@ -263,7 +263,7 @@ const Header = (props) => {
 
 function mapStateToProps(state) {
   return {
-    authenticated: state.auth.authenticated,
+    // authenticated: state.auth.authenticated,
   };
 }
 

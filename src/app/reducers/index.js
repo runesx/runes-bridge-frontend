@@ -1,7 +1,6 @@
-/* eslint-disable */
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
-import auth from './auth';
+//import auth from './auth';
 import tfa from "./tfa";
 import theme from './changeTheme';
 import alert from "./alert";
@@ -10,7 +9,7 @@ import fetchOperation from "./fetchOperation";
 
 const rootReducer = combineReducers({
   form,
-  auth: auth,
+  //auth: auth,
   tfa: tfa,
   theme: theme,
   alert: alert,

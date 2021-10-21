@@ -26,7 +26,7 @@ import {
   // Button,
 } from '@mui/material';
 import QRCode from 'qrcode';
-import * as actions from '../actions/auth';
+// import * as actions from '../actions/auth';
 import {
   fetchOperationAction,
   fetchOperationIdle,
@@ -297,8 +297,8 @@ Operation.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  errorMessage: state.auth.error,
+  // errorMessage: state.auth.error,
   fetchOperation: state.fetchOperation,
 })
 
-export default withStyles(styles)(withRouter(connect(mapStateToProps, actions)(Operation)));
+export default withStyles(styles)(withRouter(connect(mapStateToProps, null)(Operation)));

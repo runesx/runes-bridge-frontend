@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 
 import withTracker from './hooks/withTracker';
 
-import requireAuth from './components/hoc/RequireAuth';
-import requireNotAuth from './components/hoc/RequireNotAuth';
+// import requireAuth from './components/hoc/RequireAuth';
+// import requireNotAuth from './components/hoc/RequireNotAuth';
 
 import toggleTheme from './helpers/toggleTheme';
 
