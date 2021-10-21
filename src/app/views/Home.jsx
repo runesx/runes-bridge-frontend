@@ -17,6 +17,8 @@ import {
   Divider,
   // Button,
 } from '@material-ui/core';
+import { useMetamask } from 'use-metamask';
+import Web3 from 'web3';
 import * as actions from '../actions/auth';
 import Logo from '../assets/images/logo.svg';
 
@@ -40,9 +42,21 @@ const styles = {
 
 const Home = (props) => {
   const { classes } = props;
+  const { connect, metaState } = useMetamask();
   const history = useHistory();
   console.log('RunesX Home View');
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (!metaState.isConnected) {
+      (async () => {
+        try {
+          await connect(Web3);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
+  }, []);
 
   const routeChangeSwap = () => {
     const path = 'swap';

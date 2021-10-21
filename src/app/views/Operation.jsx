@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import {
   Grid,
   Card,
@@ -21,8 +22,10 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Tooltip,
   // Button,
 } from '@material-ui/core';
+import QRCode from 'qrcode';
 import * as actions from '../actions/auth';
 import {
   fetchOperationAction,
@@ -47,6 +50,74 @@ const styles = {
   },
 };
 
+function depositFunc(
+  address,
+  setCopySuccessful,
+  copySuccessful,
+) {
+  let imagePath = '';
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(`${address}`);
+    setCopySuccessful(true);
+  };
+  QRCode.toDataURL(address, (err, imageUrl) => {
+    if (err) {
+      console.log('Could not generate QR code', err);
+      return;
+    }
+    imagePath = imageUrl;
+  });
+  return (
+    <div>
+      <Grid container>
+        <Grid
+          item
+          xs={12}
+          className="text-center"
+          style={{ display: 'block' }}
+        >
+          <img src={imagePath} alt="Deposit QR Code" />
+        </Grid>
+        <Grid
+          item
+          xs={12}
+        >
+          <div>
+            <p className="text-center">Runebase Address</p>
+            <div className="borderAddress">
+              <p className="text-center">
+                {address}
+              </p>
+              {
+            copySuccessful
+              ? (
+                <p className="text-center" style={{ color: 'green' }}>
+                  Copied!
+                </p>
+              ) : null
+          }
+              <Tooltip title="Copy Runebase Address" aria-label="show">
+                <Button
+                      // className="borderAddress copyAddressButton"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                      // style={{ padding: 0, float: 'right' }}
+                  onClick={copyToClipboard}
+                >
+
+                  <FileCopyIcon />
+                  Copy
+                </Button>
+              </Tooltip>
+            </div>
+          </div>
+        </Grid>
+      </Grid>
+    </div>
+  );
+}
+
 const Operation = (props) => {
   const {
     fetchOperation,
@@ -59,9 +130,11 @@ const Operation = (props) => {
   } = props;
   console.log('RunesX Home View');
   const dispatch = useDispatch();
+  const [copySuccessful, setCopySuccessful] = useState(false);
   useEffect(() => {
     dispatch(fetchOperationIdle());
   }, []);
+
   useEffect(() => {
     console.log('id');
     console.log('id');
@@ -116,66 +189,67 @@ const Operation = (props) => {
                               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                               <TableCell component="th" scope="row">
-                              UUID:
-                            </TableCell>
+                                UUID:
+                              </TableCell>
                               <TableCell align="right">
-                              123
-                            </TableCell>
+                                {fetchOperation.data.uuid}
+                              </TableCell>
                             </TableRow>
                             <TableRow
                           // key={row.name}
                               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                               <TableCell component="th" scope="row">
-                              Type:
-                            </TableCell>
+                                Type:
+                              </TableCell>
                               <TableCell align="right">
-                              Mint wRUNES
-                            </TableCell>
+                                {fetchOperation.data.type}
+                                Mint wRUNES
+                              </TableCell>
                             </TableRow>
                             <TableRow
                           // key={row.name}
                               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                               <TableCell component="th" scope="row">
-                              To:
-                            </TableCell>
+                                To:
+                              </TableCell>
                               <TableCell align="right">
-                              123
-                            </TableCell>
+                                {fetchOperation.data.address}
+                              </TableCell>
                             </TableRow>
                             <TableRow
                           // key={row.name}
                               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                               <TableCell component="th" scope="row">
-                              Amount:
-                            </TableCell>
+                                Amount:
+                              </TableCell>
                               <TableCell align="right">
-                              123
-                            </TableCell>
+                                {fetchOperation.data.amount}
+                              </TableCell>
                             </TableRow>
                             <TableRow
                           // key={row.name}
                               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                               <TableCell component="th" scope="row">
-                              Fee:
-                            </TableCell>
+                                Fee:
+                              </TableCell>
                               <TableCell align="right">
-                              123
-                            </TableCell>
+                                100 RUNES
+                              </TableCell>
                             </TableRow>
                             <TableRow
                           // key={row.name}
                               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                               <TableCell component="th" scope="row">
-                              Time:
-                            </TableCell>
+                                Time:
+                              </TableCell>
                               <TableCell align="right">
-                              123
-                            </TableCell>
+                                {fetchOperation.data.time}
+                              </TableCell>
                             </TableRow>
                           </TableBody>
                         </Table>
@@ -190,8 +264,14 @@ const Operation = (props) => {
                     Minimum Deposit is 30 000 RUNES, Sending less through the bridge will result in loss of funds
                   </div>
                   <div>
-                    QR code
-                    Deposit ADDRESS
+                    Deposit Address:
+                    {
+                  depositFunc(
+                    fetchOperation.data.depositAddress,
+                    setCopySuccessful,
+                    copySuccessful,
+                  )
+                }
                   </div>
 
                   <div>
