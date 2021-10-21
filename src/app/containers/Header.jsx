@@ -22,8 +22,8 @@ import {
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MobileNav from '../assets/images/mobileNav.svg';
-import Notifications from './Notifications';
-import ConnectButton from './ConnectButton';
+import Notifications from '../components/Notifications';
+import ConnectButton from '../components/ConnectButton';
 
 // import 'bootstrap/dist/css/bootstrap.css';
 

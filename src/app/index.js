@@ -24,7 +24,7 @@ import {
 import reducers from './reducers';
 import Routes from './routes';
 import history from './history';
-import Header from './components/Header';
+import Header from './containers/Header';
 
 import Notifier from './containers/Alert';
 
