@@ -23,7 +23,7 @@ import {
   // getChain,
   // metaState,
 } from 'use-metamask';
-import Web3 from 'web3';
+// import Web3 from 'web3';
 import { addMetaMaskNetwork } from '../helpers/metamask';
 import { abi } from '../abi/abi'
 import web3 from '../helpers/web3';
@@ -43,20 +43,6 @@ const contract = new web3.eth.Contract(abi, contractAddress);
 // Smart contract functions
 const getTokenAmountwRunes = async () => {
   const totalcall = await contract.methods.totalSupply().call();
-  console.log(totalcall);
-  console.log(totalcall);
-  console.log(totalcall);
-  console.log(totalcall);
-  console.log(totalcall);
-  console.log(totalcall);
-  console.log(totalcall);
-  console.log(totalcall);
-  console.log(totalcall);
-  console.log(totalcall);
-  console.log(totalcall);
-  console.log(totalcall);
-  console.log(totalcall);
-
   return totalcall;
 }
 
@@ -95,28 +81,11 @@ const Home = (props) => {
     console.log(chainInfo);
     addMetaMaskNetwork(97);
     const tokenAmountw = await getTokenAmountwRunes();
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-    console.log(tokenAmountw);
-
     setTokenAmount(tokenAmountw);
     if (!metaState.isConnected) {
       (async () => {
         try {
-          await metaConnect(Web3);
+          await metaConnect(web3);
         } catch (error) {
           console.log(error);
         }

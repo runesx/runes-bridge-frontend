@@ -1,9 +1,9 @@
 import axios from 'axios';
 import {
-  START_SWAP_IDLE,
-  START_SWAP_BEGIN,
-  START_SWAP_SUCCESS,
-  START_SWAP_FAIL,
+  START_ASSIGN_TX_IDLE,
+  START_ASSIGN_TX_BEGIN,
+  START_ASSIGN_TX_SUCCESS,
+  START_ASSIGN_TX_FAIL,
   ENQUEUE_SNACKBAR,
 } from './types/index';
 import history from '../history';
@@ -11,7 +11,7 @@ import history from '../history';
 export function idleStartSwapAction() {
   return function (dispatch) {
     dispatch({
-      type: START_SWAP_IDLE,
+      type: START_ASSIGN_TX_IDLE,
       payload: {
         data: null,
         isLoading: false,
@@ -21,19 +21,17 @@ export function idleStartSwapAction() {
   }
 }
 
-export function startSwapAction(body, address, amount = 0, type) {
+export function postAssignTxAction(uuid, txid) {
   return function (dispatch) {
     dispatch({
-      type: START_SWAP_BEGIN,
+      type: START_ASSIGN_TX_BEGIN,
       payload: {
         isLoading: true,
       },
     });
-    axios.post(`${process.env.API_URL}/create`, {
-      destinationAddress: body,
-      type,
-      amount,
-      address,
+    axios.post(`${process.env.API_URL}/assign`, {
+      uuid,
+      txid,
     })
       .then((response) => {
         dispatch({
@@ -46,9 +44,11 @@ export function startSwapAction(body, address, amount = 0, type) {
             },
           },
         });
-        history.push(`operation/${response.data.result.uuid}`);
+        console.log('response');
+        console.log(response);
+        // history.push(`operation/${response.data.result.uuid}`);
         dispatch({
-          type: START_SWAP_SUCCESS,
+          type: START_ASSIGN_TX_SUCCESS,
           payload: response,
         });
       }).catch((error) => {
@@ -106,7 +106,7 @@ export function startSwapAction(body, address, amount = 0, type) {
           });
         }
         dispatch({
-          type: START_SWAP_FAIL,
+          type: START_ASSIGN_TX_FAIL,
           payload: error,
         });
       });

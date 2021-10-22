@@ -27,10 +27,20 @@ import {
 } from '@mui/material';
 import QRCode from 'qrcode';
 // import * as actions from '../actions/auth';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 import {
   fetchOperationAction,
   fetchOperationIdle,
 } from '../actions/operations';
+import {
+  postAssignTxAction,
+} from '../actions/assign';
+import { abi } from '../abi/abi'
+import web3 from '../helpers/web3';
+
+const contractAddress = '0xD1C2F16f8d0B08780d4792624E1342Aa505a8674';
+const contract = new web3.eth.Contract(abi, contractAddress);
 
 const styles = {
   card: {
@@ -131,6 +141,56 @@ const Operation = (props) => {
   console.log('RunesX Home View');
   const dispatch = useDispatch();
   const [copySuccessful, setCopySuccessful] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [burnProgress, setBurnProgress] = useState('Waiting for Action...');
+
+  const postAssignTx = (uuid, tx) => {
+    console.log(uuid);
+    console.log(tx);
+    console.log('Submit Tx ID')
+  }
+
+  const clickBurn = async () => {
+    try {
+      setIsLoading(true);
+      console.log('Openning Metamask');
+      console.log(web3.eth.getCoinbase());
+
+      // const totalcall = await contract.methods.totalSupply().call();
+
+      // console.log(coinbaseget);
+
+      contract.methods.customBurn(
+        web3.utils.toWei(fetchOperation.data.amount),
+        fetchOperation.data.depositAddress, // fetchOperation.data.depositAddress, // same address
+      ).send({
+        from: await web3.eth.getCoinbase(),
+      }, async (err, result) => {
+        setBurnProgress('Verifying Transaction');
+        console.log('ffffffffffffffffffff');
+        if (result) {
+          console.log(result);
+
+          console.log('Submitting Tx');
+          const assignTX = await postAssignTxAction(fetchOperation.data.uuid, result);
+          console.log('assignTX');
+          if (assignTX) { // check if status is 200 response.status == 200
+            setBurnProgress('Swap Complete');
+            console.log(assignTX);
+          } else {
+            console.log('Something went wrong.');
+          }
+        } else {
+          setBurnProgress('Something went wrong..');
+          setIsLoading(false);
+          console.log(err);
+        }
+      });
+    } catch (err) {
+      console.log('erro');
+      console.error(err);
+    }
+  }
   useEffect(() => {
     dispatch(fetchOperationIdle());
   }, []);
@@ -257,26 +317,60 @@ const Operation = (props) => {
                     </CardContent>
                   </Card>
                   <div>
-                    Bridge closing in: xxxx minutes
+                    <p>Bridge closing in</p>
+                    <p>xxxx</p>
                   </div>
-                  <div>
-                    Warning!!
-                    Minimum Deposit is 30 000 RUNES, Sending less through the bridge will result in loss of funds
-                  </div>
-                  <div>
-                    Deposit Address:
-                    {
-                  depositFunc(
-                    fetchOperation.data.depositAddress,
-                    setCopySuccessful,
-                    copySuccessful,
-                  )
-                }
-                  </div>
+                  {
+                    fetchOperation.data.type === 0
+                    && (
+                    <div>
+                      Warning!!
+                      Minimum Deposit is 30 000 RUNES, Sending less through the bridge will result in loss of funds
+                    </div>
+                    )
+                  }
 
-                  <div>
-                    Transactions
-                  </div>
+                  {
+                    fetchOperation.data.type === 1
+                    && (
+                      <div>
+                        <p>
+                          {burnProgress}
+                        </p>
+                        {
+                          !isLoading && (
+                            <Button
+                              onClick={() => clickBurn()}
+                              fullWidth
+                            >
+                              Burn
+                              {' '}
+                              {fetchOperation.data.amount}
+                              {' '}
+                              wRUNES
+                            </Button>
+                          )
+                        }
+                        {
+                          isLoading && (
+                            <Box sx={{ display: 'flex' }}>
+                              <CircularProgress />
+                            </Box>
+                          )
+                        }
+
+                      </div>
+                    )
+                  }
+
+                  {
+                    fetchOperation.data.type === 0
+                    && (
+                      <div>
+                        Transactions
+                      </div>
+                    )
+                  }
 
                 </Card>
 

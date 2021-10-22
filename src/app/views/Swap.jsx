@@ -18,6 +18,7 @@ import {
 } from '@mui/material';
 import PropTypes from 'prop-types';
 // import * as actions from '../actions/auth';
+import web3 from '../helpers/web3';
 
 import {
   startSwapAction,
@@ -64,17 +65,23 @@ const Swap = (props) => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(0);
   const [textFieldValue, setTextFieldValue] = useState('');
+  const [amountValue, setAmountValue] = useState('');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   const handleClick = (typeSwap) => {
-    dispatch(startSwapAction(textFieldValue, typeSwap));
+    const acc = web3.currentProvider.selectedAddress;
+    dispatch(startSwapAction(textFieldValue, acc, amountValue, typeSwap));
   };
   const handleChangeTextField = (e) => {
     console.log(e);
     setTextFieldValue(e);
+  };
+  const handleChangeAmount = (e) => {
+    console.log(e);
+    setAmountValue(e);
   };
 
   useEffect(() => {
@@ -157,6 +164,20 @@ const Swap = (props) => {
               <Typography sx={{ mb: 1.5 }} color="text.secondary">
                 Destination Address to receive RUNES on Runebase
               </Typography>
+              <TextField
+                id="outlined-number"
+                label="Amount"
+                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                variant="filled"
+                fullWidth
+                style={{
+                  marginBottom: '15px',
+                }}
+                onChange={(e) => handleChangeAmount(e.target.value)}
+              />
               <TextField
                 label="Destination Address"
                 id="filled-size-normal"
