@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import dateFormat, { masks } from 'dateformat';
 
 import Bsc from '../assets/images/bsc.svg';
 import Runebase from '../assets/images/Runebase.png';
@@ -41,64 +42,67 @@ export default function BasicTable(props) {
             xs={2}
             justify="center"
           >
-            <img src={Runebase} />
+            <a href={`https://explorer.runebase.io/tx/${row.runebase_tx}`}>
+              <img
+                src={Runebase}
+                alt="Runebase Logo"
+              />
+            </a>
           </Grid>
           <Grid
             item
             xs={8}
           >
-            <div className="arrow flippedArrow">
-              <div id="left">
-                <div className="line" />
+            <div className="wrapperArrow">
+              <div
+                className="confirmationsCell"
+              >
+                {row.confirmations}
+                /
+                6
               </div>
-              <div id="right">
-                <div className="point" />
+              <div
+                className="amountCell"
+              >
+                {row.amount}
+                {' '}
+                RUNES
+              </div>
+              <div
+                className="dateCell"
+              >
+                {dateFormat(row.createdAt)}
+              </div>
+              <div className="innerWrapperArrow">
+                <div className={`arrow ${row.instance.type === 1 ? 'flippedArrow' : ''}`}>
+                  <div id="left">
+                    <div className="line" />
+                  </div>
+                  <div id="right">
+                    <div className="point" />
+                  </div>
+                </div>
               </div>
             </div>
           </Grid>
           <Grid
             item
             xs={2}
-            justify="center"
+            alignItems="center"
           >
-            <Bsc />
+            <a href="/#">
+              <div
+                className="svgContainer"
+              >
+                <Bsc
+                  className="svgVertical"
+                />
+              </div>
+            </a>
           </Grid>
         </Grid>
 
       ))}
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>id</TableCell>
-              <TableCell align="right">txid</TableCell>
-              <TableCell align="right">From</TableCell>
-              <TableCell align="right">Amount (RUNES)</TableCell>
-              <TableCell align="right">Confirmations</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {transactions.map((row) => (
-              <TableRow
-                key={row.runebase_tx}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.id}
-                </TableCell>
-                <TableCell align="right">{row.runebase_tx}</TableCell>
-                <TableCell align="right">{row.from}</TableCell>
-                <TableCell align="right">{row.amount / 1e8}</TableCell>
-                <TableCell align="right">
-                  {row.confirmations}
-                  {' '}
-                  / 6
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
     </>
   );
 }

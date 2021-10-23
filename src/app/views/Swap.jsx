@@ -2,7 +2,6 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import {
   Grid,
@@ -17,6 +16,7 @@ import {
   TextField,
 } from '@mui/material';
 import PropTypes from 'prop-types';
+import { withRouter } from '../hooks/withRouter';
 // import * as actions from '../actions/auth';
 import web3 from '../helpers/web3';
 

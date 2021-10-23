@@ -5,7 +5,7 @@ import { withTranslation } from 'react-i18next';
 import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 
 const Notifications = (props) => {
   const { trade } = props;
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     console.log(trade);
@@ -28,16 +28,16 @@ const Notifications = (props) => {
 
   const handleClose = (type, id) => {
     if (type === 'init') {
-      history.push(`/trade/init/${id}`);
+      navigate.push(`/trade/init/${id}`);
     }
     if (type === 'requested') {
-      history.push(`/trade/requested/${id}`);
+      navigate.push(`/trade/requested/${id}`);
     }
     if (type === 'accepted') {
-      history.push(`/trade/${id}`);
+      navigate.push(`/trade/${id}`);
     }
     if (type === 'disputed') {
-      history.push(`/trade/dispute/${id}`);
+      navigate.push(`/trade/dispute/${id}`);
     }
     console.log(type);
     console.log(id);
@@ -52,68 +52,71 @@ const Notifications = (props) => {
 
   const handleCloseNotiMenu = (type, id) => {
     if (type === 'init') {
-      history.push(`/trade/init/${id}`);
+      navigate.push(`/trade/init/${id}`);
     }
     if (type === 'requested') {
-      history.push(`/trade/requested/${id}`);
+      navigate.push(`/trade/requested/${id}`);
     }
     if (type === 'accepted') {
-      history.push(`/trade/${id}`);
+      navigate.push(`/trade/${id}`);
     }
     if (type === 'disputed') {
-      history.push(`/trade/dispute/${id}`);
+      navigate.push(`/trade/dispute/${id}`);
     }
     setAnchorEl(null);
   };
 
-  return <>
+  return (
+    <>
 
-    <Button
-      aria-controls="simple-menu"
-      aria-haspopup="true"
-      onClick={handleClickNotiMenu}
-      className="langPadding toggleLangWrapper"
-      id="user-nav-dropdown"
-      style={{ color: '#bdbdbd' }}
-    >
-      <IconButton
-        aria-label="show notifications"
-        color="inherit"
-        onClick={handleClick}
-        style={{ padding: 0 }}
-        size="large">
-        <Badge
-          badgeContent={trade && trade.length && trade.length}
-          color="secondary"
+      <Button
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleClickNotiMenu}
+        className="langPadding toggleLangWrapper"
+        id="user-nav-dropdown"
+        style={{ color: '#bdbdbd' }}
+      >
+        <IconButton
+          aria-label="show notifications"
+          color="inherit"
+          onClick={handleClick}
+          style={{ padding: 0 }}
+          size="large"
         >
-          <NotificationsIcon />
-        </Badge>
-        {' '}
-        <ArrowDropDownIcon />
+          <Badge
+            badgeContent={trade && trade.length && trade.length}
+            color="secondary"
+          >
+            <NotificationsIcon />
+          </Badge>
+          {' '}
+          <ArrowDropDownIcon />
 
-      </IconButton>
-    </Button>
-    <Menu
-      id="simple-menu"
-      anchorEl={anchorEl}
-      keepMounted
-      open={Boolean(anchorEl)}
-      onClose={handleCloseNotiMenu}
-      className="langPadding toggleLangWrapper"
-    >
-      {trade && trade.map((item) => (
-        <MenuItem onClick={() => handleCloseNotiMenu(item.type, item.id)}>
-          <div>
-            Trade #
-            {item.id}
-            {' - '}
-            {item.type}
-          </div>
-        </MenuItem>
-      ))}
+        </IconButton>
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleCloseNotiMenu}
+        className="langPadding toggleLangWrapper"
+      >
+        {trade && trade.map((item) => (
+          <MenuItem onClick={() => handleCloseNotiMenu(item.type, item.id)}>
+            <div>
+              Trade #
+              {item.id}
+              {' - '}
+              {item.type}
+            </div>
+          </MenuItem>
+        ))}
 
-    </Menu>
-  </>;
+      </Menu>
+    </>
+  );
 }
 
 function mapStateToProps(state) {

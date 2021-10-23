@@ -5,7 +5,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@mui/styles/withStyles';
-import { withRouter } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {
@@ -31,6 +30,7 @@ import QRCode from 'qrcode';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import BridgeTransactionTable from '../components/BridgeTransactionTable';
+import { withRouter } from '../hooks/withRouter';
 import {
   fetchOperationAction,
   fetchOperationIdle,
@@ -135,14 +135,18 @@ function depositFunc(
 const Operation = (props) => {
   const {
     fetchOperation,
+    transactions,
+    location,
     classes,
-    match: {
-      params: {
-        id,
-      },
-    },
+    // match: {
+    //  params: {
+    //    id,
+    //  },
+    // },
   } = props;
-  console.log('RunesX Home View');
+  console.log('RunesX Operation View');
+  const id = location.pathname.split('/')[2];
+  console.log(id);
   const dispatch = useDispatch();
   const [copySuccessful, setCopySuccessful] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -473,19 +477,11 @@ const Operation = (props) => {
                       </div>
                     )
                   }
-
-                  {
-                    fetchOperation.data
-                    && fetchOperation.data.transactions
-                    && fetchOperation.data.transactions.length > 0
-                    && (
-                      <div>
-                        <BridgeTransactionTable
-                          transactions={fetchOperation.data.transactions ? fetchOperation.data.transactions : []}
-                        />
-                      </div>
-                    )
-                  }
+                  <div>
+                    <BridgeTransactionTable
+                      transactions={transactions.data ? transactions.data : []}
+                    />
+                  </div>
 
                 </Card>
 
@@ -508,6 +504,7 @@ Operation.propTypes = {
 const mapStateToProps = (state) => ({
   // errorMessage: state.auth.error,
   fetchOperation: state.fetchOperation,
+  transactions: state.transactions,
 })
 
 export default withStyles(styles)(withRouter(connect(mapStateToProps, null)(Operation)));

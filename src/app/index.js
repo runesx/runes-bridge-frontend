@@ -6,7 +6,7 @@ import React, {
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { Router } from 'react-router-dom';
+import { Router, BrowserRouter } from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 import socketIOClient from 'socket.io-client';
 import { SnackbarProvider } from 'notistack';
@@ -35,8 +35,8 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './assets/fonts/texgyreheros-regular.woff';
 import './theme/style.scss';
 import './i18n';
-import * as action from './actions';
-import 'animate.css/source/animate.css';
+// import * as action from './actions';
+// import 'animate.css/source/animate.css';
 import { MetamaskStateProvider } from 'use-metamask';
 import { DAppProvider } from '@usedapp/core';
 // import ReactGA from 'react-ga';
@@ -111,7 +111,7 @@ function App() {
   // Set up a piece of state, so that we have
   // a way to trigger a re-render.
   console.log('RunesX App Started');
-  const classes = useStyles();
+  // const classes = useStyles();
 
   return (
     <StyledEngineProvider injectFirst>
@@ -134,10 +134,7 @@ function App() {
                   </Button>
                 )}
               >
-                <Router
-                  history={history}
-                  routes={Routes}
-                >
+                <BrowserRouter>
                   <Suspense fallback={<Loader />}>
                     <Notifier />
                     <ParticlesRunebase />
@@ -158,7 +155,7 @@ function App() {
                     </CookieConsent>
                     <Footer />
                   </Suspense>
-                </Router>
+                </BrowserRouter>
               </SnackbarProvider>
             </DAppProvider>
           </MetamaskStateProvider>

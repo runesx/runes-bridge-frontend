@@ -44,3 +44,48 @@
     transform:         scaleX(-1); /* Standard */  
     filter: FlipH;                 /* IE 6/7/8 */
   }
+
+.wrapperArrow {
+    position: relative;
+    height: 100%;
+}
+.innerWrapperArrow {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translate(0, -50%);
+
+}
+.svgContainer
+{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.svgVertical
+{
+  margin: 0 auto;
+  display: block;
+}
+
+.amountCell {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.dateCell {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.confirmationsCell {
+    position: absolute;
+    top: 20%;
+    left: 0%;
+    transform: translate(0, 0);
+}

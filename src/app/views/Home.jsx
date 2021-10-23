@@ -5,7 +5,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@mui/styles/withStyles';
-import { withRouter, useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import {
   Grid,
@@ -23,6 +23,7 @@ import {
   // getChain,
   // metaState,
 } from 'use-metamask';
+import { withRouter } from '../hooks/withRouter';
 // import Web3 from 'web3';
 import { addMetaMaskNetwork } from '../helpers/metamask';
 import { abi } from '../abi/abi'
@@ -71,7 +72,7 @@ const Home = (props) => {
     metaState,
     getChain,
   } = useMetamask();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [tokenAmount, setTokenAmount] = React.useState(0);
   console.log('RunesX Home View');
   const dispatch = useDispatch();
@@ -106,7 +107,7 @@ const Home = (props) => {
 
   const routeChangeSwap = () => {
     const path = 'swap';
-    history.push(path);
+    navigate(path);
   }
 
   return (

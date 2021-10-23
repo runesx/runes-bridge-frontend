@@ -5,6 +5,7 @@ import {
   FETCH_OPERATION_SUCCESS,
   FETCH_OPERATION_FAIL,
   ENQUEUE_SNACKBAR,
+  FETCH_TRANSACTIONS_SUCCESS,
 } from './types/index';
 
 export function fetchOperationIdle() {
@@ -34,7 +35,11 @@ export function fetchOperationAction(id) {
         console.log(response);
         dispatch({
           type: FETCH_OPERATION_SUCCESS,
-          payload: response.data.result,
+          payload: response.data.bridge,
+        });
+        dispatch({
+          type: FETCH_TRANSACTIONS_SUCCESS,
+          payload: response.data.transactions,
         });
       }).catch((error) => {
         console.log('error response');

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -17,7 +17,7 @@ import Faq from './views/Faq';
 
 import Operation from './views/Operation';
 
-const Routes = (props) => {
+const RoutesX = (props) => {
   const {
     theme,
   } = props;
@@ -26,34 +26,34 @@ const Routes = (props) => {
   }, [theme]);
 
   return (
-    <>
+    <Routes>
       <Route
-        exact
+        // exact
         path="/"
-        component={withTracker(Home)}
+        element={<Home />}
       />
       <Route
         path="/swap"
-        component={withTracker(Swap)}
+        element={<Swap />}
       />
       <Route
         path="/faq"
-        component={withTracker(Faq)}
+        element={<Faq />}
       />
       <Route
         path="/transactions"
-        component={withTracker(Transactions)}
+        element={<Transactions />}
       />
       <Route
-        exact
+        // exact
         path="/operation/:id"
-        component={withTracker(Operation)}
+        element={<Operation />}
       />
-    </>
+    </Routes>
   )
 }
 
-Routes.propTypes = {
+RoutesX.propTypes = {
   theme: PropTypes.shape({
     theme: PropTypes.string.isRequired,
   }).isRequired,
@@ -63,4 +63,4 @@ const mapStateToProps = (state) => ({
   theme: state.theme,
 })
 
-export default connect(mapStateToProps, null)(Routes);
+export default connect(mapStateToProps, null)(RoutesX);

@@ -1,13 +1,13 @@
 import React, {
   useEffect,
 } from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import {
   Grid,
   // Button,
 } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import { withRouter } from '../hooks/withRouter';
 import {
   fetchTransactionsData,
 } from '../actions/transactions';
