@@ -6,6 +6,7 @@ import theme from './changeTheme';
 import alert from "./alert";
 import startSwap from "./startSwap";
 import fetchOperation from "./fetchOperation";
+import transactions from "./transactions";
 
 const rootReducer = combineReducers({
   form,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   theme: theme,
   alert: alert,
   startSwap: startSwap,
-  fetchOperation: fetchOperation
+  fetchOperation: fetchOperation,
+  transactions: transactions
   
 });
 

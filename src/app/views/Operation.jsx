@@ -25,10 +25,12 @@ import {
   Tooltip,
   // Button,
 } from '@mui/material';
+import DoneIcon from '@mui/icons-material/Done';
 import QRCode from 'qrcode';
 // import * as actions from '../actions/auth';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import BridgeTransactionTable from '../components/BridgeTransactionTable';
 import {
   fetchOperationAction,
   fetchOperationIdle,
@@ -41,6 +43,8 @@ import web3 from '../helpers/web3';
 
 const contractAddress = '0xD1C2F16f8d0B08780d4792624E1342Aa505a8674';
 const contract = new web3.eth.Contract(abi, contractAddress);
+const expectedBlockTime = 1000;
+const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
 
 const styles = {
   card: {
@@ -142,7 +146,7 @@ const Operation = (props) => {
   const dispatch = useDispatch();
   const [copySuccessful, setCopySuccessful] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [burnProgress, setBurnProgress] = useState('Waiting for Action...');
+  const [burnProgress, setBurnProgress] = useState('Waiting for Action');
 
   const postAssignTx = (uuid, tx) => {
     console.log(uuid);
@@ -159,6 +163,7 @@ const Operation = (props) => {
       // const totalcall = await contract.methods.totalSupply().call();
 
       // console.log(coinbaseget);
+      setBurnProgress('Waiting for metamask action');
 
       contract.methods.customBurn(
         web3.utils.toWei(fetchOperation.data.amount),
@@ -167,19 +172,31 @@ const Operation = (props) => {
         from: await web3.eth.getCoinbase(),
       }, async (err, result) => {
         setBurnProgress('Verifying Transaction');
-        console.log('ffffffffffffffffffff');
         if (result) {
-          console.log(result);
-
-          console.log('Submitting Tx');
-          const assignTX = await postAssignTxAction(fetchOperation.data.uuid, result);
-          console.log('assignTX');
-          if (assignTX) { // check if status is 200 response.status == 200
-            setBurnProgress('Swap Complete');
-            console.log(assignTX);
+          setBurnProgress('Waiting for transaction to mine');
+          let receipt = null
+          while (receipt == null) { // Waiting expectedBlockTime until the transaction is mined
+            receipt = await web3.eth.getTransactionReceipt(result);
+            await sleep(expectedBlockTime)
+          }
+          console.log(receipt);
+          if (receipt) {
+            setBurnProgress('Submitting Transaction');
+            console.log('Submitting Tx');
+            const assignTX = await dispatch(postAssignTxAction(fetchOperation.data.uuid, result));
+            console.log('assignTX');
+            if (assignTX) { // check if status is 200 response.status == 200
+              setBurnProgress('Swap Complete');
+              console.log(assignTX);
+            } else {
+              setBurnProgress('Something went wrong');
+              console.log('Something went wrong.');
+            }
           } else {
+            setBurnProgress('Something went wrong');
             console.log('Something went wrong.');
           }
+          console.log(result);
         } else {
           setBurnProgress('Something went wrong..');
           setIsLoading(false);
@@ -194,24 +211,9 @@ const Operation = (props) => {
   useEffect(() => {
     dispatch(fetchOperationIdle());
   }, []);
+  useEffect(() => { }, [fetchOperation.data]);
 
   useEffect(() => {
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
-    console.log('id');
     console.log('id');
     console.log(id);
     dispatch(fetchOperationAction(id));
@@ -263,8 +265,19 @@ const Operation = (props) => {
                                 Type:
                               </TableCell>
                               <TableCell align="right">
-                                {fetchOperation.data.type}
-                                Mint wRUNES
+                                {
+                                fetchOperation.data.type === 0
+                                && (
+                                <>Mint wRUNES</>
+                                )
+                                }
+                                {
+                                fetchOperation.data.type === 1
+                                && (
+                                <>Burn wRUNES</>
+                                )
+                                }
+
                               </TableCell>
                             </TableRow>
                             <TableRow
@@ -286,7 +299,7 @@ const Operation = (props) => {
                                 Amount:
                               </TableCell>
                               <TableCell align="right">
-                                {fetchOperation.data.amount}
+                                {(fetchOperation.data.amount * 1)}
                               </TableCell>
                             </TableRow>
                             <TableRow
@@ -294,10 +307,25 @@ const Operation = (props) => {
                               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                               <TableCell component="th" scope="row">
-                                Fee:
+                                RUNES Fee:
                               </TableCell>
                               <TableCell align="right">
-                                100 RUNES
+                                {
+                                    fetchOperation.data.type === 0
+                                    && (
+                                    <>
+                                      100 RUNES
+                                    </>
+                                    )
+                                  }
+                                {
+                                    fetchOperation.data.type === 1
+                                    && (
+                                    <>
+                                      FREE
+                                    </>
+                                    )
+                                  }
                               </TableCell>
                             </TableRow>
                             <TableRow
@@ -316,10 +344,16 @@ const Operation = (props) => {
                       </TableContainer>
                     </CardContent>
                   </Card>
-                  <div>
-                    <p>Bridge closing in</p>
-                    <p>xxxx</p>
-                  </div>
+                  {
+                    fetchOperation.data.mined === null
+                    && (
+                    <div>
+                      <p>Bridge closing in</p>
+                      <p>xxxx</p>
+                    </div>
+                    )
+}
+
                   {
                     fetchOperation.data.type === 0
                     && (
@@ -329,23 +363,46 @@ const Operation = (props) => {
                     </div>
                     )
                   }
+                  {
+                    fetchOperation.data.type === 0
+                    && depositFunc(
+                      fetchOperation.data.depositAddress,
+                      setCopySuccessful,
+                      copySuccessful,
+                    )
+                  }
 
                   {
                     fetchOperation.data.type === 1
+                    && fetchOperation.data.mined === null
                     && (
                       <div>
-                        <p>
-                          {burnProgress}
-                        </p>
+                        <Grid
+                          container
+                        >
+                          <Grid
+                            item
+                            xs={12}
+                          >
+                            <Typography
+                              variant="h6"
+                              align="center"
+                            >
+                              {burnProgress}
+                            </Typography>
+                          </Grid>
+                        </Grid>
                         {
                           !isLoading && (
                             <Button
                               onClick={() => clickBurn()}
                               fullWidth
+                              size="large"
+                              variant="contained"
                             >
                               Burn
                               {' '}
-                              {fetchOperation.data.amount}
+                              {(fetchOperation.data.amount * 1)}
                               {' '}
                               wRUNES
                             </Button>
@@ -353,9 +410,22 @@ const Operation = (props) => {
                         }
                         {
                           isLoading && (
-                            <Box sx={{ display: 'flex' }}>
-                              <CircularProgress />
-                            </Box>
+                            <Grid
+                              container
+                            >
+                              <Grid
+                                item
+                                xs={12}
+                                align="center"
+                              >
+
+                                <CircularProgress
+                                  size="100px"
+                                  style={{ padding: '30px' }}
+                                />
+
+                              </Grid>
+                            </Grid>
                           )
                         }
 
@@ -364,10 +434,55 @@ const Operation = (props) => {
                   }
 
                   {
+                    fetchOperation.data.type === 1
+                    && fetchOperation.data.mined === 1
+                    && (
+                      <Grid
+                        container
+                      >
+                        <Grid
+                          item
+                          xs={12}
+                          align="center"
+                        >
+                          <DoneIcon
+                            className="done"
+                          />
+                        </Grid>
+                        <Grid
+                          item
+                          xs={12}
+                        >
+                          <Typography
+                            variant="h5"
+                            align="center"
+                          >
+                            Swap Complete
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    )
+                  }
+
+                  {
                     fetchOperation.data.type === 0
+                    && fetchOperation.data.mined === 1
                     && (
                       <div>
-                        Transactions
+                        <p>Complete</p>
+                      </div>
+                    )
+                  }
+
+                  {
+                    fetchOperation.data
+                    && fetchOperation.data.transactions
+                    && fetchOperation.data.transactions.length > 0
+                    && (
+                      <div>
+                        <BridgeTransactionTable
+                          transactions={fetchOperation.data.transactions ? fetchOperation.data.transactions : []}
+                        />
                       </div>
                     )
                   }

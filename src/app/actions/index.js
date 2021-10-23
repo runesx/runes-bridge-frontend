@@ -6,3 +6,4 @@ export * from './changeTheme';
 
 export * from './operations';
 export * from './swap';
+export * from './assign';

@@ -12,7 +12,7 @@ import toggleTheme from './helpers/toggleTheme';
 
 import Swap from './views/Swap';
 import Home from './views/Home';
-// import Transactions from './views/Transactions';
+import Transactions from './views/Transactions';
 import Faq from './views/Faq';
 
 import Operation from './views/Operation';
@@ -39,6 +39,10 @@ const Routes = (props) => {
       <Route
         path="/faq"
         component={withTracker(Faq)}
+      />
+      <Route
+        path="/transactions"
+        component={withTracker(Transactions)}
       />
       <Route
         exact

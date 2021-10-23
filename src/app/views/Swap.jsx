@@ -65,7 +65,7 @@ const Swap = (props) => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(0);
   const [textFieldValue, setTextFieldValue] = useState('');
-  const [amountValue, setAmountValue] = useState('');
+  const [amountValue, setAmountValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

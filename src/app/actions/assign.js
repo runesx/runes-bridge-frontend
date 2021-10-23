@@ -8,7 +8,7 @@ import {
 } from './types/index';
 import history from '../history';
 
-export function idleStartSwapAction() {
+export function idlePostAssignTxAction() {
   return function (dispatch) {
     dispatch({
       type: START_ASSIGN_TX_IDLE,
@@ -29,6 +29,7 @@ export function postAssignTxAction(uuid, txid) {
         isLoading: true,
       },
     });
+    console.log('start posting assign');
     axios.post(`${process.env.API_URL}/assign`, {
       uuid,
       txid,
@@ -37,7 +38,7 @@ export function postAssignTxAction(uuid, txid) {
         dispatch({
           type: ENQUEUE_SNACKBAR,
           notification: {
-            message: 'Success: Bridge open',
+            message: 'Success: Swap Complete',
             key: new Date().getTime() + Math.random(),
             options: {
               variant: 'success',

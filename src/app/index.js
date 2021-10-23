@@ -147,7 +147,11 @@ function App() {
                       location="bottom"
                       buttonText="Agree"
                       cookieName="myAwesomeCookieName2"
-                      style={{ background: '#2B373B', zIndex: 6000, marginBottom: '35px' }}
+                      style={{
+                        background: '#2B373B',
+                        zIndex: 6000,
+                        marginBottom: '35px',
+                      }}
                       buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
                     >
                       By continuing to browse localrunes.com, you agree to our use of cookies.
