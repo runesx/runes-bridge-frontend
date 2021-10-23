@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+const location = useLocation();
 
 export default function withTracker(WrappedComponent, options = {}) {
+  const location = useLocation();
   const trackPage = (page) => {
     window.gtag('send', 'page_view', {
       // page_title: document.title,
