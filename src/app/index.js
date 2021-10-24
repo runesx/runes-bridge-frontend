@@ -111,6 +111,7 @@ function App() {
   // Set up a piece of state, so that we have
   // a way to trigger a re-render.
   console.log('RunesX App Started');
+
   // const classes = useStyles();
 
   return (
