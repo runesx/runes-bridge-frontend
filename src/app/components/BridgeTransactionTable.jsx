@@ -1,11 +1,4 @@
 import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import dateFormat, { masks } from 'dateformat';
 
@@ -64,7 +57,7 @@ export default function BasicTable(props) {
               <div
                 className="amountCell"
               >
-                {row.amount}
+                {row.amount / 1e8}
                 {' '}
                 RUNES
               </div>
@@ -74,7 +67,7 @@ export default function BasicTable(props) {
                 {dateFormat(row.createdAt)}
               </div>
               <div className="innerWrapperArrow">
-                <div className={`arrow ${row.instance.type === 1 ? 'flippedArrow' : ''}`}>
+                <div className={`arrow ${row.bridge.type === 1 ? 'flippedArrow' : ''}`}>
                   <div id="left">
                     <div className="line" />
                   </div>
