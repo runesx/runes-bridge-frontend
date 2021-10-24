@@ -198,17 +198,6 @@ module.exports = (options) => {
         ],
       }),
     );
-    webpackConfig.plugins.push(
-      new CopyPlugin({
-        patterns: [
-          {
-            from: Path.join(__dirname, '../src/app/thirdparty'),
-            to: Path.join(__dirname, '../dist'),
-            // context: 'app/',
-          },
-        ],
-      }),
-    );
 
     webpackConfig.module.rules.push({
       test: /\.scss$/,
