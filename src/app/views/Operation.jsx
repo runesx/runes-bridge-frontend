@@ -39,12 +39,10 @@ import {
 import {
   postAssignTxAction,
 } from '../actions/assign';
-import { abi } from '../abi/abi'
+import { abi } from '../abi/abi';
+import { config } from '../config';
 import web3 from '../helpers/web3';
 
-const contractAddress = '0xD1C2F16f8d0B08780d4792624E1342Aa505a8674';
-const contract = new web3.eth.Contract(abi, contractAddress);
-const expectedBlockTime = 1000;
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
 
 const styles = {
@@ -145,6 +143,9 @@ const Operation = (props) => {
     //  },
     // },
   } = props;
+  const network = 'bsc';
+  const contract = new web3.eth.Contract(abi, config[network].wRunesContract);
+  const expectedBlockTime = 1000;
   console.log('RunesX Operation View');
   const id = location.pathname.split('/')[2];
   console.log(id);
@@ -171,12 +172,6 @@ const Operation = (props) => {
       });
     }
   }, [window.ethereum]);
-
-  const postAssignTx = (uuid, tx) => {
-    console.log(uuid);
-    console.log(tx);
-    console.log('Submit Tx ID')
-  }
 
   const clickBurn = async () => {
     try {
