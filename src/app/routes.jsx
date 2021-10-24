@@ -10,7 +10,7 @@ import withTracker from './hooks/withTracker';
 
 import toggleTheme from './helpers/toggleTheme';
 
-import Swap from './views/Swap';
+import Bridge from './views/Bridge';
 import Home from './views/Home';
 import Transactions from './views/Transactions';
 import Faq from './views/Faq';
@@ -33,8 +33,8 @@ const RoutesX = (props) => {
         element={<Home />}
       />
       <Route
-        path="/swap"
-        element={<Swap />}
+        path="/bridge"
+        element={<Bridge />}
       />
       <Route
         path="/faq"

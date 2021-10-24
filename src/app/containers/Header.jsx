@@ -155,9 +155,9 @@ const Header = (props) => {
           <Nav className="mr-auto rNavbar">
             <Link
               className="nav-link"
-              to="/swap"
+              to="/bridge"
             >
-              Swap
+              Bridge
             </Link>
             <Link
               className="nav-link"

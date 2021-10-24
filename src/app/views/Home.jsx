@@ -23,6 +23,7 @@ import {
   // getChain,
   // metaState,
 } from 'use-metamask';
+import { config } from '../config';
 import { withRouter } from '../hooks/withRouter';
 // import Web3 from 'web3';
 import { addMetaMaskNetwork } from '../helpers/metamask';
@@ -34,15 +35,14 @@ import web3 from '../helpers/web3';
 import Logo from '../assets/images/logo.svg';
 
 const RunebaseExplorerUrl = 'https://explorer.runebase.io/address/RvSmpc8dmVoFB68S8a5CT4EthzDSNVUF49/';
-const contractAddress = '0xD1C2F16f8d0B08780d4792624E1342Aa505a8674';
+
 // var abi = JSON.parse( '[{"constant":true,"inputs":[],"name":"getInfo","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_info","type":"string"}],"name":"setInfo","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]' );
 
 // contract instance
 console.log(abi);
-const contract = new web3.eth.Contract(abi, contractAddress);
 
 // Smart contract functions
-const getTokenAmountwRunes = async () => {
+const getTokenAmountwRunes = async (contract) => {
   const totalcall = await contract.methods.totalSupply().call();
   return totalcall;
 }
@@ -67,6 +67,8 @@ const styles = {
 
 const Home = (props) => {
   const { classes } = props;
+  const network = 'bsc';
+  const contract = new web3.eth.Contract(abi, config[network].wRunesContract);
   const {
     connect: metaConnect,
     metaState,
@@ -81,7 +83,7 @@ const Home = (props) => {
     console.log('getCHain');
     console.log(chainInfo);
     addMetaMaskNetwork(97);
-    const tokenAmountw = await getTokenAmountwRunes();
+    const tokenAmountw = await getTokenAmountwRunes(contract);
     setTokenAmount(tokenAmountw);
     if (!metaState.isConnected) {
       (async () => {

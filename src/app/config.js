@@ -8,7 +8,7 @@ const blockchain = {
       rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
       currencySymbol: 'BNB',
       blockExplorer: 'https://testnet.bscscan.com',
-      wRunesContract: '',
+      wRunesContract: '0xFeD75cFb632C6Fd2125EC26Eec3b6f53a86Fc522',
     },
     matic: {
       networkName: '',
