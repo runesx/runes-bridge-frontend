@@ -29,6 +29,7 @@ import QRCode from 'qrcode';
 // import * as actions from '../actions/auth';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import BridgeTransactionTable from '../components/BridgeTransactionTable';
 import { withRouter } from '../hooks/withRouter';
 import {
@@ -244,7 +245,6 @@ const Operation = (props) => {
             >
               <Card className="cardBorder">
                 <Card className="cardGray">
-                  <div>Bridge Open</div>
                   <Card className="cardBorderTwo">
                     <CardContent>
                       <TableContainer>
@@ -295,6 +295,9 @@ const Operation = (props) => {
                                 {fetchOperation.data.address}
                               </TableCell>
                             </TableRow>
+                            {
+                             fetchOperation.data.type === 1
+                            && (
                             <TableRow
                           // key={row.name}
                               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -306,6 +309,9 @@ const Operation = (props) => {
                                 {(fetchOperation.data.amount * 1)}
                               </TableCell>
                             </TableRow>
+                            )
+}
+
                             <TableRow
                           // key={row.name}
                               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -362,8 +368,33 @@ const Operation = (props) => {
                     fetchOperation.data.type === 0
                     && (
                     <div>
-                      Warning!!
-                      Minimum Deposit is 30 000 RUNES, Sending less through the bridge will result in loss of funds
+                      <Grid
+                        item
+                        xs={12}
+                        alignItems="center"
+                        justify="center"
+                      >
+                        <WarningAmberIcon
+                          className="warningAmber"
+                        />
+                      </Grid>
+
+                      <Typography
+                        variant="subtitle1"
+                        align="center"
+                        className="warningColor"
+                      >
+                        Minimum Deposit is
+                        {' '}
+                        <span className="fatText">30000 RUNES</span>
+                      </Typography>
+                      <Typography
+                        variant="subtitle1"
+                        align="center"
+                        className="warningColor"
+                      >
+                        Sending less through the bridge will result in loss of funds
+                      </Typography>
                     </div>
                     )
                   }

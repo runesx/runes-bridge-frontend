@@ -47,10 +47,11 @@ export function startSwapAction(body, address, amount = 0, type) {
             },
           },
         });
-        history.push(`operation/${response.data.result.uuid}`);
+        // history.push(`operation/${response.data.result.uuid}`);
+        console.log(response.data.result);
         dispatch({
           type: START_SWAP_SUCCESS,
-          payload: response,
+          payload: response.data.result,
         });
       }).catch((error) => {
         console.log('error response');

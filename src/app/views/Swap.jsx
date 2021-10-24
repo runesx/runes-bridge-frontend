@@ -16,12 +16,14 @@ import {
   TextField,
 } from '@mui/material';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { withRouter } from '../hooks/withRouter';
 // import * as actions from '../actions/auth';
 import web3 from '../helpers/web3';
 
 import {
   startSwapAction,
+  idleStartSwapAction,
 } from '../actions/swap';
 
 function TabPanel(props) {
@@ -63,6 +65,7 @@ const Swap = (props) => {
   console.log('RunesX Swap View');
   const { startSwap } = props;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [value, setValue] = React.useState(0);
   const [textFieldValue, setTextFieldValue] = useState('');
   const [amountValue, setAmountValue] = useState(0);
@@ -85,7 +88,20 @@ const Swap = (props) => {
   };
 
   useEffect(() => {
+    console.log('idle');
+    dispatch(idleStartSwapAction());
+  }, []);
+
+  useEffect(() => {
   }, [startSwap]);
+
+  useEffect(() => {
+    if (startSwap.data && startSwap.data.uuid) {
+      console.log('useeffect l');
+      console.log(startSwap.data);
+      navigate(`/operation/${startSwap.data.uuid}`);
+    }
+  }, [startSwap.data]);
 
   return (
     <div className="height100 content">
@@ -161,9 +177,6 @@ const Swap = (props) => {
               >
                 Swap BEP20 wRUNES to native RUNES
               </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                Destination Address to receive RUNES on Runebase
-              </Typography>
               <TextField
                 id="outlined-number"
                 label="Amount"
@@ -178,6 +191,9 @@ const Swap = (props) => {
                 }}
                 onChange={(e) => handleChangeAmount(e.target.value)}
               />
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                Destination Address to receive RUNES on Runebase
+              </Typography>
               <TextField
                 label="Destination Address"
                 id="filled-size-normal"
@@ -185,6 +201,7 @@ const Swap = (props) => {
                 fullWidth
                 onChange={(e) => handleChangeTextField(e.target.value)}
               />
+
               <Typography sx={{ mb: 1.5 }} color="text.secondary">
                 Minimum burn is 100 wRUNES, Sending less through the bridge will result in loss of funds
               </Typography>
