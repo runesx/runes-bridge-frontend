@@ -156,8 +156,8 @@ module.exports = (options) => {
           ),
           RUNEBASE_VERSION: JSON.stringify(
             options.isProduction
-              ? dotenvProduction.parsed.RUNEBASE_VERSION
-              : dotenvDevelopment.parsed.RUNEBASE_VERSION,
+              ? dotenvProduction.parsed.PROOF_OF_RESERVE
+              : dotenvDevelopment.parsed.PROOF_OF_RESERVE,
           ),
           WS_ENDPOINT: JSON.stringify(
             options.isProduction
