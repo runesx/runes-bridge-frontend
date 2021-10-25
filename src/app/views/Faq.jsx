@@ -92,7 +92,7 @@ export default function SimpleCollapse() {
           xl={6}
           className="faqDrawerQuestion"
         >
-          <p>Q: how does the bridge work and who hosts it?</p>
+          <p>Q: how does the bridge work?</p>
         </Grid>
       </Grid>
       <Grid
@@ -114,7 +114,7 @@ export default function SimpleCollapse() {
           { showFaq2
             ? (
               <p>
-                The bridge uses a digital vault which holds RUNES coins on Runebase blockchain and issue wRUNES tokens on the binance smart chain that is pegged at a 1:1 ratio to RUNES native coin. The bridge is hosted by the Runebase Core Team.
+                The bridge uses a digital vault which holds RUNES coins on Runebase blockchain and issue wRUNES tokens on the binance smart chain that is pegged at a 1:1 ratio to RUNES native coin.
               </p>
             )
             : null}
@@ -206,7 +206,7 @@ export default function SimpleCollapse() {
           { showFaq4
             ? (
               <p>
-                You can see reserves on Idena vualt & BSC contract .
+                You can see reserves on Runebase explorer & BSC contract .
               </p>
             )
             : null}
@@ -298,7 +298,7 @@ export default function SimpleCollapse() {
           { showFaq6
             ? (
               <p>
-                Currently, you can only wrap coins through the bridge by using the Idena Desktop App.
+                Currently, you can only wrap coins through the bridge by using any Runebase wallet and Metamask.
               </p>
             )
             : null}
@@ -343,14 +343,19 @@ export default function SimpleCollapse() {
         >
           { showFaq7
             ? (
-              <p>
-                Step 1: Install Metamask and create a Metamask account.
-                Go to MetaMask.io and select from Android or iOS for mobile application or select Chrome for desktop. You can also go directly to the Chrome store or Google Play store.
+              <>
+                <p>
+                  Step 1: Install Metamask and create a Metamask account.
+                </p>
+                <p>
+                  Go to MetaMask.io and select from Android or iOS for mobile application or select Chrome for desktop. You can also go directly to the Chrome store or Google Play store.
+                </p>
+                <p>
+                  Step 2: Connect Metamask to Binance Smart Chain
+                  Since Metamask was originally made for the Ethereum network. We need to make a few more steps to connect it to the Binance Smart Chain network. You can use step by step guide provided on this link (use Mainnet parameters from the guide): https://academy.binance.com/en/articles/connecting-metamask-to-binance-smart-chain .
 
-                Step 2: Connect Metamask to Binance Smart Chain
-                Since Metamask was originally made for the Ethereum network. We need to make a few more steps to connect it to the Binance Smart Chain network. You can use step by step guide provided on this link (use Mainnet parameters from the guide): https://academy.binance.com/en/articles/connecting-metamask-to-binance-smart-chain .
-
-              </p>
+                </p>
+              </>
             )
             : null}
         </Grid>
@@ -441,7 +446,7 @@ export default function SimpleCollapse() {
           { showFaq9
             ? (
               <p>
-                Make sure the wallet supports BEP-20 tokens, if yes then you can add the token address manually: 0x0de08c1abe5fb86dd7fd2ac90400ace305138d5b
+                Make sure the wallet supports BEP-20 tokens, if yes then you can add the token address manually: 0xBeb9Aa6BDfE0964e77F9E6814b5328Bdd5fD90D7
               </p>
             )
             : null}

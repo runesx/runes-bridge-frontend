@@ -125,12 +125,22 @@ const Home = (props) => {
           xs={12}
           sm={6}
           md={4}
-          lg={2}
-          xl={1}
+          lg={3}
+          xl={3}
           className="zindexOne"
         >
           <Logo />
-          Wrapped RUNES
+
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          className="zindexOne"
+        >
+          <Typography align="center" variant="h3" gutterBottom>
+            Wrapped RUNES
+          </Typography>
+
         </Grid>
       </Grid>
       <Grid
