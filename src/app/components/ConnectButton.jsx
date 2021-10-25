@@ -56,7 +56,7 @@ export default function ConnectButton() {
     <Button
       onClick={handleConnectWallet}
     >
-      Connect to a wallet
+      Connect to Metamask
     </Button>
   );
 }
