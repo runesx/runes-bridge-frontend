@@ -65,7 +65,8 @@ const styles = {
 
 const Home = (props) => {
   const { classes } = props;
-  const RunebaseExplorerUrl = `https://explorer.runebase.io/address/${process.env.PROOF_OF_RESERVE}/;`
+  const RunebaseExplorerUrl = `https://explorer.runebase.io/address/${process.env.PROOF_OF_RESERVE}/`;
+  console.log(process.env.PROOF_OF_RESERVE);
   const network = 'bsc';
   const contract = new web3.eth.Contract(abi, config[network].wRunesContract);
   const {

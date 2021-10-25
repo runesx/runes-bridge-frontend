@@ -154,7 +154,7 @@ module.exports = (options) => {
               ? dotenvProduction.parsed.API_URL
               : dotenvDevelopment.parsed.API_URL,
           ),
-          RUNEBASE_VERSION: JSON.stringify(
+          PROOF_OF_RESERVE: JSON.stringify(
             options.isProduction
               ? dotenvProduction.parsed.PROOF_OF_RESERVE
               : dotenvDevelopment.parsed.PROOF_OF_RESERVE,
