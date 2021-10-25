@@ -15,12 +15,6 @@ import CookieConsent from 'react-cookie-consent';
 
 import ParticlesRunebase from './components/ParticlesRunebase';
 
-// import {
-// authenticated,
-// onUpdateTransaction,
-// onInsertTransaction,
-// } from './actions'
-
 import reducers from './reducers';
 import Routes from './routes';
 import history from './history';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { formatUnits } from '@ethersproject/units'
+import { formatUnits } from '@ethersproject/units';
 import { useEthers, useEtherBalance, useTokenBalance } from '@usedapp/core';
 // import { formatEther } from '@ethersproject/units';
 import {
