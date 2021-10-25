@@ -34,8 +34,6 @@ import web3 from '../helpers/web3';
 // import * as actions from '../actions/auth';
 import Logo from '../assets/images/logo.svg';
 
-const RunebaseExplorerUrl = `https://explorer.runebase.io/address/${process.env.PROOF_OF_RESERVE}/;`
-
 // var abi = JSON.parse( '[{"constant":true,"inputs":[],"name":"getInfo","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_info","type":"string"}],"name":"setInfo","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]' );
 
 // contract instance
@@ -67,6 +65,7 @@ const styles = {
 
 const Home = (props) => {
   const { classes } = props;
+  const RunebaseExplorerUrl = `https://explorer.runebase.io/address/${process.env.PROOF_OF_RESERVE}/;`
   const network = 'bsc';
   const contract = new web3.eth.Contract(abi, config[network].wRunesContract);
   const {
@@ -152,7 +151,7 @@ const Home = (props) => {
                 Total Wrapped RUNES issued
               </Typography>
               <Typography variant="h5" component="h2">
-                {tokenAmount / 1e18}
+                {(tokenAmount / 1e18).toFixed(0)}
                 {' '}
                 wRUNES
               </Typography>
@@ -175,7 +174,7 @@ const Home = (props) => {
                 Total RUNES in custody
               </Typography>
               <Typography variant="h5" component="h2">
-                {runebaseBalance / 1e8}
+                {(runebaseBalance / 1e8).toFixed(0)}
                 {' '}
                 RUNES
               </Typography>
