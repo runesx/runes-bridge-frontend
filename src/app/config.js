@@ -28,7 +28,7 @@ const blockchain = {
       rpcUrl: 'https://bsc-dataseed.binance.org/',
       currencySymbol: 'BNB',
       blockExplorer: 'https://bscscan.com',
-      wRunesContract: '',
+      wRunesContract: '0xBeb9Aa6BDfE0964e77F9E6814b5328Bdd5fD90D7',
     },
     matic: {
       networkName: '',
