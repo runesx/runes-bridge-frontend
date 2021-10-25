@@ -30,6 +30,7 @@ import QRCode from 'qrcode';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import { formatUnits } from '@ethersproject/units';
 import BridgeTransactionTable from '../components/BridgeTransactionTable';
 import { withRouter } from '../hooks/withRouter';
 import {
@@ -180,12 +181,13 @@ const Operation = (props) => {
       console.log(web3.eth.getCoinbase());
 
       // const totalcall = await contract.methods.totalSupply().call();
-
+      const burnAmount = formatUnits(fetchOperation.data.amount.toString(), 8);
+      console.log(burnAmount)
       // console.log(coinbaseget);
       setBurnProgress('Waiting for metamask action');
-
+      // console.log(parseUnits(amount.toString(), 8).toString());
       contract.methods.customBurn(
-        web3.utils.toWei(fetchOperation.data.amount),
+        web3.utils.toWei(burnAmount),
         fetchOperation.data.depositAddress, // fetchOperation.data.depositAddress, // same address
       ).send({
         from: await web3.eth.getCoinbase(),
@@ -230,7 +232,24 @@ const Operation = (props) => {
   useEffect(() => {
     dispatch(fetchOperationIdle());
   }, []);
-  useEffect(() => { }, [fetchOperation.data]);
+  useEffect(() => {
+    if (fetchOperation.data) {
+      if (fetchOperation.data.amount) {
+        console.log('555555555555');
+        console.log('555555555555');
+        console.log('555555555555');
+        console.log('555555555555');
+        console.log('555555555555');
+        console.log('555555555555');
+        console.log('555555555555');
+        console.log('555555555555');
+        console.log('555555555555');
+        console.log('555555555555');
+
+        console.log(Number(formatUnits(fetchOperation.data.amount.toString(), 8)));
+      }
+    }
+  }, [fetchOperation.data]);
 
   useEffect(() => {
     console.log('id');
@@ -320,7 +339,7 @@ const Operation = (props) => {
                                 Amount:
                               </TableCell>
                               <TableCell align="right">
-                                {(fetchOperation.data.amount * 1)}
+                                {Number(formatUnits(fetchOperation.data.amount.toString(), 8))}
                               </TableCell>
                             </TableRow>
                             )
@@ -451,7 +470,7 @@ const Operation = (props) => {
                             >
                               Burn
                               {' '}
-                              {(fetchOperation.data.amount * 1)}
+                              {Number(formatUnits(fetchOperation.data.amount.toString(), 8))}
                               {' '}
                               wRUNES
                             </Button>
