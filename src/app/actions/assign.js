@@ -52,6 +52,7 @@ export function postAssignTxAction(uuid, txid) {
           type: START_ASSIGN_TX_SUCCESS,
           payload: response,
         });
+        return true;
       }).catch((error) => {
         console.log('error response');
         console.log(error.response);

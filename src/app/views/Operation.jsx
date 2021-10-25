@@ -135,6 +135,7 @@ function depositFunc(
 const Operation = (props) => {
   const {
     fetchOperation,
+    assignTx,
     transactions,
     location,
     classes,
@@ -204,21 +205,18 @@ const Operation = (props) => {
           if (receipt) {
             setBurnProgress('Submitting Transaction');
             console.log('Submitting Tx');
+            console.log(fetchOperation.data.uuid);
+            console.log(result);
             const assignTX = await dispatch(postAssignTxAction(fetchOperation.data.uuid, result));
-            console.log('assignTX');
-            if (assignTX) { // check if status is 200 response.status == 200
-              setBurnProgress('Swap Complete');
-              console.log(assignTX);
-            } else {
-              setBurnProgress('Something went wrong');
-              console.log('Something went wrong.');
-            }
+            // dispatch(postAssignTxAction(fetchOperation.data.uuid, result));
           } else {
+            console.log('2');
             setBurnProgress('Something went wrong');
             console.log('Something went wrong.');
           }
           console.log(result);
         } else {
+          console.log('3');
           setBurnProgress('Something went wrong..');
           setIsLoading(false);
           console.log(err);
@@ -232,6 +230,16 @@ const Operation = (props) => {
   useEffect(() => {
     dispatch(fetchOperationIdle());
   }, []);
+
+  useEffect(() => {
+    if (assignTx.data) {
+      setBurnProgress('Swap Complete');
+    }
+    if (assignTx.error) {
+      setBurnProgress('Something went wrong..');
+    }
+  }, [assignTx.data]);
+
   useEffect(() => {
     if (fetchOperation.data) {
       if (fetchOperation.data.amount) {
@@ -461,7 +469,10 @@ const Operation = (props) => {
                           </Grid>
                         </Grid>
                         {
-                          !isLoading && (
+                          !isLoading
+                          && fetchOperation.data.mined === null
+                          && !assignTx.data
+                          && (
                             <Button
                               onClick={() => clickBurn()}
                               fullWidth
@@ -477,7 +488,10 @@ const Operation = (props) => {
                           )
                         }
                         {
-                          isLoading && (
+                          isLoading
+                          && fetchOperation.data.mined === null
+                          || assignTx.data
+                          && (
                             <Grid
                               container
                             >
@@ -569,6 +583,7 @@ const mapStateToProps = (state) => ({
   // errorMessage: state.auth.error,
   fetchOperation: state.fetchOperation,
   transactions: state.transactions,
+  assignTx: state.assignTx,
 })
 
 export default withStyles(styles)(withRouter(connect(mapStateToProps, null)(Operation)));

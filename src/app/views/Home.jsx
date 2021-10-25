@@ -34,7 +34,7 @@ import web3 from '../helpers/web3';
 // import * as actions from '../actions/auth';
 import Logo from '../assets/images/logo.svg';
 
-const RunebaseExplorerUrl = 'https://explorer.runebase.io/address/RvSmpc8dmVoFB68S8a5CT4EthzDSNVUF49/';
+const RunebaseExplorerUrl = `https://explorer.runebase.io/address/${process.env.PROOF_OF_RESERVE}/;`
 
 // var abi = JSON.parse( '[{"constant":true,"inputs":[],"name":"getInfo","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_info","type":"string"}],"name":"setInfo","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]' );
 
@@ -130,6 +130,7 @@ const Home = (props) => {
           className="zindexOne"
         >
           <Logo />
+          Wrapped RUNES
         </Grid>
       </Grid>
       <Grid
@@ -191,7 +192,6 @@ const Home = (props) => {
             onClick={() => routeChangeSwap()}
           >
             Swap
-
           </Button>
         </Grid>
       </Grid>

@@ -5,7 +5,7 @@ import {
   START_ASSIGN_TX_FAIL,
   } from '../actions/types/index';
   const initialState = {
-    data: [],
+    data: null,
     isLoading: false, // Default to fetching..
     error: null,
   };
@@ -28,7 +28,7 @@ import {
       case START_ASSIGN_TX_FAIL:
         return {
           ...state,
-          data: [],
+          data: null,
           error: action.payload.response.data.error,
           isLoading: false,
         };

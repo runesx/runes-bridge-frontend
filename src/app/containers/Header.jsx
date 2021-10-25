@@ -6,7 +6,6 @@ import React, {
 } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {
   Navbar,
   Nav,
@@ -14,13 +13,6 @@ import {
 } from 'react-bootstrap';
 
 import { withTranslation } from 'react-i18next';
-import ReactCountryFlag from 'react-country-flag';
-import {
-  Badge,
-  Button,
-} from '@mui/material';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
 import MobileNav from '../assets/images/mobileNav.svg';
 import Notifications from '../components/Notifications';
 import ConnectButton from '../components/ConnectButton';
@@ -40,15 +32,6 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const [menu, setMenu] = useState(false);
   const [height, setHeight] = useState(0);
-
-  const handleClick = (event) => {
-    // this.setState({ anchorEl: event.currentTarget, open: Boolean(event.currentTarget) });
-
-  }
-
-  const handleClose = (event) => {
-    // this.setState({ anchorEl: event.currentTarget, open: false });
-  }
 
   const handleWindowResize = useCallback((event) => {
     console.log('resize window');
@@ -86,51 +69,6 @@ const Header = (props) => {
 
   const show = (menu) ? 'show' : '';
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-  const getCurrentLng = () => i18n.language || window.localStorage.i18nextLng || '';
-  const countryCode = (country) => {
-    if (country === 'pt') {
-      return 'br';
-    }
-    if (country === 'en') {
-      return 'us';
-    }
-    if (country === 'nl') {
-      return 'nl';
-    }
-  }
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClickAdminMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleCloseAdminMenu = () => {
-    setAnchorEl(null);
-  };
-
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleClickUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const [anchorElLang, setAnchorElLang] = React.useState(null);
-
-  const handleClickLangMenu = (event) => {
-    setAnchorElLang(event.currentTarget);
-  };
-
-  const handleCloseLangMenu = () => {
-    setAnchorElLang(null);
-  };
-
   // console.log(this.props.user);
   return (
     <header className="rootRow header" style={{ height }}>
@@ -140,7 +78,7 @@ const Header = (props) => {
         className="navbar navbar-default"
         expand="lg"
       >
-        <Link to="/" className="nav-link">RunesX</Link>
+        <Link to="/" className="nav-link">wRUNES</Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -187,74 +125,6 @@ const Header = (props) => {
                 */}
           </ul>
           <ConnectButton />
-
-          <Button
-                          // aria-controls="simple-menu"
-                          // aria-haspopup="true"
-            onClick={handleClickLangMenu}
-            className="langPadding toggleLangWrapper"
-            id="user-nav-dropdown"
-            style={{ color: '#bdbdbd' }}
-          >
-            <Badge
-              color="secondary"
-            >
-              <span>
-                <ReactCountryFlag countryCode={countryCode(`${getCurrentLng()}`)} svg />
-                {' '}
-                {t(`${getCurrentLng()}`)}
-              </span>
-            </Badge>
-
-            {' '}
-            <ArrowDropDownIcon />
-          </Button>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorElLang}
-            keepMounted
-            open={Boolean(anchorElLang)}
-            onClose={handleCloseLangMenu}
-            className="langPadding toggleLangWrapper"
-          >
-            <MenuItem
-              onClick={(event) => {
-                handleCloseLangMenu();
-                changeLanguage('en');
-              }}
-            >
-              <div>
-                <ReactCountryFlag countryCode="us" svg />
-                {' '}
-                {t('en')}
-              </div>
-            </MenuItem>
-            <MenuItem
-              onClick={(event) => {
-                handleCloseLangMenu();
-                changeLanguage('pt')
-              }}
-            >
-              <div>
-                <ReactCountryFlag countryCode="br" svg />
-                {' '}
-                {t('pt')}
-              </div>
-            </MenuItem>
-            <MenuItem
-              onClick={(event) => {
-                handleCloseLangMenu();
-                changeLanguage('nl')
-              }}
-            >
-              <div>
-                <ReactCountryFlag countryCode="nl" svg />
-                {' '}
-                {t('nl')}
-              </div>
-            </MenuItem>
-          </Menu>
-
         </Navbar.Collapse>
       </Navbar>
     </header>

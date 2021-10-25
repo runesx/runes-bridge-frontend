@@ -7,6 +7,7 @@ import alert from "./alert";
 import startSwap from "./startSwap";
 import fetchOperation from "./fetchOperation";
 import transactions from "./transactions";
+import assignTx from "./assignTx";
 
 const rootReducer = combineReducers({
   form,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   alert: alert,
   startSwap: startSwap,
   fetchOperation: fetchOperation,
-  transactions: transactions
+  transactions: transactions,
+  assignTx: assignTx,
   
 });
 
