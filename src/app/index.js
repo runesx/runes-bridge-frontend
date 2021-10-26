@@ -112,48 +112,46 @@ function App() {
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
-          <MetamaskStateProvider>
-            <DAppProvider config={{}}>
-              <SnackbarProvider
-                ref={notistackRef}
-                classes={{
-                  root: styles.snack,
-                }}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'center',
-                }}
-                action={(key) => (
-                  <Button onClick={onClickDismiss(key)}>
-                    'Dismiss'
-                  </Button>
-                )}
-              >
-                <BrowserRouter>
-                  <Suspense fallback={<Loader />}>
-                    <Notifier />
-                    <ParticlesRunebase />
-                    <Header />
-                    <Routes />
-                    <CookieConsent
-                      location="bottom"
-                      buttonText="Agree"
-                      cookieName="myAwesomeCookieName2"
-                      style={{
-                        background: '#2B373B',
-                        zIndex: 6000,
-                        marginBottom: '35px',
-                      }}
-                      buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
-                    >
-                      By continuing to browse localrunes.com, you agree to our use of cookies.
-                    </CookieConsent>
-                    <Footer />
-                  </Suspense>
-                </BrowserRouter>
-              </SnackbarProvider>
-            </DAppProvider>
-          </MetamaskStateProvider>
+          <DAppProvider config={{}}>
+            <SnackbarProvider
+              ref={notistackRef}
+              classes={{
+                root: styles.snack,
+              }}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+              action={(key) => (
+                <Button onClick={onClickDismiss(key)}>
+                  'Dismiss'
+                </Button>
+              )}
+            >
+              <BrowserRouter>
+                <Suspense fallback={<Loader />}>
+                  <Notifier />
+                  <ParticlesRunebase />
+                  <Header />
+                  <Routes />
+                  <CookieConsent
+                    location="bottom"
+                    buttonText="Agree"
+                    cookieName="myAwesomeCookieName2"
+                    style={{
+                      background: '#2B373B',
+                      zIndex: 6000,
+                      marginBottom: '35px',
+                    }}
+                    buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
+                  >
+                    By continuing to browse localrunes.com, you agree to our use of cookies.
+                  </CookieConsent>
+                  <Footer />
+                </Suspense>
+              </BrowserRouter>
+            </SnackbarProvider>
+          </DAppProvider>
         </Provider>
       </ThemeProvider>
     </StyledEngineProvider>
