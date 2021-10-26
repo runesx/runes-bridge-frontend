@@ -30,18 +30,13 @@ import { addMetaMaskNetwork } from '../helpers/metamask';
 import { abi } from '../abi/abi'
 import web3 from '../helpers/web3';
 
-// import { default as metaConnect } from 'use-metamask/connect';
-// import * as actions from '../actions/auth';
 import Logo from '../assets/images/logo.svg';
-
-// var abi = JSON.parse( '[{"constant":true,"inputs":[],"name":"getInfo","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_info","type":"string"}],"name":"setInfo","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]' );
-
-// contract instance
-console.log(abi);
 
 // Smart contract functions
 const getTokenAmountwRunes = async (contract) => {
+  console.log('getTokenAmounts');
   const totalcall = await contract.methods.totalSupply().call();
+  console.log(totalcall);
   return totalcall;
 }
 
@@ -69,31 +64,22 @@ const Home = (props) => {
   console.log(process.env.PROOF_OF_RESERVE);
   const network = 'bsc';
   const contract = new web3.eth.Contract(abi, config[network].wRunesContract);
-  const {
-    connect: metaConnect,
-    metaState,
-    getChain,
-  } = useMetamask();
+  // const {
+  //  connect: metaConnect,
+  //  metaState,
+  //  getChain,
+  // } = useMetamask();
   const navigate = useNavigate();
   const [tokenAmount, setTokenAmount] = React.useState(0);
   console.log('RunesX Home View');
   const dispatch = useDispatch();
   useEffect(async () => {
-    const chainInfo = await getChain();
-    console.log('getCHain');
-    console.log(chainInfo);
-    addMetaMaskNetwork(97);
+    // const chainInfo = await getChain();
+    // console.log('getCHain');
+    // console.log(chainInfo);
+    // addMetaMaskNetwork(97);
     const tokenAmountw = await getTokenAmountwRunes(contract);
     setTokenAmount(tokenAmountw);
-    if (!metaState.isConnected) {
-      (async () => {
-        try {
-          await metaConnect(web3);
-        } catch (error) {
-          console.log(error);
-        }
-      })();
-    }
   }, []);
 
   const [runebaseBalance, setRunebaseBalance] = useState(0);
@@ -108,7 +94,7 @@ const Home = (props) => {
   }, []);
 
   const routeChangeSwap = () => {
-    const path = 'swap';
+    const path = 'bridge';
     navigate(path);
   }
 
