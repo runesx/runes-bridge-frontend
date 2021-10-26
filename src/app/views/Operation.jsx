@@ -432,7 +432,7 @@ const Operation = (props) => {
                         />
                       </Grid>
                     )
-}
+                  }
 
                   {
                     fetchOperation.data.type === 0
@@ -518,7 +518,7 @@ const Operation = (props) => {
                         {
                           isLoading
                           && fetchOperation.data.mined === null
-                          || assignTx.data
+                          /* || assignTx.data */
                           && (
                             <Grid
                               container
