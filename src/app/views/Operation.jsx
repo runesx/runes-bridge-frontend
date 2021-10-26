@@ -31,6 +31,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { formatUnits } from '@ethersproject/units';
+import Countdown from 'react-countdown';
 import BridgeTransactionTable from '../components/BridgeTransactionTable';
 import { withRouter } from '../hooks/withRouter';
 import {
@@ -131,6 +132,27 @@ function depositFunc(
     </div>
   );
 }
+
+// Renderer callback with condition
+const renderer = ({
+  hours, minutes, seconds, completed,
+}) => {
+  if (completed) {
+    // Render a completed state
+    console.log('done');
+    return <p>done</p>;
+  }
+  // Render a countdown
+  return (
+    <span>
+      {hours}
+      :
+      {minutes}
+      :
+      {seconds}
+    </span>
+  );
+};
 
 const Operation = (props) => {
   const {
@@ -398,10 +420,17 @@ const Operation = (props) => {
                   {
                     fetchOperation.data.mined === null
                     && (
-                    <div>
-                      <p>Bridge closing in</p>
-                      <p>xxxx</p>
-                    </div>
+                      <Grid
+                        item
+                        xs={12}
+                        align="center"
+                      >
+                        <p>Bridge closing in</p>
+                        <Countdown
+                          date={new Date(fetchOperation.data.time).getTime() + 259200000}
+                          renderer={renderer}
+                        />
+                      </Grid>
                     )
 }
 
@@ -412,8 +441,7 @@ const Operation = (props) => {
                       <Grid
                         item
                         xs={12}
-                        alignItems="center"
-                        justify="center"
+                        align="center"
                       >
                         <WarningAmberIcon
                           className="warningAmber"
