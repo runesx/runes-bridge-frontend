@@ -84,7 +84,9 @@ const Header = (props) => {
           type="button"
           onClick={toggleMenu}
         >
-          <MobileNav />
+          <MobileNav
+            className="mobileNav"
+          />
         </button>
         <Navbar.Collapse
           id="basic-navbar-nav"
