@@ -85,7 +85,7 @@ const AccountMenu = ({ openConnectModal, openTransactionModal }) => {
 
   return (
     <div>
-      <div style={{ float: 'left' }}>
+      <div style={{ float: 'left', paddingRight: '5px' }}>
         <div style={{ width: '100%' }}>
           <div className={styles.networkName}>{network.shortName}</div>
         </div>
@@ -96,6 +96,7 @@ const AccountMenu = ({ openConnectModal, openTransactionModal }) => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick}
+            style={{ padding: 0 }}
           >
             {truncateAddress(account)}
           </Button>
