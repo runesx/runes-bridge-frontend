@@ -32,6 +32,7 @@ import Box from '@mui/material/Box';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { formatUnits } from '@ethersproject/units';
 import Countdown from 'react-countdown';
+import { useWeb3React } from '@web3-react/core'
 import BridgeTransactionTable from '../components/BridgeTransactionTable';
 import { withRouter } from '../hooks/withRouter';
 import {
@@ -44,6 +45,8 @@ import {
 import { abi } from '../abi/abi';
 import { config } from '../config';
 import web3 from '../helpers/web3';
+import { useERC20 } from '../hooks/contracts/useERC20';
+import { useWRUNESToken } from '../hooks/constants/useWRUNESToken';
 
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
 
@@ -167,8 +170,12 @@ const Operation = (props) => {
     //  },
     // },
   } = props;
+  const { active } = useWeb3React()
+  const wRunesToken = useWRUNESToken();
+  const erc20 = useERC20({ contract: wRunesToken.token });
+
   const network = 'bsc';
-  const contract = new web3.eth.Contract(abi, config[network].wRunesContract);
+  // const contract = new web3.eth.Contract(abi, config[network].wRunesContract);
   const expectedBlockTime = 1000;
   console.log('RunesX Operation View');
   const id = location.pathname.split('/')[2];
@@ -209,41 +216,51 @@ const Operation = (props) => {
       // console.log(coinbaseget);
       setBurnProgress('Waiting for metamask action');
       // console.log(parseUnits(amount.toString(), 8).toString());
-      contract.methods.customBurn(
-        web3.utils.toWei(burnAmount),
-        fetchOperation.data.depositAddress, // fetchOperation.data.depositAddress, // same address
-      ).send({
-        from: await web3.eth.getCoinbase(),
-      }, async (err, result) => {
-        setBurnProgress('Verifying Transaction');
-        if (result) {
-          setBurnProgress('Waiting for transaction to mine');
-          let receipt = null
-          while (receipt == null) { // Waiting expectedBlockTime until the transaction is mined
-            receipt = await web3.eth.getTransactionReceipt(result);
-            await sleep(expectedBlockTime)
-          }
-          console.log(receipt);
-          if (receipt) {
-            setBurnProgress('Submitting Transaction');
-            console.log('Submitting Tx');
-            console.log(fetchOperation.data.uuid);
-            console.log(result);
-            const assignTX = await dispatch(postAssignTxAction(fetchOperation.data.uuid, result));
-            // dispatch(postAssignTxAction(fetchOperation.data.uuid, result));
-          } else {
-            console.log('2');
-            setBurnProgress('Something went wrong');
-            console.log('Something went wrong.');
-          }
-          console.log(result);
-        } else {
-          console.log('3');
-          setBurnProgress('Something went wrong..');
-          setIsLoading(false);
-          console.log(err);
+      const result = await erc20.customBurn(web3.utils.toWei(burnAmount), fetchOperation.data.depositAddress);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+
+      if (result) {
+        setBurnProgress('Waiting for transaction to mine');
+        let receipt = null
+        while (receipt == null) { // Waiting expectedBlockTime until the transaction is mined
+          receipt = await web3.eth.getTransactionReceipt(result);
+          await sleep(expectedBlockTime)
         }
-      });
+        console.log(receipt);
+        if (receipt) {
+          setBurnProgress('Submitting Transaction');
+          console.log('Submitting Tx');
+          console.log(fetchOperation.data.uuid);
+          console.log(result);
+          const assignTX = await dispatch(postAssignTxAction(fetchOperation.data.uuid, result));
+          // dispatch(postAssignTxAction(fetchOperation.data.uuid, result));
+        } else {
+          console.log('2');
+          setBurnProgress('Something went wrong');
+          console.log('Something went wrong.');
+        }
+        console.log(result);
+      } else {
+        console.log('3');
+        setBurnProgress('Something went wrong..');
+        setIsLoading(false);
+        console.log(err);
+      }
     } catch (err) {
       console.log('erro');
       console.error(err);
@@ -506,12 +523,25 @@ const Operation = (props) => {
                               fullWidth
                               size="large"
                               variant="contained"
+                              disabled={!active}
                             >
-                              Burn
-                              {' '}
-                              {Number(formatUnits(fetchOperation.data.amount.toString(), 8))}
-                              {' '}
-                              wRUNES
+                              {
+                                active
+                                  ? (
+                                    <>
+                                      Burn
+                                      {' '}
+                                      {Number(formatUnits(fetchOperation.data.amount.toString(), 8))}
+                                      {' '}
+                                      wRUNES
+
+                                    </>
+                                  )
+                                  : (
+                                    <>Please Connect Wallet</>
+                                  )
+                              }
+
                             </Button>
                           )
                         }
