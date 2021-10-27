@@ -12,6 +12,9 @@ import socketIOClient from 'socket.io-client';
 import { SnackbarProvider } from 'notistack';
 import Button from '@mui/material/Button';
 import CookieConsent from 'react-cookie-consent';
+import { i18n } from '@lingui/core';
+import { I18nProvider } from '@lingui/react';
+import { Web3ReactProvider } from '@web3-react/core';
 
 import ParticlesRunebase from './components/ParticlesRunebase';
 
@@ -19,11 +22,13 @@ import reducers from './reducers';
 import Routes from './routes';
 import history from './history';
 import Header from './containers/Header';
+import { getLibrary } from './utils/web3-react'
 
 import Notifier from './containers/Alert';
 
 import Runebase from './assets/images/Runebase.png';
 import Footer from './containers/Footer';
+import { messages } from '../locales/en/messages'
 
 import '@fortawesome/fontawesome-free/css/all.css';
 import './assets/fonts/texgyreheros-regular.woff';
@@ -101,6 +106,9 @@ const styles = {
   },
 };
 
+i18n.load('en', messages)
+i18n.activate('en')
+
 function App() {
   // Set up a piece of state, so that we have
   // a way to trigger a re-render.
@@ -110,50 +118,54 @@ function App() {
 
   return (
     <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <DAppProvider config={{}}>
-            <SnackbarProvider
-              ref={notistackRef}
-              classes={{
-                root: styles.snack,
-              }}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
-              }}
-              action={(key) => (
-                <Button onClick={onClickDismiss(key)}>
-                  'Dismiss'
-                </Button>
-              )}
-            >
-              <BrowserRouter>
-                <Suspense fallback={<Loader />}>
-                  <Notifier />
-                  <ParticlesRunebase />
-                  <Header />
-                  <Routes />
-                  <CookieConsent
-                    location="bottom"
-                    buttonText="Agree"
-                    cookieName="myAwesomeCookieName2"
-                    style={{
-                      background: '#2B373B',
-                      zIndex: 6000,
-                      marginBottom: '35px',
-                    }}
-                    buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
-                  >
-                    By continuing to browse localrunes.com, you agree to our use of cookies.
-                  </CookieConsent>
-                  <Footer />
-                </Suspense>
-              </BrowserRouter>
-            </SnackbarProvider>
-          </DAppProvider>
-        </Provider>
-      </ThemeProvider>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <I18nProvider i18n={i18n}>
+          <ThemeProvider theme={theme}>
+            <Provider store={store}>
+              <DAppProvider config={{}}>
+                <SnackbarProvider
+                  ref={notistackRef}
+                  classes={{
+                    root: styles.snack,
+                  }}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                  }}
+                  action={(key) => (
+                    <Button onClick={onClickDismiss(key)}>
+                      'Dismiss'
+                    </Button>
+                  )}
+                >
+                  <BrowserRouter>
+                    <Suspense fallback={<Loader />}>
+                      <Notifier />
+                      <ParticlesRunebase />
+                      <Header />
+                      <Routes />
+                      <CookieConsent
+                        location="bottom"
+                        buttonText="Agree"
+                        cookieName="myAwesomeCookieName2"
+                        style={{
+                          background: '#2B373B',
+                          zIndex: 6000,
+                          marginBottom: '35px',
+                        }}
+                        buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
+                      >
+                        By continuing to browse localrunes.com, you agree to our use of cookies.
+                      </CookieConsent>
+                      <Footer />
+                    </Suspense>
+                  </BrowserRouter>
+                </SnackbarProvider>
+              </DAppProvider>
+            </Provider>
+          </ThemeProvider>
+        </I18nProvider>
+      </Web3ReactProvider>
     </StyledEngineProvider>
   );
 }
