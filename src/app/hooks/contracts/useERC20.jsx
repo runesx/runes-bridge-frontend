@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { MaxUint256 } from '@ethersproject/constants'
 import { calculateGasMargin } from '../../utils/bignumbers'
 import { useContract } from '../useContract'
@@ -31,8 +32,24 @@ export const useERC20 = ({ contract } = {}) => {
     return '0'
   }
 
+  const customBurn = async (amount, address) => {
+    if (!instance) {
+      return false;
+    }
+
+    try {
+      const result = await instance.customBurn(amount, address);
+      console.log(result);
+      return result.hash;
+    } catch (error) {
+      console.error(error)
+    }
+    return false;
+  }
+
   return {
     approve,
     balanceOf,
+    customBurn,
   }
 }

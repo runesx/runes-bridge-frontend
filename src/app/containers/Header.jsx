@@ -14,7 +14,7 @@ import {
 
 import { withTranslation } from 'react-i18next';
 import MobileNav from '../assets/images/mobileNav.svg';
-import Notifications from '../components/Notifications';
+// import Notifications from '../components/Notifications';
 import ConnectButton from '../components/ConnectButton';
 import ConnectWallet from '../components/ConnectWallet';
 
@@ -49,16 +49,6 @@ const Header = (props) => {
       window.removeEventListener('resize', handleWindowResize);
     };
   }, [handleWindowResize]);
-
-  useEffect(() => {
-    if (user && user.role === 4) {
-      dispatch(getPendingWithdrawalCount());
-      const interval = setInterval(() => {
-        dispatch(getPendingWithdrawalCount());
-      }, 1 * 60 * 1000);
-      return () => clearInterval(interval);
-    }
-  }, [user]);
 
   useEffect(() => {
     setHeight(heightRef.current.clientHeight);
@@ -128,7 +118,6 @@ const Header = (props) => {
                 */}
           </ul>
           <ConnectWallet />
-          <ConnectButton />
         </Navbar.Collapse>
       </Navbar>
     </header>

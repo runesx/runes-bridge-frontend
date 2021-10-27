@@ -45,14 +45,14 @@ export const getWRUNESToken = (networkId = FALLBACK_CHAIN_ID) => {
   if (networkId === 97) {
     return {
       address: testnet.addresses.tokens.WRUNES,
-      explorer: `https://testnet.bscscan.com/token/${testnet.addresses.tokens.NEP}`,
+      explorer: `https://testnet.bscscan.com/token/${testnet.addresses.tokens.WRUNES}`,
       abi: abis.wrunes,
     }
   }
 
   return {
     address: mainnet.addresses.tokens.WRUNES,
-    explorer: `https://bscscan.com/token/${mainnet.addresses.tokens.NEP}`,
+    explorer: `https://bscscan.com/token/${mainnet.addresses.tokens.WRUNES}`,
     abi: abis.wrunes,
   }
 }
