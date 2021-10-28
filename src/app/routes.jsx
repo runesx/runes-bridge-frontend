@@ -14,6 +14,7 @@ import Bridge from './views/Bridge';
 import Home from './views/Home';
 import Transactions from './views/Transactions';
 import Faq from './views/Faq';
+import Pool from './views/Pool';
 
 import Operation from './views/Operation';
 
@@ -48,6 +49,10 @@ const RoutesX = (props) => {
         // exact
         path="/operation/:id"
         element={<Operation />}
+      />
+      <Route
+        path="/farms"
+        element={<Pool />}
       />
     </Routes>
   )
