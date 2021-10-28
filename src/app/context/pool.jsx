@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { RUN_EVERY } from '../config/constants'
 import { getPool } from '../config/pool'
 import { useFarmContractInfo } from '../hooks/constants/useFarmContractInfo'
-import { useNEPToken } from '../hooks/constants/useNEPToken'
+import { useWRUNESToken } from '../hooks/constants/useWRUNESToken'
 import { usePoolContractInfo } from '../hooks/constants/usePoolContractInfo'
 import { useDiscovery } from '../hooks/contracts/useDiscovery'
 import { useERC20 } from '../hooks/contracts/useERC20'
@@ -22,22 +22,33 @@ export const PoolContext = React.createContext()
 
 export const PoolProvider = ({ children }) => {
   const {
-    active, library, account, chainId,
-  } = useWeb3React()
+    active,
+    library,
+    account,
+    chainId,
+  } = useWeb3React();
+  useEffect(() => { }, [
+    active,
+    library,
+    account,
+    chainId,
+  ]);
 
   const [summaries, setSummaries] = useState({})
   const [allowances, setAllowances] = useState({})
   const [tokenPrices, setTokenPrices] = useState({})
   const [totalNEPLocked, setTotalNEPLocked] = useState('0')
   // const { nepPrice } = useStatsContext();
-  const { token: neptoken } = useNEPToken()
+  const { token: neptoken } = useWRUNESToken();
 
   const { address: poolContractAddress } = usePoolContractInfo()
   const { address: farmContractAddress } = useFarmContractInfo()
   const discoveryInstance = useDiscovery()
 
-  const pools = getPool(chainId)
-  const { balanceOf } = useERC20({ contract: neptoken })
+  const pools = getPool(chainId);
+  console.log(neptoken);
+  console.log('neptoken printout');
+  const { balanceOf } = useERC20({ contract: neptoken });
 
   const getInfoById = (id) => pools.find((x) => x.id === id) || {}
 
@@ -101,9 +112,9 @@ export const PoolProvider = ({ children }) => {
   )
 
   const getSumOfNEPLocked = async () => {
-    const b1 = await balanceOf(poolContractAddress)
+    // const b1 = await balanceOf(poolContractAddress)
     const b2 = await balanceOf(farmContractAddress)
-    return new BigNumber(b1).plus(b2).toString()
+    return new BigNumber(b2).toString()
   }
 
   useEffect(() => {

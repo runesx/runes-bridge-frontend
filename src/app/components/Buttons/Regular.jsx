@@ -1,6 +1,10 @@
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
+import {
+  Button,
+} from '@mui/material';
 import { classNames } from '../../utils/class-names'
-import { LoadingIcon } from './LoadingIcon'
+import { LoadingIcon } from './LoadingIcon';
 
 export const RegularButton = ({
   children,
@@ -17,8 +21,9 @@ export const RegularButton = ({
   }
 
   return (
-    <button
+    <Button
       type="button"
+      variant="contained"
       className={classNames(
         'inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md transition ease-in-out duration-150',
         btnClass,
@@ -29,6 +34,6 @@ export const RegularButton = ({
     >
       {isProcessing && <LoadingIcon />}
       {children}
-    </button>
+    </Button>
   )
 }

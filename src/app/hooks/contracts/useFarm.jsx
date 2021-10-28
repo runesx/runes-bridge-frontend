@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { calculateGasMargin, convertToUnits } from '../../utils/bignumbers'
 import { useFarmContractInfo } from '../constants/useFarmContractInfo'
 import { useContract } from '../useContract'
@@ -13,14 +14,16 @@ export const useFarm = ({ contract: _contract } = {}) => {
   const instance = useContract({ contract })
 
   const deposit = async ({ token, amount }) => {
-    const toDeposit = convertToUnits(amount || 0).toString()
+    const toDeposit = convertToUnits(amount || 0).toString();
+    console.log('toDeposit');
+    console.log(toDeposit);
 
     const estimatedGas = await instance.estimateGas
       .deposit(toDeposit)
       .catch(() => instance.estimateGas.deposit(toDeposit.toString()))
 
     const tx = await instance.deposit(toDeposit, {
-      gasLimit: calculateGasMargin(estimatedGas)
+      gasLimit: calculateGasMargin(estimatedGas),
     })
 
     return tx
@@ -34,7 +37,7 @@ export const useFarm = ({ contract: _contract } = {}) => {
       .catch(() => instance.estimateGas.withdraw(toWithdraw.toString()))
 
     const tx = await instance.withdraw(toWithdraw, {
-      gasLimit: calculateGasMargin(estimatedGas)
+      gasLimit: calculateGasMargin(estimatedGas),
     })
 
     return tx
@@ -46,7 +49,7 @@ export const useFarm = ({ contract: _contract } = {}) => {
       .catch(() => instance.estimateGas.withdrawRewards())
 
     const tx = await instance.withdrawRewards({
-      gasLimit: calculateGasMargin(estimatedGas)
+      gasLimit: calculateGasMargin(estimatedGas),
     })
     return tx
   }
@@ -54,6 +57,6 @@ export const useFarm = ({ contract: _contract } = {}) => {
   return {
     deposit,
     withdraw,
-    withdrawRewards
+    withdrawRewards,
   }
 }

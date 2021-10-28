@@ -1,8 +1,11 @@
 import React from 'react';
 import { useWeb3React } from '@web3-react/core'
 import { PlusSmIcon, MinusSmIcon } from '@heroicons/react/solid'
+import {
+  Button,
+} from '@mui/material';
 import { hasValue } from '../../../utils/bignumbers'
-import { IconButton } from '../../Buttons/Icon'
+import { IconButton } from '../../Buttons/Icon';
 
 const StakeUnstakeButtons = ({ openModal, modalTypes, data }) => {
   const { active } = useWeb3React()
@@ -13,12 +16,13 @@ const StakeUnstakeButtons = ({ openModal, modalTypes, data }) => {
 
   if (!hasValue(data.staked)) {
     return (
-      <button
+      <Button
         className="px-6 py-1 rounded-md bg-blue-500 text-white"
         onClick={() => openModal(modalTypes.STAKE)}
+        variant="contained"
       >
         Farm
-      </button>
+      </Button>
     )
   }
 

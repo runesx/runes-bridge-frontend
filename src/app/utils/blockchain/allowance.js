@@ -6,7 +6,7 @@ export const getTokenAllowance = async ({
   library,
   token,
   spender,
-  owner = AddressZero
+  owner = AddressZero,
 }) => {
   try {
     const instance = getContract(token.address, library, token.abi, owner)

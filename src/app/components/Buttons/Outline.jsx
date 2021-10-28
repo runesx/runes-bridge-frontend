@@ -1,6 +1,9 @@
 import React from 'react';
+import {
+  Button,
+} from '@mui/material';
 import { classNames } from '../../utils/class-names'
-import { LoadingIcon } from './LoadingIcon'
+import { LoadingIcon } from './LoadingIcon';
 
 export const OutlineButton = ({
   children,
@@ -15,8 +18,9 @@ export const OutlineButton = ({
   }
 
   return (
-    <button
+    <Button
       type="button"
+      variant="outlined"
       className={classNames(
         'inline-flex items-center border-2 border-white font-medium rounded-md transition ease-in-out duration-150',
         btnClass,
@@ -27,6 +31,6 @@ export const OutlineButton = ({
     >
       {isProcessing && <LoadingIcon />}
       {children}
-    </button>
+    </Button>
   )
 }

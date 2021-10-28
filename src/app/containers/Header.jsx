@@ -98,6 +98,12 @@ const Header = (props) => {
             </Link>
             <Link
               className="nav-link"
+              to="/farms"
+            >
+              Farm
+            </Link>
+            <Link
+              className="nav-link"
               to="/faq"
             >
               FAQ

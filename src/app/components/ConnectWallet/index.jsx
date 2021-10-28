@@ -7,19 +7,19 @@ import ConnectModal from './ConnectWallet/Modal';
 import { TransactionModal } from './ConnectWallet/ViewTransactionsW';
 
 const connectWallet = () => {
-  const { active } = useWeb3React()
-  const [isConnectOpen, setIsConnectOpen] = useState(false)
-  const [isTransactionOpen, setIsTransactionOpen] = useState(false)
+  const { active } = useWeb3React();
+  const [isConnectOpen, setIsConnectOpen] = useState(false);
+  const [isTransactionOpen, setIsTransactionOpen] = useState(false);
 
-  const closeConnectModal = () => setIsConnectOpen(false)
-  const openConnectModal = () => setIsConnectOpen(true)
+  const closeConnectModal = () => setIsConnectOpen(false);
+  const openConnectModal = () => setIsConnectOpen(true);
   const connectModalProps = {
     open: isConnectOpen,
     closeModal: closeConnectModal,
   }
 
-  const closeTransactionModal = () => setIsTransactionOpen(false)
-  const openTransactionModal = () => setIsTransactionOpen(true)
+  const closeTransactionModal = () => setIsTransactionOpen(false);
+  const openTransactionModal = () => setIsTransactionOpen(true);
   const transactionModalProps = {
     open: isTransactionOpen,
     closeModal: closeTransactionModal,

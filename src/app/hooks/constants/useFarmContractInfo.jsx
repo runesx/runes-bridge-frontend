@@ -1,5 +1,5 @@
 import { useWeb3React } from '@web3-react/core'
-import React from 'react';
+// import React from 'react';
 import { getFarmContractInfo } from '../../config/stats'
 
 export const useFarmContractInfo = () => {
