@@ -51,7 +51,7 @@ function Balance() {
 
   return (
     <>
-      {balance === null ? 'Error' : balance ? `${convertFromUnits(balance)}` : ''}
+      {balance === null ? 'Error' : balance ? `${convertFromUnits(balance).toFixed(3)}` : ''}
     </>
   )
 }
@@ -158,7 +158,7 @@ const AccountMenu = ({ openConnectModal, openTransactionModal }) => {
         </div>
 
         <div style={{ width: '100%' }}>
-          {NEPBalance}
+          {Number(NEPBalance).toFixed(3)}
           {' '}
           wRUNES
         </div>
