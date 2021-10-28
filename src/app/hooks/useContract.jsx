@@ -1,9 +1,13 @@
+/* eslint-disable import/prefer-default-export */
 import { useWeb3React } from '@web3-react/core'
 
 import { getContract } from '../utils/blockchain/contract'
 
 export const useContract = ({ contract }) => {
-  const { library, account } = useWeb3React()
+  const { library, account } = useWeb3React();
+
+  console.log('contract');
+  console.log(contract);
 
   try {
     const instance = getContract(
@@ -11,7 +15,8 @@ export const useContract = ({ contract }) => {
       library,
       contract.abi,
       account,
-    )
+    );
+    console.log(instance);
 
     return instance
   } catch (error) {
