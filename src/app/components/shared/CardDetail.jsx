@@ -1,11 +1,12 @@
 import React from 'react';
+import { Grid } from '@mui/material';
 import { classNames } from '../../utils/class-names'
 import { InfoTooltip } from './InfoTooltip'
 
 const CardDetail = ({
   title, value, right, tooltip,
 }) => (
-  <div className="flex flex-col w-1/2">
+  <Grid item xs={6}>
     <div
       className={classNames(
         'font-bold text-xs tracking-wider text-gray-400 uppercase',
@@ -29,7 +30,7 @@ const CardDetail = ({
       </InfoTooltip>
       )}
     </div>
-  </div>
+  </Grid>
 )
 
 export default CardDetail

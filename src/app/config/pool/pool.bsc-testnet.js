@@ -1,6 +1,7 @@
 import features from './features'
 import abis from '../abis'
 import { addresses } from '../constants/addresses.bsc-testnet'
+import { convertFromUnits } from '../../utils/bignumbers'
 
 const getTokenSwapLink = (output, input) => {
   if (input) {
@@ -22,6 +23,7 @@ export default [
       other: 0,
       exit: 0,
     },
+    nepRewardAllocation: convertFromUnits(500000000000000000000000),
     token: {
       decimals: 18,
       address: addresses.tokens.CAKE,
@@ -49,43 +51,6 @@ export default [
     symbol: {
       reward: 'NEP',
       liquidity: 'CAKE',
-    },
-  },
-  {
-    id: getId('2'),
-    name: 'WBNB Farm',
-    type: 'Pool',
-    fees: {
-      entry: 0.025,
-      other: 0,
-      exit: 0,
-    },
-    token: {
-      decimals: 18,
-      address: addresses.tokens.WBNB,
-      abi: abis.ierc20,
-    },
-    discovery: {
-      address: addresses.contracts.v1.DISCOVERY,
-      abi: abis.discovery,
-    },
-    farm: {
-      address: addresses.contracts.v1.POOL,
-      abi: abis.pool,
-    },
-    features: [features.NEPTUNE_MUTUAL],
-    hot: false,
-    live: true,
-    isLPToken: false,
-    lockingPeriod: '24 hours',
-    tokenSwapLink: getTokenSwapLink(addresses.tokens.WBNB),
-    assets: {
-      logo: '/pools/wbnb.png',
-      background: '/patterns/scatter_polygons.svg',
-    },
-    symbol: {
-      reward: 'NEP',
-      liquidity: 'WBNB',
     },
   },
 ]

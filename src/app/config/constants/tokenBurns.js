@@ -7,10 +7,10 @@ const tokenBurnsPerNetwork = [
       {
         txHash:
           '0xfe4a87d9758235a7d8313080fdcb8be78f4c29c8c97936a76fdba0206b13a25a',
-        amount: convertToUnits(2000000)
-      }
-    ]
-  }
+        amount: convertToUnits(2000000),
+      },
+    ],
+  },
 ]
 
 export const getBurnedData = (networkId) => {

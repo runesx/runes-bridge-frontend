@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Tippy from '@tippyjs/react'
 import { useWeb3React } from '@web3-react/core'
+import { Button } from '@mui/material';
 import { classNames } from '../../../utils/class-names'
 import { hasValue } from '../../../utils/bignumbers'
 import { useTransactionToast } from '../../../hooks/useTransactionToast'
-import { useERC20 } from '../../../hooks/contracts/useERC20'
+import { useERC20 } from '../../../hooks/contracts/useERC20';
 
 export const ApproveToSpend = ({ data }) => {
   const { transactionPlaced, transactionError } = useTransactionToast()
-  const { active } = useWeb3React()
-  const erc20 = useERC20({ contract: data.token })
+  const { active } = useWeb3React();
+  const erc20 = useERC20({ contract: data.token });
+  console.log('ApproveToSpend');
+  console.log('ApproveToSpend');
+  console.log('ApproveToSpend');
+  console.log('ApproveToSpend');
+  console.log('ApproveToSpend');
+  console.log('ApproveToSpend');
+  console.log('ApproveToSpend');
+  console.log('ApproveToSpend');
+  console.log('ApproveToSpend');
+  console.log('ApproveToSpend');
+  console.log('ApproveToSpend');
+  console.log(data.token);
+  console.log(data.farm);
+  console.log(erc20);
+  console.log(active);
+  console.log(data.isLive);
+
+  useEffect(() => {
+
+  }, [active]);
 
   const enabled = active && data.isLive
   const msg = active ? 'Coming soon' : 'Please connect your wallet'
@@ -27,6 +48,7 @@ export const ApproveToSpend = ({ data }) => {
       const tx = await erc20.approve({
         spender: data.farm,
       })
+      console.log('1233')
 
       await transactionPlaced(tx, {
         title: data.name,
@@ -47,18 +69,13 @@ export const ApproveToSpend = ({ data }) => {
       animation="perspective"
     >
       <span tabIndex="0">
-        <button
-          className={classNames(
-            'px-6 py-1 rounded-md',
-            enabled
-              ? 'bg-blue-500 text-white'
-              : 'bg-gray-500 text-gray-800 cursor-not-allowed',
-          )}
+        <Button
+          variant="contained"
           onClick={onApprove}
           disabled={!enabled}
         >
           Approve
-        </button>
+        </Button>
       </span>
     </Tippy>
   )
