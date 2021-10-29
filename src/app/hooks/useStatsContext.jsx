@@ -1,5 +1,8 @@
+/* eslint-disable import/prefer-default-export */
 import React, { useContext } from 'react'
 
 import { StatsContext } from '../context/stats'
 
-export const useStatsContext = () => useContext(StatsContext)
+const useStatsContext = () => useContext(StatsContext);
+
+export default useStatsContext;

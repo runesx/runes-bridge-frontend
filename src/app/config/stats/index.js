@@ -17,13 +17,13 @@ export const getDiscoveryContractInfo = (networkId = FALLBACK_CHAIN_ID) => {
   }
 }
 
-export const getBondContractInfo = (networkId = FALLBACK_CHAIN_ID) => {
-  if (networkId === 97) {
-    return { address: testnet.addresses.contracts.v1.BOND, abi: abis.bond }
-  }
-
-  return { address: mainnet.addresses.contracts.v1.BOND, abi: abis.bond }
-}
+// export const getBondContractInfo = (networkId = FALLBACK_CHAIN_ID) => {
+//  if (networkId === 97) {
+//    return { address: testnet.addresses.contracts.v1.BOND, abi: abis.bond }
+//  }
+//
+//  return { address: mainnet.addresses.contracts.v1.BOND, abi: abis.bond }
+// }
 
 export const getPoolContractInfo = (networkId = FALLBACK_CHAIN_ID) => {
   if (networkId === 97) {
@@ -35,10 +35,16 @@ export const getPoolContractInfo = (networkId = FALLBACK_CHAIN_ID) => {
 
 export const getFarmContractInfo = (networkId = FALLBACK_CHAIN_ID) => {
   if (networkId === 97) {
-    return { address: testnet.addresses.contracts.v1.FARM, abi: abis.farm }
+    return {
+      address: testnet.addresses.contracts.v1.FARM,
+      abi: abis.farm,
+    }
   }
 
-  return { address: mainnet.addresses.contracts.v1.FARM, abi: abis.farm }
+  return {
+    address: mainnet.addresses.contracts.v1.FARM,
+    abi: abis.farm,
+  }
 }
 
 export const getWRUNESToken = (networkId = FALLBACK_CHAIN_ID) => {

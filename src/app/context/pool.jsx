@@ -9,9 +9,12 @@ import { useWRUNESToken } from '../hooks/constants/useWRUNESToken'
 import { usePoolContractInfo } from '../hooks/constants/usePoolContractInfo'
 import { useDiscovery } from '../hooks/contracts/useDiscovery'
 import { useERC20 } from '../hooks/contracts/useERC20'
-import { useStatsContext } from '../hooks/useStatsContext'
+import useStatsContext from '../hooks/useStatsContext'
 import {
-  convertFromUnits, hasValue, maxIn, sumOf,
+  convertFromUnits,
+  hasValue,
+  maxIn,
+  sumOf,
 } from '../utils/bignumbers'
 import { getTokenAllowance } from '../utils/blockchain/allowance'
 import { isLatest } from '../utils/context'
@@ -34,11 +37,29 @@ export const PoolProvider = ({ children }) => {
     chainId,
   ]);
 
-  const [summaries, setSummaries] = useState({})
-  const [allowances, setAllowances] = useState({})
-  const [tokenPrices, setTokenPrices] = useState({})
-  const [totalNEPLocked, setTotalNEPLocked] = useState('0')
-  // const { nepPrice } = useStatsContext();
+  const [summaries, setSummaries] = useState({});
+  const [allowances, setAllowances] = useState({});
+  const [tokenPrices, setTokenPrices] = useState({});
+  const [totalNEPLocked, setTotalNEPLocked] = useState('0');
+  const { nepPrice } = useStatsContext();
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+  console.log('wtff');
+
+  console.log(nepPrice);
+  // console.log(totalRewardAllocation);
   const { token: neptoken } = useWRUNESToken();
 
   const { address: poolContractAddress } = usePoolContractInfo()
@@ -63,7 +84,7 @@ export const PoolProvider = ({ children }) => {
       info.nepRewardAllocation
       && hasValue(info.nepRewardAllocation.toString())
     ) {
-      // tvl = tvl.plus(info.nepRewardAllocation.multipliedBy(nepPrice || 0))
+      tvl = tvl.plus(info.nepRewardAllocation.multipliedBy(nepPrice || 0))
     } else {
       return hasValue(summary.tvl)
         ? new BigNumber(summary.tvl)
@@ -78,13 +99,13 @@ export const PoolProvider = ({ children }) => {
       )
     }
 
-    // if (hasValue(summary.totalNepRewards)) {
-    //  tvl = tvl.minus(
-    //    new BigNumber(summary.totalNepRewards.toString()).multipliedBy(
-    //      convertFromUnits(nepPrice || 0),
-    //    ),
-    //  )
-    // }
+    if (hasValue(summary.totalNepRewards)) {
+      tvl = tvl.minus(
+        new BigNumber(summary.totalNepRewards.toString()).multipliedBy(
+          convertFromUnits(nepPrice || 0),
+        ),
+      )
+    }
 
     return tvl
   }
@@ -169,17 +190,32 @@ export const PoolProvider = ({ children }) => {
         token,
         spender: farm.address,
         owner: account,
-      })
+      });
+
+      console.log('allowance');
+      console.log(allowance);
 
       setAllowances((prev) => ({ ...prev, [id]: allowance }))
     }
 
     pools.forEach(({
-      id, token, discovery, farm, type, isLPToken, live,
+      id,
+      token,
+      discovery,
+      farm,
+      type,
+      isLPToken,
+      live,
     }) => {
       if (!live) {
         return
       }
+      console.log('1');
+      console.log(id);
+      console.log(token);
+      console.log(discovery);
+      console.log(type);
+      console.log(isLPToken);
       updateSummary(id, token, discovery, type, isLPToken)
       updateAllowance(id, token, farm)
       updateTokenPrice(id, token, discovery)
@@ -199,6 +235,12 @@ export const PoolProvider = ({ children }) => {
         if (!live) {
           return
         }
+        console.log('2');
+        console.log(id);
+        console.log(token);
+        console.log(discovery);
+        console.log(type);
+        console.log(isLPToken);
         updateSummary(id, token, discovery, type, isLPToken)
         updateAllowance(id, token, farm)
         updateTokenPrice(id, token, discovery)

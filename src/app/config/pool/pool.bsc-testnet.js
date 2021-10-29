@@ -15,7 +15,7 @@ const getId = (str) => `97_${str}`
 
 export default [
   {
-    id: getId('1'),
+    id: getId('0'),
     name: 'Cake Farm',
     type: 'Farm',
     fees: {
@@ -49,7 +49,7 @@ export default [
       background: '/patterns/pyramid.svg',
     },
     symbol: {
-      reward: 'NEP',
+      reward: 'WRUNES',
       liquidity: 'CAKE',
     },
   },

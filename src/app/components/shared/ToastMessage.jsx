@@ -6,7 +6,13 @@ import {
   XCircleIcon,
 } from '@heroicons/react/outline'
 import { XIcon } from '@heroicons/react/solid'
-import { classNames } from '../../utils/class-names'
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+import { classNames } from '../../utils/class-names';
+
+const Alert = React.forwardRef((props, ref) => <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />);
 
 export const VARIANTS = {
   Info: {
@@ -65,35 +71,28 @@ const ToastMessage = ({
   }, [lifetime])
 
   return (
-    <div
-      className={classNames(
-        'w-full bg-gray-800 text-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden',
-        type && 'max-h-40',
-      )}
-    >
-      <div className="p-4">
-        <div className="flex items-start">
-          <div className="flex-shrink-0">{Var.icon}</div>
-          <div className="ml-3 w-0 flex-1 pt-0.5">
-            <p className="text-sm font-medium text-gray-50">
-              {title || Var.name}
-            </p>
-            <div className="mt-1 text-sm text-gray-300">{message}</div>
-          </div>
-          <div className="ml-4 flex-shrink-0 flex">
-            <button
-              className="rounded-md inline-flex text-gray-400 hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              onClick={() => {
-                onRemove && onRemove(id)
-              }}
-            >
-              <span className="sr-only">Close</span>
-              <XIcon className="h-5 w-5" aria-hidden="true" />
-            </button>
-          </div>
-        </div>
+    <Alert severity="error" sx={{ width: '100%' }}>
+      <div
+        style={{ float: 'left' }}
+      >
+        {title || Var.name}
+        :
+        {' '}
+        {message}
       </div>
-    </div>
+
+      {/* <div
+        style={{ float: 'right' }}
+      >
+        <Button
+          onClick={() => {
+            onRemove && onRemove(id)
+          }}
+        >
+          <XIcon aria-hidden="true" />
+        </Button>
+        </div> */}
+    </Alert>
   )
 }
 

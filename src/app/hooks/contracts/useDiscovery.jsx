@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { AddressZero } from '@ethersproject/constants'
 import { convertToUnits } from '../../utils/bignumbers'
 import { unixTimeAfter } from '../../utils/date'
@@ -63,6 +64,18 @@ const composeFarmOrPoolSummary = (summary, account, requestedAt) => {
     requestedAt: requestedAt.toString(),
   }
 
+  console.log('innnnfffoooo');
+  console.log('innnnfffoooo');
+  console.log('innnnfffoooo');
+  console.log('innnnfffoooo');
+  console.log('innnnfffoooo');
+  console.log('innnnfffoooo');
+  console.log('innnnfffoooo');
+  console.log('innnnfffoooo');
+  console.log('innnnfffoooo');
+  console.log('innnnfffoooo');
+  console.log('innnnfffoooo');
+
   return info
 }
 
@@ -105,12 +118,35 @@ export const useDiscovery = ({ contract: _contract } = {}) => {
   }
 
   const getFarmSummary = async ({ token, account }) => {
-    const requestedAt = unixTimeAfter()
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log('getFarmSummary');
+    console.log(token);
+    console.log(token.address);
+    console.log(account);
+    console.log(convertToUnits(1).toString());
+    const requestedAt = unixTimeAfter();
     const result = await instance.getFarmSummary(
       token.address,
       account,
       convertToUnits(1).toString(),
     )
+
+    console.log(result);
+    console.log(requestedAt);
 
     return composeFarmOrPoolSummary(result, account, requestedAt)
   }
@@ -122,9 +158,46 @@ export const useDiscovery = ({ contract: _contract } = {}) => {
     account = AddressZero,
   }) => {
     if (type === 'Pool') {
-      return getPoolSummary({ token, account, isLPToken })
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      console.log('requested pooool');
+      return;
+      // return getPoolSummary({ token, account, isLPToken })
     }
     if (type === 'Farm') {
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+      console.log('requestedFarmSummary');
+
       return getFarmSummary({ token, account })
     }
   }

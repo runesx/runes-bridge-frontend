@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import React, { useEffect } from 'react';
 import Tippy from '@tippyjs/react'
 import { useWeb3React } from '@web3-react/core'
@@ -45,10 +46,26 @@ export const ApproveToSpend = ({ data }) => {
     }
 
     try {
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log('await approve spending');
+      console.log(data);
       const tx = await erc20.approve({
         spender: data.farm,
       })
-      console.log('1233')
+      console.log('1233');
 
       await transactionPlaced(tx, {
         title: data.name,

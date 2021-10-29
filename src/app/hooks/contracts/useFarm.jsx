@@ -21,10 +21,13 @@ export const useFarm = ({ contract: _contract } = {}) => {
     const estimatedGas = await instance.estimateGas
       .deposit(toDeposit)
       .catch(() => instance.estimateGas.deposit(toDeposit.toString()))
-
+    console.log('estimatedGas');
+    console.log(estimatedGas);
     const tx = await instance.deposit(toDeposit, {
       gasLimit: calculateGasMargin(estimatedGas),
     })
+    console.log('tx');
+    console.log(tx);
 
     return tx
   }

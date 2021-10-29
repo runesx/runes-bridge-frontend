@@ -28,7 +28,22 @@ export const useFarmOrPool = ({ contract } = {}) => {
       console.log('farm');
       console.log(token);
       console.log(amount);
-      console.log(farmInstance);
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+      console.log('execute deposit here');
+
       return farmInstance.deposit({ token, amount })
     }
     console.log('Incorrect object type')

@@ -41,6 +41,7 @@ import { DAppProvider } from '@usedapp/core';
 // import ReactGA from 'react-ga';
 // import usePageTracking from './hooks/usePageTracking'
 import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
+import { GlobalProvider } from './context/global'
 
 import makeStyles from '@mui/styles/makeStyles';
 
@@ -117,56 +118,58 @@ function App() {
   // const classes = useStyles();
 
   return (
-    <StyledEngineProvider injectFirst>
-      <Web3ReactProvider getLibrary={getLibrary}>
-        <I18nProvider i18n={i18n}>
-          <ThemeProvider theme={theme}>
-            <Provider store={store}>
-              <DAppProvider config={{}}>
-                <SnackbarProvider
-                  ref={notistackRef}
-                  classes={{
-                    root: styles.snack,
-                  }}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                  }}
-                  action={(key) => (
-                    <Button onClick={onClickDismiss(key)}>
-                      'Dismiss'
-                    </Button>
-                  )}
-                >
-                  <BrowserRouter>
-                    <Suspense fallback={<Loader />}>
-                      <Notifier />
-                      <ParticlesRunebase />
-                      <Header />
-                      <Routes />
-                      <CookieConsent
-                        location="bottom"
-                        buttonText="Agree"
-                        cookieName="myAwesomeCookieName2"
-                        style={{
+    <GlobalProvider>
+      <StyledEngineProvider injectFirst>
+        <Web3ReactProvider getLibrary={getLibrary}>
+          <I18nProvider i18n={i18n}>
+            <ThemeProvider theme={theme}>
+              <Provider store={store}>
+                <DAppProvider config={{}}>
+                  <SnackbarProvider
+                    ref={notistackRef}
+                    classes={{
+                      root: styles.snack,
+                    }}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'center',
+                    }}
+                    action={(key) => (
+                      <Button onClick={onClickDismiss(key)}>
+                        'Dismiss'
+                      </Button>
+                    )}
+                  >
+                    <BrowserRouter>
+                      <Suspense fallback={<Loader />}>
+                        <Notifier />
+                        <ParticlesRunebase />
+                        <Header />
+                        <Routes />
+                        <CookieConsent
+                          location="bottom"
+                          buttonText="Agree"
+                          cookieName="myAwesomeCookieName2"
+                          style={{
                           background: '#2B373B',
                           zIndex: 6000,
                           marginBottom: '35px',
                         }}
-                        buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
-                      >
+                          buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
+                        >
                         By continuing to browse localrunes.com, you agree to our use of cookies.
-                      </CookieConsent>
-                      <Footer />
-                    </Suspense>
-                  </BrowserRouter>
-                </SnackbarProvider>
-              </DAppProvider>
-            </Provider>
-          </ThemeProvider>
-        </I18nProvider>
-      </Web3ReactProvider>
-    </StyledEngineProvider>
+                        </CookieConsent>
+                        <Footer />
+                      </Suspense>
+                    </BrowserRouter>
+                  </SnackbarProvider>
+                </DAppProvider>
+              </Provider>
+            </ThemeProvider>
+          </I18nProvider>
+        </Web3ReactProvider>
+      </StyledEngineProvider>
+    </GlobalProvider>
   );
 }
 

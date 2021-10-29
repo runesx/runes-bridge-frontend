@@ -7,7 +7,7 @@ import { sumOf } from '../utils/bignumbers'
 import { getBurnedByChainId } from '../utils/blockchain/burned'
 
 // has data of all stats
-export const StatsContext = React.createContext()
+export const StatsContext = React.createContext();
 
 export const StatsProvider = ({ children }) => {
   const { active, account, chainId } = useWeb3React()
@@ -37,8 +37,22 @@ export const StatsProvider = ({ children }) => {
       setTotalRewardAllocation(result);
 
       console.log('44444444444444444');
+      console.log('44444444444444444');
+      console.log('44444444444444444');
+      console.log('44444444444444444');
+      console.log('44444444444444444');
+      console.log('44444444444444444');
+      console.log('44444444444444444');
+      console.log('44444444444444444');
+      console.log('44444444444444444');
 
       result = await discoveryInstance.getNEPPrice();
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+      console.log(result);
+
       setNepPrice(result);
     }
 
@@ -49,7 +63,23 @@ export const StatsProvider = ({ children }) => {
     }, RUN_EVERY)
 
     return () => clearInterval(intervalId)
-  }, [active, account, chainId])
+  }, [active, account, chainId]);
+
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
+  console.log('statscontext');
 
   return (
     <StatsContext.Provider

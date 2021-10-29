@@ -6,9 +6,6 @@ import { getContract } from '../utils/blockchain/contract'
 export const useContract = ({ contract }) => {
   const { library, account } = useWeb3React();
 
-  console.log('contract');
-  console.log(contract);
-
   try {
     const instance = getContract(
       contract.address,
@@ -16,6 +13,7 @@ export const useContract = ({ contract }) => {
       contract.abi,
       account,
     );
+    console.log('instance');
     console.log(instance);
 
     return instance

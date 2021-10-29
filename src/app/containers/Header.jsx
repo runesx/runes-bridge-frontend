@@ -96,12 +96,12 @@ const Header = (props) => {
             >
               Transactions
             </Link>
-            <Link
+            {/* <Link
               className="nav-link"
               to="/farms"
             >
               Farm
-            </Link>
+            </Link> */}
             <Link
               className="nav-link"
               to="/faq"

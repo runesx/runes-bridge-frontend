@@ -1,8 +1,8 @@
 /* Author: Dalibor Kundrat  https://github.com/damikun */
 import React, { useCallback, useContext, useState } from 'react'
 
-import ToastContainer from '../components/shared/ToastContainer'
-import { uuidv4 } from '../utils/random'
+import ToastContainer from '../components/shared/ToastContainer';
+import { uuidv4 } from '../utils/random';
 
 /**
  * Global and Helpers
