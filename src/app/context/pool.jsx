@@ -42,40 +42,14 @@ export const PoolProvider = ({ children }) => {
   const [tokenPrices, setTokenPrices] = useState({});
   const [totalNEPLocked, setTotalNEPLocked] = useState('0');
   const { nepPrice } = useStatsContext();
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-  console.log('wtff');
-
-  console.log(nepPrice);
-  // console.log(totalRewardAllocation);
   const { token: neptoken } = useWRUNESToken();
-
-  const { address: poolContractAddress } = usePoolContractInfo()
   const { address: farmContractAddress } = useFarmContractInfo()
-  const discoveryInstance = useDiscovery()
-
+  const discoveryInstance = useDiscovery();
   const pools = getPool(chainId);
-  console.log(neptoken);
-  console.log('neptoken printout');
   const { balanceOf } = useERC20({ contract: neptoken });
-
-  const getInfoById = (id) => pools.find((x) => x.id === id) || {}
-
-  const getSummaryById = (id) => summaries[id] || {}
-
-  const getAllowanceById = (id) => allowances[id] || '0'
+  const getInfoById = (id) => pools.find((x) => x.id === id) || {};
+  const getSummaryById = (id) => summaries[id] || {};
+  const getAllowanceById = (id) => allowances[id] || '0';
 
   const getTVLById = (id, info, summary) => {
     let tvl = new BigNumber(0)
@@ -158,6 +132,21 @@ export const PoolProvider = ({ children }) => {
         isLPToken,
         account,
       })
+
+      console.log('after summary');
+      console.log('after summary');
+      console.log('after summary');
+      console.log('after summary');
+      console.log('after summary');
+      console.log('after summary');
+      console.log('after summary');
+      console.log('after summary');
+      console.log('after summary');
+      console.log('after summary');
+      console.log('after summary');
+      console.log('after summary');
+      console.log('after summary');
+      console.log(summary);
 
       setSummaries((prev) => {
         if (isLatest(prev[id], summary)) {

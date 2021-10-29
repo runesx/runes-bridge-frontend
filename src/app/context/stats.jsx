@@ -36,21 +36,9 @@ export const StatsProvider = ({ children }) => {
       result = await discoveryInstance.totalRewardAllocation();
       setTotalRewardAllocation(result);
 
-      console.log('44444444444444444');
-      console.log('44444444444444444');
-      console.log('44444444444444444');
-      console.log('44444444444444444');
-      console.log('44444444444444444');
-      console.log('44444444444444444');
-      console.log('44444444444444444');
-      console.log('44444444444444444');
-      console.log('44444444444444444');
-
       result = await discoveryInstance.getNEPPrice();
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
+
+      console.log('context/stats - await discoveryInstance.getNEPPrice()');
       console.log(result);
 
       setNepPrice(result);
@@ -64,22 +52,6 @@ export const StatsProvider = ({ children }) => {
 
     return () => clearInterval(intervalId)
   }, [active, account, chainId]);
-
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
-  console.log('statscontext');
 
   return (
     <StatsContext.Provider

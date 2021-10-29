@@ -12,22 +12,6 @@ export const ApproveToSpend = ({ data }) => {
   const { transactionPlaced, transactionError } = useTransactionToast()
   const { active } = useWeb3React();
   const erc20 = useERC20({ contract: data.token });
-  console.log('ApproveToSpend');
-  console.log('ApproveToSpend');
-  console.log('ApproveToSpend');
-  console.log('ApproveToSpend');
-  console.log('ApproveToSpend');
-  console.log('ApproveToSpend');
-  console.log('ApproveToSpend');
-  console.log('ApproveToSpend');
-  console.log('ApproveToSpend');
-  console.log('ApproveToSpend');
-  console.log('ApproveToSpend');
-  console.log(data.token);
-  console.log(data.farm);
-  console.log(erc20);
-  console.log(active);
-  console.log(data.isLive);
 
   useEffect(() => {
 
@@ -46,20 +30,6 @@ export const ApproveToSpend = ({ data }) => {
     }
 
     try {
-      console.log('await approve spending');
-      console.log('await approve spending');
-      console.log('await approve spending');
-      console.log('await approve spending');
-      console.log('await approve spending');
-      console.log('await approve spending');
-      console.log('await approve spending');
-      console.log('await approve spending');
-      console.log('await approve spending');
-      console.log('await approve spending');
-      console.log('await approve spending');
-      console.log('await approve spending');
-      console.log('await approve spending');
-      console.log('await approve spending');
       console.log('await approve spending');
       console.log(data);
       const tx = await erc20.approve({

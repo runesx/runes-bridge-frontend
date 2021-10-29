@@ -49,19 +49,6 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "bondPool",
-				"type": "address"
-			}
-		],
-		"name": "setBondPool",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
 				"name": "busd",
 				"type": "address"
 			}
@@ -93,19 +80,6 @@
 			}
 		],
 		"name": "setNEP",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "pool",
-				"type": "address"
-			}
-		],
-		"name": "setPool",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -157,33 +131,10 @@
 				"internalType": "address",
 				"name": "cakeFarm",
 				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "pool",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "bondPool",
-				"type": "address"
 			}
 		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
-	},
-	{
-		"inputs": [],
-		"name": "_bondPool",
-		"outputs": [
-			{
-				"internalType": "contract IBondPool",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	},
 	{
 		"inputs": [],
@@ -232,48 +183,6 @@
 				"internalType": "contract IPancakeRouterLike",
 				"name": "",
 				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "_pool",
-		"outputs": [
-			{
-				"internalType": "contract IPool",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "token",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "multiplier",
-				"type": "uint256"
-			}
-		],
-		"name": "getBondSummary",
-		"outputs": [
-			{
-				"internalType": "uint256[]",
-				"name": "values",
-				"type": "uint256[]"
 			}
 		],
 		"stateMutability": "view",
@@ -375,40 +284,6 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "token",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "isLPToken",
-				"type": "bool"
-			},
-			{
-				"internalType": "uint256",
-				"name": "multiplier",
-				"type": "uint256"
-			}
-		],
-		"name": "getPoolSummary",
-		"outputs": [
-			{
-				"internalType": "uint256[]",
-				"name": "values",
-				"type": "uint256[]"
 			}
 		],
 		"stateMutability": "view",

@@ -64,18 +64,6 @@ const composeFarmOrPoolSummary = (summary, account, requestedAt) => {
     requestedAt: requestedAt.toString(),
   }
 
-  console.log('innnnfffoooo');
-  console.log('innnnfffoooo');
-  console.log('innnnfffoooo');
-  console.log('innnnfffoooo');
-  console.log('innnnfffoooo');
-  console.log('innnnfffoooo');
-  console.log('innnnfffoooo');
-  console.log('innnnfffoooo');
-  console.log('innnnfffoooo');
-  console.log('innnnfffoooo');
-  console.log('innnnfffoooo');
-
   return info
 }
 
@@ -105,34 +93,7 @@ export const useDiscovery = ({ contract: _contract } = {}) => {
     }
   }
 
-  const getPoolSummary = async ({ token, account, isLPToken }) => {
-    const requestedAt = unixTimeAfter()
-    const result = await instance.getPoolSummary(
-      token.address,
-      account,
-      isLPToken,
-      convertToUnits(1).toString(),
-    )
-
-    return composeFarmOrPoolSummary(result, account, requestedAt)
-  }
-
   const getFarmSummary = async ({ token, account }) => {
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
-    console.log('getFarmSummary');
     console.log('getFarmSummary');
     console.log(token);
     console.log(token.address);
@@ -158,45 +119,12 @@ export const useDiscovery = ({ contract: _contract } = {}) => {
     account = AddressZero,
   }) => {
     if (type === 'Pool') {
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
-      console.log('requested pooool');
+      console.log('requested pool');
       return;
       // return getPoolSummary({ token, account, isLPToken })
     }
     if (type === 'Farm') {
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
-      console.log('requestedFarmSummary');
+      console.log('hooks/contract/usediscovery - requestedFarmSummary');
 
       return getFarmSummary({ token, account })
     }
@@ -234,30 +162,7 @@ export const useDiscovery = ({ contract: _contract } = {}) => {
 
   const getNEPPrice = async () => {
     try {
-      console.log('get nep price');
-      console.log('get nep price');
-      console.log('get nep price');
-      console.log('get nep price');
-      console.log('get nep price');
-      console.log('get nep price');
-      console.log('get nep price');
-      console.log('get nep price');
-      console.log('get nep price');
-      console.log('get nep price');
-      console.log('get nep price');
-
       const result = await instance.getNEPPrice(convertToUnits(1).toString());
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
 
       return result.toString() || '0'
     } catch (error) {
