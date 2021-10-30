@@ -72,7 +72,7 @@ const FarmCard = ({ data }) => {
                 />
               </PrimaryPane>
             </Grid>
-            <Grid item xs={6}>
+            <Grid container item xs={6}>
               <DetailsPane
                 bottomBgSrc={data.background}
                 isPancakeLinked={isPancakeLinked}
@@ -83,11 +83,14 @@ const FarmCard = ({ data }) => {
             </Grid>
           </Grid>
 
-          <Ribbon priority={data.priority}>
+          {/*
+<Ribbon priority={data.priority}>
             {percentFormatter(convertFromUnits(data.apy), 0)}
             {' '}
             APY
           </Ribbon>
+          */}
+
         </Grid>
       </Grid>
       )}
