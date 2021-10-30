@@ -78,6 +78,7 @@ const Bridge = (props) => {
     const acc = web3.currentProvider.selectedAddress;
     dispatch(startSwapAction(textFieldValue, acc, amountValue, typeSwap));
   };
+
   const handleChangeTextField = (e) => {
     console.log(e);
     setTextFieldValue(e);

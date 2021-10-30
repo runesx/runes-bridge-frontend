@@ -185,25 +185,6 @@ const Operation = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [burnProgress, setBurnProgress] = useState('Waiting for Action');
 
-  useEffect(() => {
-    if (window.ethereum) {
-      window.ethereum.enable(); // get permission to access accounts
-      console.log('window.ethereum');
-      console.log(window.ethereum);
-      console.log(window.ethereum.networkVersion);
-
-      // detect Metamask account change
-      window.ethereum.on('accountsChanged', (accounts) => {
-        console.log('accountsChanges', accounts);
-      });
-
-      // detect Network account change
-      window.ethereum.on('networkChanged', (networkId) => {
-        console.log('networkChanged', networkId);
-      });
-    }
-  }, [window.ethereum]);
-
   const clickBurn = async () => {
     try {
       setIsLoading(true);
