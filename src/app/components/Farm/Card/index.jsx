@@ -7,7 +7,7 @@ import {
 import DetailsPane from './DetailsPane'
 import PrimaryPane from './PrimaryPane'
 import { ComingSoonCardFront } from '../../shared/ComingSoonCardFront'
-// import { convertFromUnits, hasValue } from '../../../utils/bignumbers'
+import { convertFromUnits, hasValue } from '../../../utils/bignumbers'
 // import { percentFormatter } from '../../../utils/formatter'
 // import { Ribbon } from '../../shared/CardRibbon'
 import allFeatures from '../../../config/pool/features'
