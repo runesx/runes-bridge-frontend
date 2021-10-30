@@ -1,7 +1,8 @@
 import features from './features'
 import abis from '../abis'
 import { addresses } from '../constants/addresses.bsc-testnet'
-import { convertFromUnits } from '../../utils/bignumbers'
+import { convertFromUnits } from '../../utils/bignumbers';
+import Cake from '../../assets/images/cake.png';
 
 const getTokenSwapLink = (output, input) => {
   if (input) {
@@ -16,7 +17,7 @@ const getId = (str) => `97_${str}`
 export default [
   {
     id: getId('0'),
-    name: 'Cake Farm',
+    name: 'Stake Cake Earn wRUNES',
     type: 'Farm',
     fees: {
       entry: 0,
@@ -45,11 +46,11 @@ export default [
     lockingPeriod: '24 hours',
     tokenSwapLink: getTokenSwapLink(addresses.tokens.CAKE),
     assets: {
-      logo: '/pools/cake.png',
+      logo: Cake,
       background: '/patterns/pyramid.svg',
     },
     symbol: {
-      reward: 'WRUNES',
+      reward: 'wRUNES',
       liquidity: 'CAKE',
     },
   },

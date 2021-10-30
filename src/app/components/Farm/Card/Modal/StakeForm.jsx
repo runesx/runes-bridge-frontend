@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
+import { Grid } from '@mui/material';
 import WalletIcon from '../../../shared/icons/WalletIcon'
 import { LegendToggle } from '../../../shared/icons/LegendToggle'
 import NumberInputWithMax from '../../../shared/Forms/NumberInputWithMax'
@@ -15,7 +16,7 @@ import {
   isGreater,
 } from '../../../../utils/bignumbers'
 import { useFarmOrPool } from '../../../../hooks/contracts/useFarmOrPool'
-import { formatWeiToNumber } from '../../../../utils/formatter'
+import { formatWeiToNumber } from '../../../../utils/formatter';
 
 export const StakeContent = ({
   closeModal,
@@ -93,49 +94,52 @@ export const StakeContent = ({
   }
   return (
     <>
-      <NumberInputWithMax {...numberInputProps} />
-      <div className="flex gap-1 items-center mt-2">
-        <div className="text-gray-400">
-          <WalletIcon />
-        </div>
-        <div className="text-gray-400">
-          Balance:
-          {' '}
-          <span className="text-gray-200">
+      <Grid container spacing={2}>
+        <NumberInputWithMax {...numberInputProps} />
+      </Grid>
+      <Grid container spacing={2}>
+        <Grid container item xs={6}>
+          <Grid item xs={12}>
+            <WalletIcon />
+            {' '}
+            Balance
+          </Grid>
+          <Grid item xs={12}>
             {convertFromUnits(balance)
               .decimalPlaces(2, BigNumber.ROUND_DOWN)
               .toNumber()}
-          </span>
-          {' '}
-          {liquidity}
-        </div>
-      </div>
-      <div className="flex gap-1 items-center mt-2">
-        <div className="text-gray-400">
-          <LegendToggle />
-        </div>
-        <div className="text-gray-400">
-          Remaining in pool:
-          {' '}
-          <span className="text-gray-200">
+            {' '}
+            {liquidity}
+
+          </Grid>
+
+        </Grid>
+        <Grid container item xs={6}>
+          <Grid item xs={12}>
+            Remaining in pool:
+          </Grid>
+          <Grid item xs={12}>
             {formatWeiToNumber(differenceOf(maxToStake, totalTokensLocked))}
-          </span>
-          {' '}
-          {liquidity}
-        </div>
-      </div>
-      <div className="mt-6 flex justify-end gap-4">
-        {!confirming && (
-          <OutlineButton onClick={closeModal}>Cancel</OutlineButton>
-        )}
-        <RegularButton
-          type="submit"
-          onClick={onConfirm}
-          isProcessing={confirming}
-        >
-          {confirming ? 'Pending...' : 'Confirm'}
-        </RegularButton>
-      </div>
+            {' '}
+            {liquidity}
+          </Grid>
+        </Grid>
+
+        <Grid item xs={6}>
+          {!confirming && (
+            <OutlineButton onClick={closeModal}>Cancel</OutlineButton>
+          )}
+        </Grid>
+        <Grid item xs={6}>
+          <RegularButton
+            type="submit"
+            onClick={onConfirm}
+            isProcessing={confirming}
+          >
+            {confirming ? 'Pending...' : 'Confirm'}
+          </RegularButton>
+        </Grid>
+      </Grid>
     </>
   )
 }

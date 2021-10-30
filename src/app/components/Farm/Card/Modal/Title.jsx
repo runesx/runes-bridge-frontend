@@ -1,5 +1,7 @@
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { ModalTitle } from '../../../shared/Modal'
+import Typography from '@mui/material/Typography';
+import { ModalTitle } from '../../../shared/Modal';
 
 export const CardModalTitle = ({
   children,
@@ -8,12 +10,19 @@ export const CardModalTitle = ({
   title,
   ...rest
 }) => (
-  <ModalTitle closeModal={closeModal} {...rest}>
-    <div className="flex items-center gap-3 mb-3">
+  <ModalTitle
+    closeModal={closeModal}
+    {...rest}
+  >
+    <div>
       <img src={logo} alt={title} width="36" />
-      <h3 className="text-xl md:text-2xl font-medium text-gray-300">
+      <Typography
+        variant="h6"
+        className="underlineText"
+        gutterBottom
+      >
         {children}
-      </h3>
+      </Typography>
     </div>
   </ModalTitle>
 )

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import CakeIcon from '../../shared/icons/CakeIcon'
 
 const DetailsPane = ({ bottomBgSrc, children, isPancakeLinked }) => (
   <Grid container>
@@ -8,4 +7,4 @@ const DetailsPane = ({ bottomBgSrc, children, isPancakeLinked }) => (
   </Grid>
 )
 
-export default DetailsPane
+export default DetailsPane;

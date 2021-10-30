@@ -23,7 +23,7 @@ const CardModal = ({
   if (type === 'STAKE') {
     title = (
       <>
-        Deposit
+        Stake
         {' '}
         {data.liquidity.toUpperCase()}
       </>

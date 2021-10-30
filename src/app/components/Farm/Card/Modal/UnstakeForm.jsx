@@ -64,7 +64,7 @@ export const UnstakeContent = ({
   }
 
   const numberInputProps = {
-    title: 'Amount You Wish To WIThdraw',
+    title: 'Amount You Wish To Unstake',
     value: amount,
     onChange: (e) => setAmount(e.target.value),
     typeOfAmount: liquidity,

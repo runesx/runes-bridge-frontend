@@ -2,6 +2,7 @@ import React from 'react';
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { Grid } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import KeyPoint from './KeyPoint'
 import styles from './index.module.css'
 import { convertFromUnits, hasValue } from '../../../utils/bignumbers'
@@ -18,14 +19,16 @@ const PrimaryPane = ({ children, data }) => {
         // justifyContent="center"
         align="center"
       >
-        <img src={data.logo} width="72" />
+        <img src={data.logo} width="72" alt={data.name} />
       </Grid>
       <Grid
         item
         xs={12}
         align="center"
       >
-        <h3 className="text-lg font-medium tracking-wider">{data.name}</h3>
+        <Typography variant="h6">
+          {data.name}
+        </Typography>
       </Grid>
       <Grid
         item
@@ -56,7 +59,9 @@ const PrimaryPane = ({ children, data }) => {
       >
         {children}
       </Grid>
-      <Grid
+      {
+        /*
+        <Grid
         item
         xs={12}
         align="center"
@@ -65,6 +70,9 @@ const PrimaryPane = ({ children, data }) => {
           <KeyPoint key={x.invariant} text={x.invariant} className={x.style} />
         ))}
       </Grid>
+        */
+      }
+
     </Grid>
   )
 }

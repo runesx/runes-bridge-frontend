@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 
+import {
+  Grid,
+} from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { classNames } from '../../../utils/class-names'
 import { useTransactionToast } from '../../../hooks/useTransactionToast'
 import { convertFromUnits } from '../../../utils/bignumbers'
 import { CounterAnimation } from '../../shared/CounterAnimation'
 import { useFarmOrPool } from '../../../hooks/contracts/useFarmOrPool'
-import { OutlineButton } from '../../Buttons/Outline'
+import { OutlineButton } from '../../Buttons/Outline';
 
 const Harvest = ({ data }) => {
   const [pending, setIsPending] = useState(false)
@@ -39,16 +43,38 @@ const Harvest = ({ data }) => {
   }
 
   return (
-    <div className="flex flex-col gap-3 justify-start items-start mt-6">
-      <div className={classNames('text-lg font-normal font-numbers')}>
-        <CounterAnimation value={rewardAmount} />
-        {' '}
-        {data.rewardSymbol}
-      </div>
-      <OutlineButton isProcessing={pending} onClick={onHarvest} large>
-        Harvest
-      </OutlineButton>
-    </div>
+    <>
+      <Grid container item xs={6}>
+        <Grid item xs={12}>
+          <Typography
+            variant="subtitle2"
+            className="underlineText"
+            gutterBottom
+            component="div"
+          >
+            Claimable Reward
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography
+            variant="body1"
+            gutterBottom
+          >
+            <CounterAnimation value={rewardAmount} />
+            {' '}
+            {data.rewardSymbol}
+          </Typography>
+        </Grid>
+      </Grid>
+
+      <Grid item xs={6}>
+        <OutlineButton isProcessing={pending} onClick={onHarvest} large>
+          Harvest
+        </OutlineButton>
+
+      </Grid>
+    </>
+
   )
 }
 
