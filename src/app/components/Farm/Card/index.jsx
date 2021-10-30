@@ -49,6 +49,9 @@ const FarmCard = ({ data }) => {
     open, type, closeModal, openModal, data,
   }
 
+  console.log(data);
+  console.log('data');
+
   return (
     <>
       {isComingSoon && (
