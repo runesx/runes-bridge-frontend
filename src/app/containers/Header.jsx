@@ -15,7 +15,7 @@ import {
 import { withTranslation } from 'react-i18next';
 import MobileNav from '../assets/images/mobileNav.svg';
 // import Notifications from '../components/Notifications';
-import ConnectButton from '../components/ConnectButton';
+// import ConnectButton from '../components/ConnectButton';
 import ConnectWallet from '../components/ConnectWallet';
 
 // import 'bootstrap/dist/css/bootstrap.css';

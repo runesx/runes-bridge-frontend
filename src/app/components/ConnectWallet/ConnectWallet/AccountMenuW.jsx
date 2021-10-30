@@ -4,13 +4,13 @@ import { useWeb3React } from '@web3-react/core'
 import {
   LogoutIcon,
   RefreshIcon,
-  SwitchVerticalIcon,
+  // SwitchVerticalIcon,
 } from '@heroicons/react/outline'
 import {
   Button,
   Menu,
   MenuItem,
-  Grid,
+  // Grid,
 } from '@mui/material';
 import { networks } from '../../../config/networks'
 // import MenuDropdown from '../../shared/Menu'

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { classNames } from '../../utils/class-names'
+// import { classNames } from '../../utils/class-names'
 import { InfoTooltip } from './InfoTooltip';
 
 const CardDetail = ({

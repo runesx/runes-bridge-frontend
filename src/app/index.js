@@ -1,12 +1,15 @@
 import React, {
   Suspense,
-  useState,
-  useEffect,
+  // useState,
+  // useEffect,
 } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { Router, BrowserRouter } from 'react-router-dom';
+import {
+  // Router,
+  BrowserRouter,
+} from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 import socketIOClient from 'socket.io-client';
 import { SnackbarProvider } from 'notistack';
@@ -20,7 +23,7 @@ import ParticlesRunebase from './components/ParticlesRunebase';
 
 import reducers from './reducers';
 import Routes from './routes';
-import history from './history';
+// import history from './history';
 import Header from './containers/Header';
 import { getLibrary } from './utils/web3-react'
 
@@ -28,7 +31,9 @@ import Notifier from './containers/Alert';
 
 import Runebase from './assets/images/Runebase.png';
 import Footer from './containers/Footer';
-import { messages } from '../locales/en/messages'
+import { messages } from '../locales/en/messages';
+import { PoolProvider } from './context/pool'
+import { StatsProvider } from './context/stats'
 
 import '@fortawesome/fontawesome-free/css/all.css';
 import './assets/fonts/texgyreheros-regular.woff';
@@ -36,11 +41,15 @@ import './theme/style.scss';
 import './i18n';
 // import * as action from './actions';
 // import 'animate.css/source/animate.css';
-import { MetamaskStateProvider } from 'use-metamask';
+// import { MetamaskStateProvider } from 'use-metamask';
 import { DAppProvider } from '@usedapp/core';
 // import ReactGA from 'react-ga';
 // import usePageTracking from './hooks/usePageTracking'
-import { ThemeProvider, StyledEngineProvider, createTheme } from '@mui/material/styles';
+import {
+  ThemeProvider,
+  StyledEngineProvider,
+  createTheme,
+} from '@mui/material/styles';
 import { GlobalProvider } from './context/global'
 
 import makeStyles from '@mui/styles/makeStyles';
@@ -119,56 +128,60 @@ function App() {
 
   return (
     <GlobalProvider>
-      <StyledEngineProvider injectFirst>
-        <Web3ReactProvider getLibrary={getLibrary}>
-          <I18nProvider i18n={i18n}>
-            <ThemeProvider theme={theme}>
-              <Provider store={store}>
-                <DAppProvider config={{}}>
-                  <SnackbarProvider
-                    ref={notistackRef}
-                    classes={{
-                      root: styles.snack,
-                    }}
-                    anchorOrigin={{
-                      vertical: 'top',
-                      horizontal: 'center',
-                    }}
-                    action={(key) => (
-                      <Button onClick={onClickDismiss(key)}>
-                        'Dismiss'
-                      </Button>
-                    )}
-                  >
-                    <BrowserRouter>
-                      <Suspense fallback={<Loader />}>
-                        <Notifier />
-                        <ParticlesRunebase />
-                        <Header />
-                        <Routes />
-                        <CookieConsent
-                          location="bottom"
-                          buttonText="Agree"
-                          cookieName="myAwesomeCookieName2"
-                          style={{
-                          background: '#2B373B',
-                          zIndex: 6000,
-                          marginBottom: '35px',
+      <StatsProvider>
+        <PoolProvider>
+          <StyledEngineProvider injectFirst>
+            <Web3ReactProvider getLibrary={getLibrary}>
+              <I18nProvider i18n={i18n}>
+                <ThemeProvider theme={theme}>
+                  <Provider store={store}>
+                    <DAppProvider config={{}}>
+                      <SnackbarProvider
+                        ref={notistackRef}
+                        classes={{
+                          root: styles.snack,
                         }}
-                          buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
-                        >
-                        By continuing to browse localrunes.com, you agree to our use of cookies.
-                        </CookieConsent>
-                        <Footer />
-                      </Suspense>
-                    </BrowserRouter>
-                  </SnackbarProvider>
-                </DAppProvider>
-              </Provider>
-            </ThemeProvider>
-          </I18nProvider>
-        </Web3ReactProvider>
-      </StyledEngineProvider>
+                        anchorOrigin={{
+                          vertical: 'top',
+                          horizontal: 'center',
+                        }}
+                        action={(key) => (
+                          <Button onClick={onClickDismiss(key)}>
+                            'Dismiss'
+                          </Button>
+                        )}
+                      >
+                        <BrowserRouter>
+                          <Suspense fallback={<Loader />}>
+                            <Notifier />
+                            <ParticlesRunebase />
+                            <Header />
+                            <Routes />
+                            <CookieConsent
+                              location="bottom"
+                              buttonText="Agree"
+                              cookieName="myAwesomeCookieName2"
+                              style={{
+                                background: '#2B373B',
+                                zIndex: 6000,
+                                marginBottom: '35px',
+                              }}
+                              buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
+                            >
+                              By continuing to browse localrunes.com, you agree to our use of cookies.
+                            </CookieConsent>
+                            <Footer />
+                          </Suspense>
+                        </BrowserRouter>
+                      </SnackbarProvider>
+                    </DAppProvider>
+                  </Provider>
+                </ThemeProvider>
+              </I18nProvider>
+            </Web3ReactProvider>
+          </StyledEngineProvider>
+        </PoolProvider>
+      </StatsProvider>
     </GlobalProvider>
   );
 }

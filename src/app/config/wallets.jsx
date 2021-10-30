@@ -1,8 +1,9 @@
-import React, { useCallback } from 'react'
+/* eslint-disable import/prefer-default-export */
+import React from 'react'
 import {
-  getBscConnector,
+  // getBscConnector,
   getInjectedConnector,
-  getWalletConnect,
+  // getWalletConnect,
 } from '../utils/blockchain/connectors';
 import { ConnectorNames } from './connectors'
 import MetaMaskLogoEnabled from '../assets/images/metamask.svg';

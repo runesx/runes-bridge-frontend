@@ -11,7 +11,7 @@ import { useTransactionStorage } from '../../../../hooks/useTransactionStorage'
 import { getExplorer } from '../../../../config/stats'
 import { getNetwork } from '../../../../config/networks'
 import { skipLimit } from '../../../../utils/arrays'
-import { classNames } from '../../../../utils/class-names';
+// import { classNames } from '../../../../utils/class-names';
 import { TxMessage } from './TxMessage';
 import { truncateAddress } from '../../../../utils/address';
 

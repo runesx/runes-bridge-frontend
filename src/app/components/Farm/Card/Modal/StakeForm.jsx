@@ -3,7 +3,7 @@ import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { Grid } from '@mui/material';
 import WalletIcon from '../../../shared/icons/WalletIcon'
-import { LegendToggle } from '../../../shared/icons/LegendToggle'
+// import { LegendToggle } from '../../../shared/icons/LegendToggle'
 import NumberInputWithMax from '../../../shared/Forms/NumberInputWithMax'
 import { OutlineButton } from '../../../Buttons/Outline'
 import { RegularButton } from '../../../Buttons/Regular'

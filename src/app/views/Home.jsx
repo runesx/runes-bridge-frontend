@@ -10,7 +10,7 @@ import { connect, useDispatch } from 'react-redux';
 import {
   Grid,
   Card,
-  CardActions,
+  // CardActions,
   CardContent,
   Button,
   Typography,
@@ -18,15 +18,15 @@ import {
   // Button,
 } from '@mui/material';
 import {
-  useMetamask,
-  // getAccounts,
-  // getChain,
-  // metaState,
+// useMetamask,
+// getAccounts,
+// getChain,
+// metaState,
 } from 'use-metamask';
 import { config } from '../config';
 import { withRouter } from '../hooks/withRouter';
 // import Web3 from 'web3';
-import { addMetaMaskNetwork } from '../helpers/metamask';
+// import { addMetaMaskNetwork } from '../helpers/metamask';
 import { abi } from '../abi/abi'
 import web3 from '../helpers/web3';
 

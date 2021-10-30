@@ -3,6 +3,7 @@ import abis from '../abis'
 import { addresses } from '../constants/addresses.bsc-testnet'
 import { convertFromUnits } from '../../utils/bignumbers';
 import Cake from '../../assets/images/cake.png';
+import Bake from '../../assets/images/bake.png';
 
 const getTokenSwapLink = (output, input) => {
   if (input) {
@@ -52,6 +53,45 @@ export default [
     symbol: {
       reward: 'wRUNES',
       liquidity: 'CAKE',
+    },
+  },
+  {
+    id: getId('1'),
+    name: 'Stake BAKE Earn wRUNES',
+    type: 'Farm',
+    fees: {
+      entry: 0,
+      other: 0,
+      exit: 0,
+    },
+    nepRewardAllocation: convertFromUnits(500000000000000000000000),
+    token: {
+      decimals: 18,
+      address: addresses.tokens.BAKEDISCOVERY,
+      abi: abis.ierc20,
+    },
+    discovery: {
+      address: addresses.contracts.v1.BAKEDISCOVERY,
+      abi: abis.discovery,
+    },
+    farm: {
+      address: addresses.contracts.v1.BAKEFARM,
+      abi: abis.farm,
+    },
+    features: [features.NO_FEE, features.PANCAKESWAP],
+    hot: true,
+    defaultPriority: 0,
+    live: true,
+    isLPToken: false,
+    lockingPeriod: '24 hours',
+    tokenSwapLink: getTokenSwapLink(addresses.tokens.BAKE),
+    assets: {
+      logo: Bake,
+      background: '/patterns/pyramid.svg',
+    },
+    symbol: {
+      reward: 'wRUNES',
+      liquidity: 'BAKE',
     },
   },
 ]

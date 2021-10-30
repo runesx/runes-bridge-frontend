@@ -1,7 +1,7 @@
 import React, {
-  useEffect,
-  useState,
-  // Fragment,
+// useEffect,
+// useState,
+// Fragment,
 } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -10,7 +10,7 @@ import {
   // Button,
 } from '@mui/material';
 // import * as actions from '../actions/auth';
-import TermsImage from '../assets/images/terms.svg'
+// import TermsImage from '../assets/images/terms.svg'
 
 const Home = () => {
   console.log('RunesX Home View');
@@ -24,9 +24,7 @@ const Home = () => {
           align="center"
           alignItems="center"
           style={{ margin: 'auto' }}
-        >
-          <TermsImage />
-        </Grid>
+        />
         <Grid item xs={12}>
           <h2 className="text-center"><u>Terms of Service</u></h2>
         </Grid>

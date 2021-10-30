@@ -10,16 +10,16 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {
   Grid,
   Card,
-  CardActions,
+  // CardActions,
   CardContent,
   Button,
   Typography,
-  Divider,
+  // Divider,
   TableBody,
   Table,
   TableCell,
   TableContainer,
-  TableHead,
+  // TableHead,
   TableRow,
   Tooltip,
   // Button,
@@ -28,7 +28,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import QRCode from 'qrcode';
 // import * as actions from '../actions/auth';
 import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { formatUnits } from '@ethersproject/units';
 import Countdown from 'react-countdown';
@@ -42,8 +42,8 @@ import {
 import {
   postAssignTxAction,
 } from '../actions/assign';
-import { abi } from '../abi/abi';
-import { config } from '../config';
+// import { abi } from '../abi/abi';
+// import { config } from '../config';
 import web3 from '../helpers/web3';
 import { useERC20 } from '../hooks/contracts/useERC20';
 import { useWRUNESToken } from '../hooks/constants/useWRUNESToken';

@@ -5,9 +5,9 @@ import {
   InformationCircleIcon,
   XCircleIcon,
 } from '@heroicons/react/outline'
-import { XIcon } from '@heroicons/react/solid'
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
+// import { XIcon } from '@heroicons/react/solid'
+// import Button from '@mui/material/Button';
+// import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
 import { classNames } from '../../utils/class-names';

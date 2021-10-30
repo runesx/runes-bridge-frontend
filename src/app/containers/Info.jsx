@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { Grid, Box } from '@mui/material';
 import { IoIosPeople, IoMdGitNetwork } from 'react-icons/io';
-import ScrollAnimation from 'react-animate-on-scroll';
+// import ScrollAnimation from 'react-animate-on-scroll';
 import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
 import { getRequestRegister } from '../actions/registered';
-import Logo from '../assets/images/LG2.png';
+// import Logo from '../assets/images/LG2.png';
 import LrLogo from '../assets/images/LR-logo.svg'
 
 const InfoContainer = (props) => {

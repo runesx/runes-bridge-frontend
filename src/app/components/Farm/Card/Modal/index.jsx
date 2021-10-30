@@ -1,8 +1,4 @@
 import React from 'react'
-import { Dialog } from '@headlessui/react'
-import {
-  Grid,
-} from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Modal from '../../../shared/Modal'
 import { StakeContent, StakeFooter } from './StakeForm'

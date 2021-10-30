@@ -3,6 +3,7 @@ import abis from '../abis'
 import { addresses } from '../constants/addresses.bsc-mainnet'
 import { convertFromUnits } from '../../utils/bignumbers';
 import Cake from '../../assets/images/cake.png';
+import Bake from '../../assets/images/bake.png';
 
 const getTokenSwapLink = (output, input) => {
   const baseUrl = 'https://exchange.pancakeswap.finance/#/swap'
@@ -18,7 +19,7 @@ const getId = (str) => `56_${str}`
 export default [
   {
     id: getId('0'),
-    name: 'Stake Cake Earn wRUNES',
+    name: 'Stake CAKE Earn wRUNES',
     type: 'Farm',
     fees: {
       entry: 0,
@@ -55,4 +56,5 @@ export default [
       liquidity: 'CAKE',
     },
   },
+
 ]
