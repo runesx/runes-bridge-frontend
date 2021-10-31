@@ -70,7 +70,10 @@ const Bridge = (props) => {
   const [value, setValue] = React.useState(0);
   const [textFieldValue, setTextFieldValue] = useState('');
   const [amountValue, setAmountValue] = useState(0);
-  const { active } = useWeb3React();
+  const {
+    active,
+    chainId,
+  } = useWeb3React();
 
   useEffect(() => {
   }, [active]);
@@ -81,7 +84,7 @@ const Bridge = (props) => {
 
   const handleClick = (typeSwap) => {
     const acc = web3.currentProvider.selectedAddress;
-    dispatch(startSwapAction(textFieldValue, acc, amountValue, typeSwap));
+    dispatch(startSwapAction(textFieldValue, acc, amountValue, typeSwap, chainId));
   };
 
   const handleChangeTextField = (e) => {
@@ -136,42 +139,59 @@ const Bridge = (props) => {
         </Box>
         <TabPanel value={value} index={0}>
           <Card sx={{ minWidth: 275 }}>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Swap RUNES to BEP20 wRUNES
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                Destination Address to receive wRUNES on Binance Smart Chain
-              </Typography>
-              <TextField
-                label="Destination Address"
-                id="filled-size-normal"
-                variant="filled"
-                fullWidth
-                onChange={(e) => handleChangeTextField(e.target.value)}
-              />
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                Minimum Deposit is 30 000 RUNES, Sending less through the bridge will result in loss of funds
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Grid container justifyContent="flex-end">
-                {startSwap.isLoading ? (
-                  <div>Loading</div>
-                ) : (
-                  <Button
-                    style={{ float: 'right' }}
-                    size="large"
-                    variant="contained"
-                    onClick={() => handleClick(0)}
-                  >
-                    Continue
-                  </Button>
-                )}
+            {active && (
+            <>
+              <CardContent>
+                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                  Swap RUNES to BEP20 wRUNES
+                </Typography>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  Destination Address to receive wRUNES on Binance Smart Chain
+                </Typography>
+                <TextField
+                  label="Destination Address"
+                  id="filled-size-normal"
+                  variant="filled"
+                  fullWidth
+                  onChange={(e) => handleChangeTextField(e.target.value)}
+                />
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  Minimum Deposit is 30 000 RUNES, Sending less through the bridge will result in loss of funds
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Grid container justifyContent="flex-end">
+                  {startSwap.isLoading ? (
+                    <div>Loading</div>
+                  ) : (
+                    <Button
+                      style={{ float: 'right' }}
+                      size="large"
+                      variant="contained"
+                      onClick={() => handleClick(0)}
+                    >
+                      Continue
+                    </Button>
+                  )}
 
-              </Grid>
+                </Grid>
 
-            </CardActions>
+              </CardActions>
+            </>
+            )}
+            {!active && (
+              <CardContent>
+                <Typography
+                  sx={{ fontSize: 14 }}
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  Please Connect to wallet
+
+                </Typography>
+              </CardContent>
+            )}
+
           </Card>
         </TabPanel>
         <TabPanel value={value} index={1}>

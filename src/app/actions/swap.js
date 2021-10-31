@@ -22,7 +22,7 @@ export function idleStartSwapAction() {
   }
 }
 
-export function startSwapAction(body, address, amount = 0, type) {
+export function startSwapAction(body, address, amount = 0, type, chainId) {
   return function (dispatch) {
     dispatch({
       type: START_SWAP_BEGIN,
@@ -35,6 +35,7 @@ export function startSwapAction(body, address, amount = 0, type) {
       type,
       amount,
       address,
+      chainId,
     })
       .then((response) => {
         dispatch({
