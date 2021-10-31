@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable import/prefer-default-export */
+// import React from 'react';
 import { uuidv4 } from '../utils/random'
 import { getTransactionStatus } from '../utils/transaction'
 import { useLocalStorage } from './useLocalStorage'

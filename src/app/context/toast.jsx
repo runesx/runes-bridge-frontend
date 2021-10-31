@@ -16,6 +16,10 @@ const DEFAULT_INTERVAL = 2500
  * Implementation
  */
 export const ToastProvider = ({ children, variant }) => {
+  console.log('ToastProvider');
+  console.log(children);
+  console.log(variant);
+
   const [data, setData] = useState([])
   const Push = useCallback(
     (message, type, lifetime, truncate, title) => {

@@ -15,11 +15,21 @@ const Harvest = ({ data }) => {
   const [pending, setIsPending] = useState(false)
 
   const { transactionPlaced, transactionError } = useTransactionToast()
-  const farmOrPool = useFarmOrPool()
+  const farmOrPool = useFarmOrPool();
 
-  const rewardAmount = convertFromUnits(data.rewards)
-    .decimalPlaces(6)
-    .toNumber()
+  console.log('harvest');
+  console.log('harvest');
+  console.log('harvest');
+  console.log('harvest');
+  console.log('harvest');
+  console.log('harvest');
+  console.log('harvest');
+  console.log('harvest');
+  console.log('harvest');
+  console.log('harvest');
+  console.log(data);
+
+  const rewardAmount = convertFromUnits(data.rewards).decimalPlaces(6).toNumber();
 
   const onHarvest = async () => {
     try {

@@ -1,8 +1,10 @@
+/* eslint-disable import/prefer-default-export */
 import React, { useEffect, useState } from 'react'
+import { useWeb3React } from '@web3-react/core';
 import useFarmFilterContext from '../../hooks/useFarmFilterContext'
 import { usePoolContext } from '../../hooks/usePoolContext'
 import { sort } from '../../utils/bignumbers'
-import FarmCard from './Card'
+import FarmCard from './Card';
 
 const sortByKeys = {
   Default: null,
@@ -14,6 +16,10 @@ export const ListPools = () => {
   const { pools, getDataById } = usePoolContext()
   const { sortBy, searchText } = useFarmFilterContext()
   const [toShow, setToShow] = useState([])
+
+  // const { active: networkActive, error: networkError, activate: activateNetwork } = useWeb3React();
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     const filtered = pools.filter((pool) => {

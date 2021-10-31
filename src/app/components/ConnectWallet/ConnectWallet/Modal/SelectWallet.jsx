@@ -30,7 +30,7 @@ const SelectWallet = ({ wallets, selected, setSelected }) => (
           onClick, name, icon, isActive, isDisabled,
         }
 
-        return (<Grid container item xs={6}><Option key={id} {...props} /></Grid>)
+        return (<Grid container item xs={6} key={id}><Option key={id} {...props} /></Grid>)
       })}
     </Grid>
   </Grid>

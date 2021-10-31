@@ -8,6 +8,7 @@ import startSwap from "./startSwap";
 import fetchOperation from "./fetchOperation";
 import transactions from "./transactions";
 import assignTx from "./assignTx";
+import activateWallet from './activateWallet';
 
 const rootReducer = combineReducers({
   form,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   fetchOperation: fetchOperation,
   transactions: transactions,
   assignTx: assignTx,
+  activateWallet: activateWallet,
   
 });
 

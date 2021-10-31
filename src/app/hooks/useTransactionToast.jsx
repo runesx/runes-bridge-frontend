@@ -1,10 +1,15 @@
+/* eslint-disable import/prefer-default-export */
 import { useWeb3React } from '@web3-react/core'
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { getExplorer } from '../config/stats'
 import { useToast } from '../context/toast'
 import { unixTimeAfter } from '../utils/date'
 import { getErrorMessage } from '../utils/errors'
-import { useTransactionStorage } from './useTransactionStorage'
+import { useTransactionStorage } from './useTransactionStorage';
+import {
+  ENQUEUE_SNACKBAR,
+} from '../actions/types/index';
 
 const INFO_TIMEOUT = 25000 // 25 seconds
 const SUCCESS_TIMEOUT = 100000 // 100 seconds
@@ -12,7 +17,8 @@ const ERROR_TIMEOUT = 10000 // 10 seconds
 
 export const useTransactionToast = () => {
   const { chainId, account } = useWeb3React()
-  const { store, updateTx, updateToError } = useTransactionStorage()
+  const { store, updateTx, updateToError } = useTransactionStorage();
+  const dispatch = useDispatch();
   const toast = useToast()
 
   const explorer = getExplorer(chainId)
@@ -50,16 +56,16 @@ export const useTransactionToast = () => {
         })
       }
 
-      const id = toast.pushInfo({
-        title,
-        message: (
-          <>
-            <p>{textPending || 'Transaction Posted'}</p>
-            {explorerLink}
-          </>
-        ),
-        lifetime: INFO_TIMEOUT,
-      })
+      const id = dispatch({
+        type: ENQUEUE_SNACKBAR,
+        notification: {
+          message: `${textPending || 'Transaction Posted'} ${explorerLink}`,
+          key: new Date().getTime() + Math.random(),
+          options: {
+            variant: 'success',
+          },
+        },
+      });
 
       const receipt = await tx.wait(1)
 
@@ -69,27 +75,27 @@ export const useTransactionToast = () => {
       await toast.remove(id)
 
       if (type === 'Success') {
-        toast.pushSuccess({
-          title,
-          message: (
-            <>
-              <p>{textSuccess || 'Transaction Successful'}</p>
-              {explorerLink}
-            </>
-          ),
-          lifetime: SUCCESS_TIMEOUT,
-        })
+        dispatch({
+          type: ENQUEUE_SNACKBAR,
+          notification: {
+            message: `${textSuccess || 'Transaction Successful'} ${explorerLink}`,
+            key: new Date().getTime() + Math.random(),
+            options: {
+              variant: 'success',
+            },
+          },
+        });
       } else {
-        toast.pushError({
-          title,
-          message: (
-            <>
-              <p>{textPending || 'Transaction Failed'}</p>
-              {explorerLink}
-            </>
-          ),
-          lifetime: ERROR_TIMEOUT,
-        })
+        dispatch({
+          type: ENQUEUE_SNACKBAR,
+          notification: {
+            message: `${textPending || 'Transaction Failed'} ${explorerLink}`,
+            key: new Date().getTime() + Math.random(),
+            options: {
+              variant: 'error',
+            },
+          },
+        });
       }
     } catch (error) {
       updateToError(chainId, account, tx.hash)
@@ -103,13 +109,17 @@ export const useTransactionToast = () => {
   }
 
   const transactionError = (error) => {
-    console.error(error)
-
-    toast
-      && toast.pushError({
+    console.error(error);
+    dispatch({
+      type: ENQUEUE_SNACKBAR,
+      notification: {
         message: getErrorMessage(error),
-        lifetime: ERROR_TIMEOUT,
-      })
+        key: new Date().getTime() + Math.random(),
+        options: {
+          variant: 'error',
+        },
+      },
+    });
   }
   return {
     transactionPlaced,
