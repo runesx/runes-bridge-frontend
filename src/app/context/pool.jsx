@@ -43,7 +43,7 @@ export const PoolProvider = ({ children }) => {
   const [totalNEPLocked, setTotalNEPLocked] = useState('0');
   const { nepPrice } = useStatsContext();
   const { token: neptoken } = useWRUNESToken();
-  const { address: farmContractAddress } = useFarmContractInfo()
+  const { address: farmContractAddress } = useFarmContractInfo();
   const discoveryInstance = useDiscovery();
   const pools = getPool(chainId);
   const { balanceOf } = useERC20({ contract: neptoken });
