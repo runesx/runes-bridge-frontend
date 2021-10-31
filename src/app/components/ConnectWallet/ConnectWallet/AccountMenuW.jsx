@@ -154,7 +154,9 @@ const AccountMenu = ({ openConnectModal, openTransactionModal }) => {
         <div style={{ width: '100%' }}>
           <Balance />
           {' '}
-          BNB
+          { network.id === 56 && 'BNB' }
+          { network.id === 97 && 'BNB' }
+          { network.id === 80001 && 'MATIC' }
         </div>
 
         <div style={{ width: '100%' }}>

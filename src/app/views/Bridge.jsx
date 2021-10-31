@@ -3,6 +3,7 @@ import React, {
   useState,
 } from 'react';
 import { connect, useDispatch } from 'react-redux';
+import { useWeb3React } from '@web3-react/core';
 import {
   Grid,
   Box,
@@ -69,6 +70,10 @@ const Bridge = (props) => {
   const [value, setValue] = React.useState(0);
   const [textFieldValue, setTextFieldValue] = useState('');
   const [amountValue, setAmountValue] = useState(0);
+  const { active } = useWeb3React();
+
+  useEffect(() => {
+  }, [active]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -105,6 +110,7 @@ const Bridge = (props) => {
   }, [startSwap.data]);
 
   return (
+
     <div className="height100 content">
       <Box sx={{ width: '100%' }}>
         <Box sx={{ width: '100%', borderBottom: 1, borderColor: 'divider' }}>
@@ -170,64 +176,82 @@ const Bridge = (props) => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Card sx={{ minWidth: 275 }}>
-            <CardContent>
-              <Typography
-                sx={{ fontSize: 14 }}
-                color="text.secondary"
-                gutterBottom
-              >
-                Swap BEP20 wRUNES to native RUNES
-              </Typography>
-              <TextField
-                id="outlined-number"
-                label="Amount"
-                type="number"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                variant="filled"
-                fullWidth
-                style={{
-                  marginBottom: '15px',
-                }}
-                onChange={(e) => handleChangeAmount(e.target.value)}
-              />
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                Destination Address to receive RUNES on Runebase
-              </Typography>
-              <TextField
-                label="Destination Address"
-                id="filled-size-normal"
-                variant="filled"
-                fullWidth
-                onChange={(e) => handleChangeTextField(e.target.value)}
-              />
-
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                Minimum burn is 100 wRUNES, Sending less through the bridge will result in loss of funds
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Grid container justifyContent="flex-end">
-                {startSwap.isLoading ? (
-                  <div>Loading</div>
-                ) : (
-                  <Button
-                    style={{ float: 'right' }}
-                    size="large"
-                    variant="contained"
-                    onClick={() => handleClick(1)}
+            {active && (
+              <>
+                <CardContent>
+                  <Typography
+                    sx={{ fontSize: 14 }}
+                    color="text.secondary"
+                    gutterBottom
                   >
-                    Continue
-                  </Button>
-                )}
+                    Swap BEP20 wRUNES to native RUNES
+                  </Typography>
+                  <TextField
+                    id="outlined-number"
+                    label="Amount"
+                    type="number"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    variant="filled"
+                    fullWidth
+                    style={{
+                      marginBottom: '15px',
+                    }}
+                    onChange={(e) => handleChangeAmount(e.target.value)}
+                  />
+                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    Destination Address to receive RUNES on Runebase
+                  </Typography>
+                  <TextField
+                    label="Destination Address"
+                    id="filled-size-normal"
+                    variant="filled"
+                    fullWidth
+                    onChange={(e) => handleChangeTextField(e.target.value)}
+                  />
 
-              </Grid>
+                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    Minimum burn is 100 wRUNES, Sending less through the bridge will result in loss of funds
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Grid container justifyContent="flex-end">
+                    {startSwap.isLoading ? (
+                      <div>Loading</div>
+                    ) : (
+                      <Button
+                        style={{ float: 'right' }}
+                        size="large"
+                        variant="contained"
+                        onClick={() => handleClick(1)}
+                      >
+                        Continue
+                      </Button>
+                    )}
 
-            </CardActions>
+                  </Grid>
+
+                </CardActions>
+              </>
+            )}
+            {!active && (
+              <CardContent>
+                <Typography
+                  sx={{ fontSize: 14 }}
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  Please Connect to wallet
+
+                </Typography>
+              </CardContent>
+            )}
+
           </Card>
         </TabPanel>
       </Box>
+
     </div>
   );
 }

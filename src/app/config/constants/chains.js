@@ -29,6 +29,18 @@ const chains = [
     rpcUrls: rpcUrls[`${97}`],
     blockExplorerUrls: ['https://testnet.bscscan.com/'],
   },
+  {
+    networkId: 80001,
+    chainId: `0x${(80001).toString(16)}`,
+    chainName: 'Polygon Testnet',
+    nativeCurrency: {
+      name: 'Polygon',
+      symbol: 'MATIC',
+      decimals: 18,
+    },
+    rpcUrls: rpcUrls[`${80001}`],
+    blockExplorerUrls: ['https://mumbai.polygonscan.com/'],
+  },
 ]
 
 export default chains

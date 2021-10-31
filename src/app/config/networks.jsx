@@ -2,6 +2,7 @@ import React from 'react';
 import { FALLBACK_CHAIN_ID } from './constants/chains';
 import BinanceEnabled from '../assets/images/binance.svg';
 import BinanceDisabled from '../assets/images/binance-disabled.svg';
+import Polygon from '../assets/images/polygon.svg';
 
 export const networks = [
   {
@@ -20,6 +21,15 @@ export const networks = [
     shortName: 'BSC Testnet',
     enabledIcon: <BinanceEnabled />,
     disabledIcon: <BinanceDisabled />,
+    disabled: process.env.NODE_ENV !== 'development',
+  },
+  {
+    id: 80001,
+    name: 'Polygon Test Network',
+    displayName: 'Polygon(MATIC) Testnet',
+    shortName: 'MATIC Testnet',
+    enabledIcon: <Polygon />,
+    disabledIcon: <Polygon />,
     disabled: process.env.NODE_ENV !== 'development',
   },
 ]
