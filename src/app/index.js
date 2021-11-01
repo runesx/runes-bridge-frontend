@@ -11,7 +11,7 @@ import {
   BrowserRouter,
 } from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
-import socketIOClient from 'socket.io-client';
+// import socketIOClient from 'socket.io-client';
 import { SnackbarProvider } from 'notistack';
 import Button from '@mui/material/Button';
 import CookieConsent from 'react-cookie-consent';
@@ -62,14 +62,14 @@ const useStyles = makeStyles((theme) => {
   }
 });
 
-const ENDPOINT = `//${window.location.host}`;
+// const ENDPOINT = `//${window.location.host}`;
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 // store.dispatch(authenticated());
 
 // const user = JSON.parse(localStorage.getItem('user'));
 
-const socket = socketIOClient(ENDPOINT);
+// const socket = socketIOClient(ENDPOINT);
 
 // socket.on('updateTransaction', (data) => {
 //  store.dispatch(onUpdateTransaction(data));

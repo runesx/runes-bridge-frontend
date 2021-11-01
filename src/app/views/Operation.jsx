@@ -33,6 +33,7 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { formatUnits } from '@ethersproject/units';
 import Countdown from 'react-countdown';
 import { useWeb3React } from '@web3-react/core'
+import { io } from 'socket.io-client';
 import BridgeTransactionTable from '../components/BridgeTransactionTable';
 import { withRouter } from '../hooks/withRouter';
 import {
@@ -47,6 +48,10 @@ import {
 import web3 from '../helpers/web3';
 import { useERC20 } from '../hooks/contracts/useERC20';
 import { useWRUNESToken } from '../hooks/constants/useWRUNESToken';
+import {
+  FETCH_OPERATION_SUCCESS,
+  FETCH_TRANSACTIONS_SUCCESS,
+} from '../actions/types/index';
 
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
 
@@ -138,12 +143,15 @@ function depositFunc(
 
 // Renderer callback with condition
 const renderer = ({
-  hours, minutes, seconds, completed,
+  hours,
+  minutes,
+  seconds,
+  completed,
 }) => {
   if (completed) {
     // Render a completed state
     console.log('done');
-    return <p>done</p>;
+    return <p>Bridge Closed</p>;
   }
   // Render a countdown
   return (
@@ -174,7 +182,7 @@ const Operation = (props) => {
   const wRunesToken = useWRUNESToken();
   const erc20 = useERC20({ contract: wRunesToken.token });
 
-  const network = 'bsc';
+  // const network = 'bsc';
   // const contract = new web3.eth.Contract(abi, config[network].wRunesContract);
   const expectedBlockTime = 1000;
   console.log('RunesX Operation View');
@@ -184,6 +192,51 @@ const Operation = (props) => {
   const [copySuccessful, setCopySuccessful] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [burnProgress, setBurnProgress] = useState('Waiting for Action');
+
+  useEffect(() => {
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log(process.env.WS_ENDPOINT);
+    console.log('process.env.WS_ENDPOINT');
+
+    const socket = io(process.env.WS_ENDPOINT, {
+      path: '/socket.io',
+      query: { customId: id },
+    });
+    console.log(socket);
+    socket.on('updateBridge', (data) => {
+      // setResponse(data);
+      console.log(data);
+      console.log('123');
+      dispatch({
+        type: FETCH_OPERATION_SUCCESS,
+        payload: data.bridge,
+      });
+      dispatch({
+        type: FETCH_TRANSACTIONS_SUCCESS,
+        payload: data.transactions,
+      });
+    });
+    return () => socket.disconnect();
+  }, []);
 
   const clickBurn = async () => {
     try {
@@ -354,6 +407,20 @@ const Operation = (props) => {
                               </TableCell>
                               <TableCell align="right">
                                 {fetchOperation.data.address}
+                              </TableCell>
+                            </TableRow>
+                            <TableRow
+                          // key={row.name}
+                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                              <TableCell component="th" scope="row">
+                                Network:
+                              </TableCell>
+                              <TableCell align="right">
+                                {fetchOperation.data.chainId === 56 && 'Binance Smart Chain (testnet)'}
+                                {fetchOperation.data.chainId === 97 && 'Binance Smart Chain'}
+                                {fetchOperation.data.chainId === 80001 && 'Polygon Matic (testnet)'}
+                                {fetchOperation.data.chainId === 137 && 'Polygon Matic'}
                               </TableCell>
                             </TableRow>
                             {

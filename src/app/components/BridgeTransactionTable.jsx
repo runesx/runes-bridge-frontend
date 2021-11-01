@@ -4,6 +4,7 @@ import dateFormat from 'dateformat';
 
 import Bsc from '../assets/images/bsc.svg';
 import Runebase from '../assets/images/Runebase.png';
+import Matic from '../assets/images/polygon.svg';
 
 export default function BasicTable(props) {
   const {
@@ -69,6 +70,19 @@ export default function BasicTable(props) {
             xs={2}
             alignItems="center"
           >
+            {row.bridge.chainId === 56 && (
+              <a href="/#">
+                <div
+                  className="svgContainer"
+                >
+                  <Bsc
+                    className="svgVertical"
+                  />
+                </div>
+              </a>
+            )}
+
+            {row.bridge.chainId === 97 && (
             <a href="/#">
               <div
                 className="svgContainer"
@@ -78,6 +92,32 @@ export default function BasicTable(props) {
                 />
               </div>
             </a>
+            )}
+
+            {row.bridge.chainId === 80001 && (
+            <a href="/#">
+              <div
+                className="svgContainer"
+              >
+                <Matic
+                  className="svgVertical"
+                />
+              </div>
+            </a>
+            )}
+
+            {row.bridge.chainId === 137 && (
+            <a href="/#">
+              <div
+                className="svgContainer"
+              >
+                <Matic
+                  className="svgVertical"
+                />
+              </div>
+            </a>
+            )}
+
           </Grid>
         </Grid>
 

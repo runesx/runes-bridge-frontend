@@ -4,7 +4,9 @@ import {
   START_ASSIGN_TX_BEGIN,
   START_ASSIGN_TX_SUCCESS,
   START_ASSIGN_TX_FAIL,
+  FETCH_OPERATION_SUCCESS,
   ENQUEUE_SNACKBAR,
+  FETCH_TRANSACTIONS_SUCCESS,
 } from './types/index';
 import history from '../history';
 
@@ -44,6 +46,14 @@ export function postAssignTxAction(uuid, txid) {
               variant: 'success',
             },
           },
+        });
+        dispatch({
+          type: FETCH_OPERATION_SUCCESS,
+          payload: response.data.bridge,
+        });
+        dispatch({
+          type: FETCH_TRANSACTIONS_SUCCESS,
+          payload: response.data.transactions,
         });
         console.log('response');
         console.log(response);

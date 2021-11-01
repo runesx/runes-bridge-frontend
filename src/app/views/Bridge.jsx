@@ -139,14 +139,34 @@ const Bridge = (props) => {
         </Box>
         <TabPanel value={value} index={0}>
           <Card sx={{ minWidth: 275 }}>
-            {active && (
+            {active
+            && (chainId === 56
+            || chainId === 97
+            || chainId === 80001)
+            && (
             <>
               <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                  Swap RUNES to BEP20 wRUNES
+                  Swap RUNES to
+                  {' '}
+                  {chainId === 56 && 'BEP20'}
+                  {chainId === 97 && 'BEP20'}
+                  {chainId === 80001 && 'ERC20'}
+                  {' '}
+                  wRUNES
+                  {' '}
+                  (
+                  {chainId === 56 && 'Binance Smart Chain'}
+                  {chainId === 97 && 'Binance Smart Chain'}
+                  {chainId === 80001 && 'Polygon Matic'}
+                  )
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  Destination Address to receive wRUNES on Binance Smart Chain
+                  Destination Address to receive wRUNES on
+                  {' '}
+                  {chainId === 56 && 'Binance Smart Chain'}
+                  {chainId === 97 && 'Binance Smart Chain'}
+                  {chainId === 80001 && 'Polygon Matic'}
                 </Typography>
                 <TextField
                   label="Destination Address"
@@ -196,7 +216,11 @@ const Bridge = (props) => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Card sx={{ minWidth: 275 }}>
-            {active && (
+            {active
+            && (chainId === 56
+            || chainId === 97
+            || chainId === 80001)
+            && (
               <>
                 <CardContent>
                   <Typography
@@ -204,7 +228,19 @@ const Bridge = (props) => {
                     color="text.secondary"
                     gutterBottom
                   >
-                    Swap BEP20 wRUNES to native RUNES
+                    Swap
+                    {' '}
+                    {chainId === 56 && 'BEP20'}
+                    {chainId === 97 && 'BEP20'}
+                    {chainId === 80001 && 'ERC20'}
+                    {' '}
+                    wRUNES from
+                    {' '}
+                    {chainId === 56 && 'Binance Smart Chain'}
+                    {chainId === 97 && 'Binance Smart Chain'}
+                    {chainId === 80001 && 'Polygon Matic'}
+                    {' '}
+                    to native RUNES (Runebase)
                   </Typography>
                   <TextField
                     id="outlined-number"
