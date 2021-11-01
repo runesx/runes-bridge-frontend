@@ -23,6 +23,11 @@ import { withRouter } from '../hooks/withRouter';
 import web3 from '../helpers/web3';
 
 import {
+  fetchOperationAction,
+  fetchOperationIdle,
+} from '../actions/operations';
+
+import {
   startSwapAction,
   idleStartSwapAction,
 } from '../actions/swap';
@@ -77,6 +82,10 @@ const Bridge = (props) => {
 
   useEffect(() => {
   }, [active]);
+
+  useEffect(() => {
+    dispatch(fetchOperationIdle());
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -142,6 +151,7 @@ const Bridge = (props) => {
             {active
             && (chainId === 56
             || chainId === 97
+            || chainId === 137
             || chainId === 80001)
             && (
             <>
@@ -151,6 +161,7 @@ const Bridge = (props) => {
                   {' '}
                   {chainId === 56 && 'BEP20'}
                   {chainId === 97 && 'BEP20'}
+                  {chainId === 137 && 'ERC20'}
                   {chainId === 80001 && 'ERC20'}
                   {' '}
                   wRUNES
@@ -158,6 +169,7 @@ const Bridge = (props) => {
                   (
                   {chainId === 56 && 'Binance Smart Chain'}
                   {chainId === 97 && 'Binance Smart Chain'}
+                  {chainId === 137 && 'Polygon Matic'}
                   {chainId === 80001 && 'Polygon Matic'}
                   )
                 </Typography>
@@ -166,6 +178,7 @@ const Bridge = (props) => {
                   {' '}
                   {chainId === 56 && 'Binance Smart Chain'}
                   {chainId === 97 && 'Binance Smart Chain'}
+                  {chainId === 137 && 'Polygon Matic'}
                   {chainId === 80001 && 'Polygon Matic'}
                 </Typography>
                 <TextField
@@ -219,6 +232,7 @@ const Bridge = (props) => {
             {active
             && (chainId === 56
             || chainId === 97
+            || chainId === 137
             || chainId === 80001)
             && (
               <>
@@ -232,12 +246,14 @@ const Bridge = (props) => {
                     {' '}
                     {chainId === 56 && 'BEP20'}
                     {chainId === 97 && 'BEP20'}
+                    {chainId === 137 && 'ERC20'}
                     {chainId === 80001 && 'ERC20'}
                     {' '}
                     wRUNES from
                     {' '}
                     {chainId === 56 && 'Binance Smart Chain'}
                     {chainId === 97 && 'Binance Smart Chain'}
+                    {chainId === 137 && 'Polygon Matic'}
                     {chainId === 80001 && 'Polygon Matic'}
                     {' '}
                     to native RUNES (Runebase)

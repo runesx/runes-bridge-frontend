@@ -30,6 +30,18 @@ const chains = [
     blockExplorerUrls: ['https://testnet.bscscan.com/'],
   },
   {
+    networkId: 137,
+    chainId: `0x${(137).toString(16)}`,
+    chainName: 'Polygon Matic',
+    nativeCurrency: {
+      name: 'Polygon',
+      symbol: 'MATIC',
+      decimals: 18,
+    },
+    rpcUrls: rpcUrls[`${137}`],
+    blockExplorerUrls: ['https://polygonscan.com/'],
+  },
+  {
     networkId: 80001,
     chainId: `0x${(80001).toString(16)}`,
     chainName: 'Polygon Testnet',

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 
 import { connect } from 'react-redux';
+// import { Web3Consumer } from 'web3-react';
+import { useWeb3React } from '@web3-react/core';
 import ListPools from '../components/Farm'
 // import FarmHero from '../components/Farm/Hero'
 // import Disclaimer from '../components/shared/Footer/Disclaimer'
@@ -9,19 +11,39 @@ import { PoolProvider } from '../context/pool'
 import { StatsProvider } from '../context/stats';
 import { withRouter } from '../hooks/withRouter';
 
-const Pool = (props) => (
+const Pool = (props) => {
+  const {
+    active,
+    chainId,
+    activateNetwork,
+    networkActive,
+    account,
+    library,
+  } = useWeb3React();
 
-  <StatsProvider>
-    <PoolProvider>
-      <FarmFilterProvider>
-        <div style={{ position: 'relative' }}>
-          <ListPools />
-        </div>
-      </FarmFilterProvider>
-    </PoolProvider>
-  </StatsProvider>
+  useEffect(() => { }, [
+    chainId,
+    active,
+    networkActive,
+    activateNetwork,
+    account,
+    library,
+  ]);
 
-)
+  return (
+
+    <StatsProvider>
+      <PoolProvider>
+        <FarmFilterProvider>
+          <div style={{ position: 'relative' }}>
+            <ListPools />
+          </div>
+        </FarmFilterProvider>
+      </PoolProvider>
+    </StatsProvider>
+
+  )
+}
 
 const mapStateToProps = (state) => ({
   // errorMessage: state.auth.error,

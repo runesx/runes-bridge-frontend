@@ -1,7 +1,7 @@
 import React, {
   Suspense,
   // useState,
-  // useEffect,
+  useEffect,
 } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -17,7 +17,7 @@ import Button from '@mui/material/Button';
 import CookieConsent from 'react-cookie-consent';
 import { i18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
-import { Web3ReactProvider } from '@web3-react/core';
+import { Web3ReactProvider, useWeb3React } from '@web3-react/core';
 
 import ParticlesRunebase from './components/ParticlesRunebase';
 
@@ -123,6 +123,23 @@ function App() {
   // Set up a piece of state, so that we have
   // a way to trigger a re-render.
   console.log('RunesX App Started');
+  const {
+    active,
+    chainId,
+    activateNetwork,
+    networkActive,
+    account,
+    library,
+  } = useWeb3React();
+
+  useEffect(() => { }, [
+    chainId,
+    active,
+    networkActive,
+    activateNetwork,
+    account,
+    library,
+  ]);
 
   // const classes = useStyles();
 

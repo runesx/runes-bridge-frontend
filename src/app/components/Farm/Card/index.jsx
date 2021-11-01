@@ -103,4 +103,4 @@ const FarmCard = ({ data }) => {
   )
 }
 
-export default FarmCard
+export default FarmCard;

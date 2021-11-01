@@ -24,6 +24,15 @@ export const networks = [
     disabled: process.env.NODE_ENV !== 'development',
   },
   {
+    id: 137,
+    name: 'Polygon Network',
+    displayName: 'Polygon(MATIC)',
+    shortName: 'MATIC',
+    enabledIcon: <Polygon />,
+    disabledIcon: <Polygon />,
+    disabled: false,
+  },
+  {
     id: 80001,
     name: 'Polygon Test Network',
     displayName: 'Polygon(MATIC) Testnet',

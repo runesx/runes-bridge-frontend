@@ -1,4 +1,4 @@
-import { useWeb3React } from '@web3-react/core';
+import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import React, { useEffect, useState } from 'react'
 
@@ -6,7 +6,7 @@ import { RUN_EVERY } from '../config/constants'
 import { getPool } from '../config/pool'
 import { useFarmContractInfo } from '../hooks/constants/useFarmContractInfo'
 import { useWRUNESToken } from '../hooks/constants/useWRUNESToken'
-// import { usePoolContractInfo } from '../hooks/constants/usePoolContractInfo'
+import { usePoolContractInfo } from '../hooks/constants/usePoolContractInfo'
 import { useDiscovery } from '../hooks/contracts/useDiscovery'
 import { useERC20 } from '../hooks/contracts/useERC20'
 import useStatsContext from '../hooks/useStatsContext'
@@ -31,9 +31,6 @@ export const PoolProvider = ({ children }) => {
     chainId,
   } = useWeb3React();
   useEffect(() => { }, [
-    active,
-    library,
-    account,
     chainId,
   ]);
 
@@ -43,7 +40,7 @@ export const PoolProvider = ({ children }) => {
   const [totalNEPLocked, setTotalNEPLocked] = useState('0');
   const { nepPrice } = useStatsContext();
   const { token: neptoken } = useWRUNESToken();
-  const { address: farmContractAddress } = useFarmContractInfo();
+  const { address: farmContractAddress } = useFarmContractInfo()
   const discoveryInstance = useDiscovery();
   const pools = getPool(chainId);
   const { balanceOf } = useERC20({ contract: neptoken });

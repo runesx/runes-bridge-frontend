@@ -156,6 +156,7 @@ const AccountMenu = ({ openConnectModal, openTransactionModal }) => {
           {' '}
           { network.id === 56 && 'BNB' }
           { network.id === 97 && 'BNB' }
+          { network.id === 137 && 'MATIC' }
           { network.id === 80001 && 'MATIC' }
         </div>
 

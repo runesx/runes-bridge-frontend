@@ -38,6 +38,9 @@ const SelectNetwork = ({ networks, selected, setSelected }) => (
           isActive,
           isDisabled,
         }
+        if (disabled) {
+          return true;
+        }
 
         return (<Grid container item xs={6} key={id}><Option key={id} {...props} /></Grid>)
       })}

@@ -18,15 +18,6 @@ const Harvest = ({ data }) => {
   const farmOrPool = useFarmOrPool();
 
   console.log('harvest');
-  console.log('harvest');
-  console.log('harvest');
-  console.log('harvest');
-  console.log('harvest');
-  console.log('harvest');
-  console.log('harvest');
-  console.log('harvest');
-  console.log('harvest');
-  console.log('harvest');
   console.log(data);
 
   const rewardAmount = convertFromUnits(data.rewards).decimalPlaces(6).toNumber();
@@ -88,4 +79,4 @@ const Harvest = ({ data }) => {
   )
 }
 
-export default Harvest
+export default Harvest;

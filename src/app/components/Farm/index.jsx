@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 // import { useWeb3React } from '@web3-react/core';
 import { connect } from 'react-redux';
+import { useWeb3React } from '@web3-react/core';
 import useFarmFilterContext from '../../hooks/useFarmFilterContext'
 import { usePoolContext } from '../../hooks/usePoolContext'
 import { sort } from '../../utils/bignumbers'
@@ -16,34 +17,21 @@ const sortByKeys = {
 const ListPools = (props) => {
   const { pools, getDataById } = usePoolContext()
   const { sortBy, searchText } = useFarmFilterContext()
-  const [toShow, setToShow] = useState([])
+  const [toShow, setToShow] = useState([]);
+  const {
+    active,
+    chainId,
+    activateNetwork,
+    networkActive,
+    account,
+    library,
+  } = useWeb3React();
 
   // const { active: networkActive, error: networkError, activate: activateNetwork } = useWeb3React();
 
   useEffect(() => {}, []);
   const { activateWallet } = props;
   useEffect(() => {
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
-    console.log('activateWallet triggered');
     console.log('activateWallet triggered');
   }, [activateWallet]);
 
@@ -69,7 +57,16 @@ const ListPools = (props) => {
     }
 
     setToShow(sorted)
-  }, [sortBy, searchText])
+  }, [
+    sortBy,
+    searchText,
+    active,
+    chainId,
+    activateNetwork,
+    networkActive,
+    account,
+    library,
+  ])
 
   return (
     <>

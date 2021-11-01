@@ -195,35 +195,13 @@ const Operation = (props) => {
 
   useEffect(() => {
     console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
-    console.log(process.env.WS_ENDPOINT);
     console.log('process.env.WS_ENDPOINT');
-
     const socket = io(process.env.WS_ENDPOINT, {
       path: '/socket.io',
       query: { customId: id },
     });
-    console.log(socket);
+
     socket.on('updateBridge', (data) => {
-      // setResponse(data);
       console.log(data);
       console.log('123');
       dispatch({
@@ -241,7 +219,7 @@ const Operation = (props) => {
   const clickBurn = async () => {
     try {
       setIsLoading(true);
-      console.log('Openning Metamask');
+      console.log('Opening Metamask');
       console.log(web3.eth.getCoinbase());
 
       // const totalcall = await contract.methods.totalSupply().call();
@@ -314,23 +292,29 @@ const Operation = (props) => {
   }, [assignTx.data]);
 
   useEffect(() => {
-    if (fetchOperation.data) {
-      if (fetchOperation.data.amount) {
-        console.log('555555555555');
-        console.log('555555555555');
-        console.log('555555555555');
-        console.log('555555555555');
-        console.log('555555555555');
-        console.log('555555555555');
-        console.log('555555555555');
-        console.log('555555555555');
-        console.log('555555555555');
-        console.log('555555555555');
-
-        console.log(Number(formatUnits(fetchOperation.data.amount.toString(), 8)));
-      }
-    }
-  }, [fetchOperation.data]);
+    console.log('fetchOperation.data');
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+    console.log(fetchOperation.data);
+  }, [fetchOperation, fetchOperation.data]);
 
   useEffect(() => {
     console.log('id');
