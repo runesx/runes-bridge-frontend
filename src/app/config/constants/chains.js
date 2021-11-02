@@ -55,4 +55,4 @@ const chains = [
   },
 ]
 
-export default chains
+export default chains;

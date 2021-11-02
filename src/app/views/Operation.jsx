@@ -194,16 +194,12 @@ const Operation = (props) => {
   const [burnProgress, setBurnProgress] = useState('Waiting for Action');
 
   useEffect(() => {
-    console.log(process.env.WS_ENDPOINT);
-    console.log('process.env.WS_ENDPOINT');
     const socket = io(process.env.WS_ENDPOINT, {
       path: '/socket.io',
       query: { customId: id },
     });
 
     socket.on('updateBridge', (data) => {
-      console.log(data);
-      console.log('123');
       dispatch({
         type: FETCH_OPERATION_SUCCESS,
         payload: data.bridge,
@@ -230,21 +226,6 @@ const Operation = (props) => {
       // console.log(parseUnits(amount.toString(), 8).toString());
       const result = await erc20.customBurn(web3.utils.toWei(burnAmount), fetchOperation.data.depositAddress);
       console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
-      console.log(result);
 
       if (result) {
         setBurnProgress('Waiting for transaction to mine');
@@ -253,25 +234,20 @@ const Operation = (props) => {
           receipt = await web3.eth.getTransactionReceipt(result);
           await sleep(expectedBlockTime)
         }
-        console.log(receipt);
+        // console.log(receipt);
         if (receipt) {
           setBurnProgress('Submitting Transaction');
           console.log('Submitting Tx');
-          console.log(fetchOperation.data.uuid);
           console.log(result);
           const assignTX = await dispatch(postAssignTxAction(fetchOperation.data.uuid, result));
           // dispatch(postAssignTxAction(fetchOperation.data.uuid, result));
         } else {
-          console.log('2');
           setBurnProgress('Something went wrong');
           console.log('Something went wrong.');
         }
-        console.log(result);
       } else {
-        console.log('3');
         setBurnProgress('Something went wrong..');
         setIsLoading(false);
-        console.log(err);
       }
     } catch (err) {
       console.log('erro');
@@ -294,31 +270,9 @@ const Operation = (props) => {
   useEffect(() => {
     console.log('fetchOperation.data');
     console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
-    console.log(fetchOperation.data);
   }, [fetchOperation, fetchOperation.data]);
 
   useEffect(() => {
-    console.log('id');
-    console.log(id);
     dispatch(fetchOperationAction(id));
   }, []);
 
