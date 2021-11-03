@@ -5,20 +5,20 @@ import React, { useEffect, useState } from 'react'
 import { RUN_EVERY } from '../config/constants'
 import { getPool } from '../config/pool'
 import { useFarmContractInfo } from '../hooks/constants/useFarmContractInfo'
-import { useWRUNESToken } from '../hooks/constants/useWRUNESToken'
-import { usePoolContractInfo } from '../hooks/constants/usePoolContractInfo'
-import { useDiscovery } from '../hooks/contracts/useDiscovery'
-import { useERC20 } from '../hooks/contracts/useERC20'
-import useStatsContext from '../hooks/useStatsContext'
+import { useWRUNESToken } from '../hooks/constants/useWRUNESToken';
+// import { usePoolContractInfo } from '../hooks/constants/usePoolContractInfo'
+import { useDiscovery } from '../hooks/contracts/useDiscovery';
+import { useERC20 } from '../hooks/contracts/useERC20';
+import useStatsContext from '../hooks/useStatsContext';
 import {
   convertFromUnits,
   hasValue,
   maxIn,
   sumOf,
-} from '../utils/bignumbers'
-import { getTokenAllowance } from '../utils/blockchain/allowance'
-import { isLatest } from '../utils/context'
-import { getPoolData } from '../utils/data/pool'
+} from '../utils/bignumbers';
+import { getTokenAllowance } from '../utils/blockchain/allowance';
+import { isLatest } from '../utils/context';
+import { getPoolData } from '../utils/data/pool';
 
 // has data of all pools
 export const PoolContext = React.createContext()

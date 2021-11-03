@@ -20,6 +20,9 @@ import { convertFromUnits } from '../../../utils/bignumbers';
 import useAuth from '../../../hooks/useAuth';
 import { useERC20 } from '../../../hooks/contracts/useERC20';
 import { useWRUNESToken } from '../../../hooks/constants/useWRUNESToken';
+import QuestionHelper from '../../QuestionHelper';
+import RunebaseImage from '../../../assets/images/Runebase.png';
+// import Button from '@mui/material/Button';
 
 function Balance() {
   const { account, library, chainId } = useWeb3React()
@@ -47,7 +50,10 @@ function Balance() {
         setBalance(undefined)
       }
     }
-  }, [account, library, chainId]) // ensures refresh if referential identity of library doesn't change across chainIds
+  }, [account,
+    library,
+    chainId,
+  ]) // ensures refresh if referential identity of library doesn't change across chainIds
 
   return (
     <>
@@ -67,7 +73,7 @@ const AccountMenu = ({ openConnectModal, openTransactionModal }) => {
   };
 
   const { logout } = useAuth();
-  const { account, chainId } = useWeb3React();
+  const { account, chainId, library } = useWeb3React();
 
   const network = networks.find((x) => x.id === chainId) || {}
   const wRunesToken = useWRUNESToken();
@@ -81,11 +87,65 @@ const AccountMenu = ({ openConnectModal, openTransactionModal }) => {
       setNEPBalance(convertFromUnits(result).toString());
     }
     updateBondBalance();
+    console.log('wRunesToken var');
+    console.log(wRunesToken);
   }, [chainId]);
 
   return (
     <div>
-      <div style={{ float: 'left', paddingRight: '5px' }}>
+      <div
+        style={{
+          float: 'left',
+          marginRight: '10px',
+        }}
+      >
+        {chainId && library && library.provider.isMetaMask && (
+        <>
+          <QuestionHelper text="Add wRUNES to your MetaMask wallet">
+
+            <Button
+              variant="outlined"
+              onClick={() => {
+                const params = {
+                  type: 'ERC20',
+                  options: {
+                    address: wRunesToken.token.address,
+                    symbol: 'wRUNES',
+                    decimals: 18,
+                    image: 'https://downloads.runebase.io/logo-512x512.png',
+                  },
+                }
+                if (library && library.provider.isMetaMask && library.provider.request) {
+                  library.provider
+                    .request({
+                      method: 'wallet_watchAsset',
+                      params,
+                    })
+                    .then((success) => {
+                      if (success) {
+                        console.log('Successfully added wRUNES to MetaMask')
+                      } else {
+                        throw new Error('Something went wrong.')
+                      }
+                    })
+                    .catch(console.error)
+                }
+              }}
+            >
+              <img
+                src="https://downloads.runebase.io/logo-512x512.png"
+                alt="SUSHI"
+                width="38px"
+                height="38px"
+                objectFit="contain"
+                className="rounded-md"
+              />
+            </Button>
+          </QuestionHelper>
+        </>
+        )}
+      </div>
+      <div style={{ float: 'left', paddingRight: '10px' }}>
         <div style={{ width: '100%' }}>
           <div className={styles.networkName}>{network.shortName}</div>
         </div>

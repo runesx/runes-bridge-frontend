@@ -19,10 +19,10 @@ export const StatsProvider = ({ children }) => {
   const [totalRewardAllocation, setTotalRewardAllocation] = useState('0');
 
   useEffect(() => {
-    setTotalNepSupply('0')
-    setTotalBurned('0')
-    setNepPrice('0')
-    setTotalRewardAllocation('0')
+    setTotalNepSupply('0');
+    setTotalBurned('0');
+    setNepPrice('0');
+    setTotalRewardAllocation('0');
   }, [chainId])
 
   useEffect(() => {
@@ -30,11 +30,20 @@ export const StatsProvider = ({ children }) => {
       let result = await discoveryInstance.totalNepSupply();
       setTotalNepSupply(result);
 
+      console.log('context/stats - await discoveryInstance.totalNepSupply()');
+      console.log(result);
+
       result = await discoveryInstance.totalBurned();
       setTotalBurned(sumOf(result, getBurnedByChainId(chainId)));
 
+      console.log('context/stats - await discoveryInstance.totalBurned()');
+      console.log(result);
+
       result = await discoveryInstance.totalRewardAllocation();
       setTotalRewardAllocation(result);
+
+      console.log('context/stats - await discoveryInstance.totalRewardAllocation()');
+      console.log(result);
 
       result = await discoveryInstance.getNEPPrice();
 
