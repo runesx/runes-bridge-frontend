@@ -78,13 +78,13 @@ const AccountMenu = ({ openConnectModal, openTransactionModal }) => {
   const network = networks.find((x) => x.id === chainId) || {}
   const wRunesToken = useWRUNESToken();
   const erc20 = useERC20({ contract: wRunesToken.token });
-  const [NEPBalance, setNEPBalance] = useState('0');
+  const [RUNESBalance, setRUNESBalance] = useState('0');
   // const [balance, setBalance] = useState('0');
 
   useEffect(() => {
     const updateBondBalance = async () => {
       const result = await erc20.balanceOf(account);
-      setNEPBalance(convertFromUnits(result).toString());
+      setRUNESBalance(convertFromUnits(result).toString());
     }
     updateBondBalance();
     console.log('wRunesToken var');
@@ -221,7 +221,7 @@ const AccountMenu = ({ openConnectModal, openTransactionModal }) => {
         </div>
 
         <div style={{ width: '100%' }}>
-          {Number(NEPBalance).toFixed(3)}
+          {Number(RUNESBalance).toFixed(3)}
           {' '}
           wRUNES
         </div>
