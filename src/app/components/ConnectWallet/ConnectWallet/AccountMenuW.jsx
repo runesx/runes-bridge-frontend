@@ -22,6 +22,7 @@ import { useERC20 } from '../../../hooks/contracts/useERC20';
 import { useWRUNESToken } from '../../../hooks/constants/useWRUNESToken';
 import QuestionHelper from '../../QuestionHelper';
 import RunebaseImage from '../../../assets/images/Runebase.png';
+import AddToken from './AddToken';
 // import Button from '@mui/material/Button';
 
 function Balance() {
@@ -99,51 +100,7 @@ const AccountMenu = ({ openConnectModal, openTransactionModal }) => {
           marginRight: '10px',
         }}
       >
-        {chainId && library && library.provider.isMetaMask && (
-        <>
-          <QuestionHelper text="Add wRUNES to your MetaMask wallet">
-
-            <Button
-              variant="outlined"
-              onClick={() => {
-                const params = {
-                  type: 'ERC20',
-                  options: {
-                    address: wRunesToken.token.address,
-                    symbol: 'wRUNES',
-                    decimals: 18,
-                    image: 'https://downloads.runebase.io/logo-512x512.png',
-                  },
-                }
-                if (library && library.provider.isMetaMask && library.provider.request) {
-                  library.provider
-                    .request({
-                      method: 'wallet_watchAsset',
-                      params,
-                    })
-                    .then((success) => {
-                      if (success) {
-                        console.log('Successfully added wRUNES to MetaMask')
-                      } else {
-                        throw new Error('Something went wrong.')
-                      }
-                    })
-                    .catch(console.error)
-                }
-              }}
-            >
-              <img
-                src="https://downloads.runebase.io/logo-512x512.png"
-                alt="SUSHI"
-                width="38px"
-                height="38px"
-                objectFit="contain"
-                className="rounded-md"
-              />
-            </Button>
-          </QuestionHelper>
-        </>
-        )}
+        <AddToken />
       </div>
       <div style={{ float: 'left', paddingRight: '10px' }}>
         <div style={{ width: '100%' }}>
