@@ -22,8 +22,8 @@ export const getDiscoveryContractInfo = (networkId = FALLBACK_CHAIN_ID) => {
   }
   if (networkId === 137) {
     return {
-      address: mainnetMatic.addresses.contracts.v1.DISCOVERY,
-      abi: abis.discovery,
+      address: mainnetMatic.addresses.contracts.v1.QUICKDISCOVERY,
+      abi: abis.quickDiscovery,
     }
   }
   if (networkId === 80001) {
@@ -84,8 +84,8 @@ export const getFarmContractInfo = (networkId = FALLBACK_CHAIN_ID) => {
 
   if (networkId === 137) {
     return {
-      address: mainnetMatic.addresses.contracts.v1.FARM,
-      abi: abis.farm,
+      address: mainnetMatic.addresses.contracts.v1.QUICKFARM,
+      abi: abis.quickFarm,
     }
   }
 

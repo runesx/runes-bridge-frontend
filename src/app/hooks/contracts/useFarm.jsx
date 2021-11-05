@@ -17,6 +17,8 @@ export const useFarm = ({ contract: _contract } = {}) => {
     const toDeposit = convertToUnits(amount || 0).toString();
     console.log('toDeposit');
     console.log(toDeposit);
+    console.log('toDeposit');
+    console.log(contract);
 
     const estimatedGas = await instance.estimateGas
       .deposit(toDeposit)

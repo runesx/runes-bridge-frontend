@@ -75,7 +75,11 @@ export const useDiscovery = ({ contract: _contract } = {}) => {
     contract = fallback
   }
 
-  const instance = useContract({ contract })
+  const instance = useContract({ contract });
+
+  console.log('useDiscovery');
+  console.log(contract);
+  console.log(instance);
 
   const getBondSummary = async ({ token, account = AddressZero }) => {
     try {
