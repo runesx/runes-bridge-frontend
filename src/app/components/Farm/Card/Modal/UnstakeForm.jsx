@@ -33,7 +33,7 @@ export const UnstakeContent = ({
 
   const onMax = async () => {
     setAmount(
-      convertFromUnits(staked).decimalPlaces(2, BigNumber.ROUND_DOWN).toNumber(),
+      convertFromUnits(staked).decimalPlaces(8, BigNumber.ROUND_DOWN).toNumber(),
     )
   }
 
@@ -85,7 +85,7 @@ export const UnstakeContent = ({
           {' '}
           <span className="text-gray-200">
             {convertFromUnits(staked)
-              .decimalPlaces(2, BigNumber.ROUND_DOWN)
+              .decimalPlaces(8, BigNumber.ROUND_DOWN)
               .toNumber()}
           </span>
           {' '}

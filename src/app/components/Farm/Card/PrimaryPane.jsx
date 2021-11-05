@@ -3,13 +3,34 @@ import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { Grid } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import KeyPoint from './KeyPoint'
-import styles from './index.module.css'
+// import KeyPoint from './KeyPoint'
+// import styles from './index.module.css'
 import { convertFromUnits, hasValue } from '../../../utils/bignumbers'
 import { formatWeiToNumber } from '../../../utils/formatter';
 
 const PrimaryPane = ({ children, data }) => {
-  const { active } = useWeb3React()
+  const { active } = useWeb3React();
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log(data);
+  console.log('data');
 
   return (
     <Grid container>
@@ -40,13 +61,15 @@ const PrimaryPane = ({ children, data }) => {
             className="text-xs font-bold text-gray-400"
             title={
               `${convertFromUnits(data.staked)
-                .decimalPlaces(2, BigNumber.ROUND_DOWN)
+                .decimalPlaces(8, BigNumber.ROUND_DOWN)
                 .toNumber()
               } ${
                 data.liquidity}`
             }
           >
-            {formatWeiToNumber(data.staked)}
+            {convertFromUnits(data.staked)
+              .decimalPlaces(8, BigNumber.ROUND_DOWN)
+              .toNumber()}
             {' '}
             {data.liquidity}
           </p>

@@ -38,6 +38,15 @@ const Pool = (props) => {
           <div style={{ position: 'relative' }}>
             <ListPools />
           </div>
+          <div>
+            <iframe
+              src="https://quickswap.exchange/#/swap?outputCurrency=0x831753dd7087cac61ab5644b308642cc1c33dc13"
+              height="660px"
+              width="100%"
+              // style=" border: 0; margin: 0 auto; display: block; border-radius: 10px; max-width: 600px; min-width: 300px; "
+              id="myId"
+            />
+          </div>
         </FarmFilterProvider>
       </PoolProvider>
     </StatsProvider>
