@@ -1,6 +1,6 @@
-import features from './features'
-import abis from '../abis'
-import { addresses } from '../constants/addresses.bsc-testnet'
+import features from './features';
+import abis from '../abis';
+import { addresses } from '../constants/addresses.matic-mainnet';
 import { convertFromUnits } from '../../utils/bignumbers';
 import Quick from '../../assets/images/quick.png';
 // import Bake from '../../assets/images/bake.png';
